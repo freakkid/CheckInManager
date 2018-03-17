@@ -35,4 +35,4 @@ app.use(function* (next) {
 // // router
 // app.use(router.routes());
 
-module.exports = app;
+export default app;
