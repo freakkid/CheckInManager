@@ -4,17 +4,14 @@ import app from '../app';
 import http from 'http';
 import process from 'process';
 
-import { initDatabaseAsync } from '../models';
 import { port as defaultPort } from '../config';
 import { logger } from '../utils';
 
-// initial database when starts server;
-initDatabaseAsync();
 
-let port = normalizePort(process.env.PORT || defaultPort);
+var port = normalizePort(process.env.PORT || defaultPort);
 app.set('port', port);
 
-let server = http.createServer(app);
+var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

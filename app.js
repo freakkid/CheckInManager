@@ -4,7 +4,7 @@ import json from 'koa-json';
 import bodyparser from 'koa-bodyparser';
 import logger from 'koa-logger';
 
-import router from './routes/index';
+// import router from './routes/index';
 
 app.use(bodyparser({
   enableTypes: ['json', 'form', 'text']
@@ -32,7 +32,7 @@ app.use(function* (next) {
   logger.log(`${this.method} ${this.url} - ${ms}ms`);
 });
 
-// router
-app.use(router.routes());
+// // router
+// app.use(router.routes());
 
 module.exports = app;

@@ -1,12 +1,9 @@
 import log4js from 'log4js';
-import { logFileName } from '../config';
-import { twelveBitsRandomID, sixteenBitsRandomID } from './randomID';
-
-export { twelveBitsRandomID, sixteenBitsRandomID };
+import { logFilePath } from '../config';
 
 log4js.configure({
   appenders: {
-    errors: { type: 'file', filename: logFileName },
+    errors: { type: 'file', filename: logFilePath },
     console: { type: 'console' },
     justerrors: { type: 'logLevelFilter', appender: 'errors', level: 'error' }
   },
