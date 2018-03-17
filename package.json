@@ -25,8 +25,7 @@
     "koa-bodyparser": "^4.2.0",
     "koa-json": "^2.0.2",
     "koa-logger": "^3.1.0",
-    "log4js": "^2.5.3",
-    "mysql": "^2.15.0"
+    "log4js": "^2.5.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
