@@ -20,16 +20,17 @@ const handler = async (ctx, next) => {
     ctx.response.status = 500;
     ctx.response.body = 'Server error';
   }
-}
+};
+
 app.use(handler);
 
-// // logger
-// app.use(function* (next) {
-//   const start = new Date();
-//   yield next;
-//   // const ms = new Date() - start;
-//   // console.log(`${this.method} ${this.url} - ${ms}ms`);
-// });
+// logger
+app.use(function* (next) {
+  const start = new Date();
+  yield next;
+  const ms = new Date() - start;
+  logger.log(`${this.method} ${this.url} - ${ms}ms`);
+});
 
 // router
 app.use(router.routes());
