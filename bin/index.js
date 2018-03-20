@@ -6,6 +6,16 @@ import process from 'process';
 
 import { port as defaultPort } from '../config';
 import { logger } from '../utils';
+import { test } from '../models/init';
+
+try {
+  test();
+} catch (error) {
+  logger.error(error);
+  process.exit(1);
+}
+
+
 
 var port = normalizePort(process.env.PORT) || defaultPort;
 
