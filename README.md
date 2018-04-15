@@ -27,7 +27,21 @@
     
 + 逻辑功能
 
-    + 登录---统一用id和密码登录
+    + 老师、管理员登录---统一用id和密码登录
+        ```
+        页面：
+        /login
+        输入：user_id, password
+        api：
+        POST /session
+        {
+            "user_id": "15331117", 
+            "password": "15331117"
+        }
+
+        ```
+
+        
     + 老师
         - 主页面获取老师所教课程列表 -- teacher_id        ----> course_id, course_name, is_closed
         - 选择某个课程信息      -- teacher_id course_id ----> credit（学分）, semester（学期）, class_time（上课时间）, venue（上课地点）, 学生人数
@@ -35,7 +49,9 @@
         - 选择某个课程的发起签到 -- teacher_id course_id
             + 后台调用api生成一个二维码，返回给前端页面
             + 结束签到时返回签到人数、课程人数[签到列表、未签到列表]
-            + 
 
     + 学生
-        - 
+        - 没有登录后的界面
+        - 扫码  -- student_id student_name + course_id(包含在url中)
+                    -- 课程存在&&学生信息正确&&学生在课程中 ---> 签到成功
+                    -- 签到失败
