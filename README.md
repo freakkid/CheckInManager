@@ -29,19 +29,44 @@
 
     + 老师、管理员登录---统一用id和密码登录
         ```
-        页面：
-        /login
+        页面：/login
         输入：user_id, password
-        api：
-        POST /session
+        
+        api：POST /api/users/login
         {
             "user_id": "15331117", 
             "password": "15331117"
         }
-
         ```
 
-        
+        + response:
+            - 200
+                + Header
+
+                    Set-Cookie:key=3w4e5r6tyuifcgvhbjnkmlvg
+                    
+                + Body
+
+                    重定向：跳转到登录后的主界面
+            
+            - 400
+                + Header
+
+                    Content-Type:application/json
+                    Set-Cookie:key=3w4e5r6tyuifcgvhbjnkmlvg
+
+                + Body
+
+            - 401
+                + Header
+
+                    Content-Type:html
+                    Set-Cookie:key=3w4e5r6tyuifcgvhbjnkmlvg
+                    
+                + Body
+
+
+
     + 老师
         - 主页面获取老师所教课程列表 -- teacher_id        ----> course_id, course_name, is_closed
         - 选择某个课程信息      -- teacher_id course_id ----> credit（学分）, semester（学期）, class_time（上课时间）, venue（上课地点）, 学生人数
