@@ -1,4 +1,4 @@
-# MiniCouserManager
+# CheckInManager
 
 ## 开发文档
 
@@ -25,3 +25,8 @@
     > npm run dev
 
     
++ 逻辑功能
+
+    + 登录---统一用id和密码登录
+    + 老师
+        - 主页面获取老师所教课程列表

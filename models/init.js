@@ -146,42 +146,4 @@ async function createCourse_Table() {
     });
   });
 }
-async function createCourse_Table() {
-  return await new Promise((resolve, reject) => {
-    db.run(`CREATE TABLE VOTE(
-      VOTE_NAME NVARCHAR(50)  PRIMARY KEY  NOT NULL,
-      VOTE_DDL	         DATATIME   NOT NULL,
-      MULTISELECT			 INT		DEFAULT 0,
-      HOST_ID			VARCHAR(50)		NOT NULL,
-      HOST_NAME		NVARCHAR(50)    NOT NULL,
-      OPTION_NUM			INT			DEFAULT 1,
-      OPTION_MAX			INT			DEFAULT 10,
-      VOTE_E1 		VARCHAR(20)		NOT NULL,
-      VOTE_N1				INT			DEFAULT 0,
-      VOTE_E2 		VARCHAR(20)		NOT NULL,
-      VOTE_N2				INT			DEFAULT 0,
-      VOTE_E3 		VARCHAR(20)		NOT NULL,
-      VOTE_N3				INT			DEFAULT 0,
-      VOTE_E4 		VARCHAR(20)		NOT NULL,
-      VOTE_N4				INT			DEFAULT 0,
-      VOTE_E5 		VARCHAR(20)		NOT NULL,
-      VOTE_N5				INT			DEFAULT 0,
-      VOTE_E6 		VARCHAR(20)		NOT NULL,
-      VOTE_N6				INT			DEFAULT 0,
-      VOTE_E7 		VARCHAR(20)		NOT NULL,
-      VOTE_N7				INT			DEFAULT 0,
-      VOTE_E8 		VARCHAR(20)		NOT NULL,
-      VOTE_N8				INT			DEFAULT 0,
-      VOTE_E9 		VARCHAR(20)		NOT NULL,
-      VOTE_N9				INT			DEFAULT 0,
-      VOTE_E10 		VARCHAR(20)		NOT NULL,
-      VOTE_N10			INT			DEFAULT 0
-    )`, function(err) {
-      if (err) {
-        reject(err);
-      }
-      resolve('Created VOTE Table');
-    });
-  });
-}
 
