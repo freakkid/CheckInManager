@@ -29,4 +29,13 @@
 
     + 登录---统一用id和密码登录
     + 老师
-        - 主页面获取老师所教课程列表
+        - 主页面获取老师所教课程列表 -- teacher_id        ----> course_id, course_name, is_closed
+        - 选择某个课程信息      -- teacher_id course_id ----> credit（学分）, semester（学期）, class_time（上课时间）, venue（上课地点）, 学生人数
+        - 选择某个课程的学生列表 -- teacher_id course_id ----> 所有学生的student_id, student_name（如果学生数量很多，前端应该分页显示）
+        - 选择某个课程的发起签到 -- teacher_id course_id
+            + 后台调用api生成一个二维码，返回给前端页面
+            + 结束签到时返回签到人数、课程人数[签到列表、未签到列表]
+            + 
+
+    + 学生
+        - 
