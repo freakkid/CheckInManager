@@ -1,4 +1,5 @@
 import mysql from 'mysql';
+
 import {db} from '../config';
 import {logger} from '../utils';
 
