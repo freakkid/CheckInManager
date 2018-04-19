@@ -17,26 +17,12 @@ export async function dropUserTable() {
   return await execAsync('DROP TABLE USER', undefined, 'drop table USER');
 }
 
-// 创建老师
-export async function createUser(user) {
-  return await execAsync(`INSERT INTO USER (user_id, username, password) VALUES (?, ?, ?)`,
-    [user.user_id, user.username, user.password],
-    'create user ' + JSON.stringify(user));
-}
-
 // 登录
 export async function getUserByUserId(user_id, password) {
   return await execAsync(`SELECT user_id, username, is_manager FROM USER
     WHERE user_id = ? AND password = ?`,
     [user_id, password],
     `select user by user_id ${user_id} and password`);
-}
-
-// 管理员获取所有老师列表
-export async function getAllUsersList() {
-  return await execAsync(`SELECT user_id, username FROM USER WHERE is_manager = 0`,
-    undefined,
-    `select all users`);
 }
 
 // 老师修改密码
@@ -46,7 +32,30 @@ export async function changePassword(new_password, user_id, password) {
     `update user password by user_id: ${user_id} and password`);
 }
 
-// 只能删除老师
+// 管理员的权限 ----------------------------
+
+// 获取所有老师列表
+export async function getAllUsersList() {
+  return await execAsync(`SELECT user_id, username FROM USER WHERE is_manager = 0`,
+    undefined,
+    `select all users`);
+}
+
+// 根据id查找某个老师
+export async function getUserByUserID(user_id) {
+  return await execAsync(`SELECT user_id, username FROM USER WHERE user_id = ？`,
+    [user_id],
+    `select user ${user_id}`);
+}
+
+// 创建某个老师
+export async function createUser(user) {
+  return await execAsync(`INSERT INTO USER (user_id, username, password) VALUES (?, ?, ?)`,
+    [user.user_id, user.username, user.password],
+    'create user ' + JSON.stringify(user));
+}
+
+// 删除某个老师
 export async function deleteUser(user_id) {
   return await execAsync('DELETE FROM USER WHERE user_id = ? AND is_manager = 0',
     [user_id],
@@ -57,7 +66,7 @@ export async function deleteUser(user_id) {
 export async function deleteAllUsers() {
   return await execAsync('DELETE FROM USER WHERE is_manager = 0',
     undefined,
-    `delete all user`);
+    'delete all user');
 }
 
 // 查看某教师下的所有课程列表
@@ -67,4 +76,4 @@ export async function getAllCoursesByUserID(user_id) {
     `select all courses by user_id ${user_id}`);
 }
 
-// 
+//

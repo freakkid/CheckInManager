@@ -26,17 +26,37 @@ export async function dropCourseTable() {
 
 // 获得某个教师的所有课程列表
 export async function getAllCoursesList(user_id) {
-  return await execAsync(`SELECT course_id, course_name, is_closed FROM COURSE WHERE user_id = ?`,
+  return await execAsync(`SELECT course_id, course_name, semester FROM COURSE WHERE user_id = ?`,
   [user_id],
   `select course by user_id ${user_id}`);
 }
 
-// //
-// export async function getCourseNameByCourseID(course_id) {
-//   return await execAsync('SELECT course_name FROM COURSE WHERE course_id = ?',
-//     [course_id],
-//     `select course by course_id ${course_id}`);
-// }
+// 获取某个课程信息
+export async function getCourseByCourseID(course_id) {
+  return await execAsync(
+  `SELECT course_name, credit, semester, class_time, position, student_num, teacher_name
+   FROM COURSE
+    LEFT JOIN USER
+      ON COURSE.user_id = USER.user_id
+    LEFT JOIN
+      (SELECT course_id, COUNT(student_id) AS student_num
+        FROM COURSE_MEMBER
+        GROUP BY course_id
+      ) AS COURSE_STUDENT_NUM
+      ON COURSE.course_id = COURSE_STUDENT_NUM.course_id
+   WHERE course_id = ?`,
+  [course_id],
+  `select course by course_id ${course_id}`);
+}
+
+// 获取课程的老师id
+export async function getUserIDByCourseID(course_id) {
+  return await execAsync('SELECT user_id FROM COURSE WHERE course_id = ?',
+  [course_id],
+  `select user_id by course_id ${course_id}`);
+}
+
+// 管理员的权限 ----------------------------
 
 // 创建新课程
 export async function createCourse(course) {
@@ -58,12 +78,5 @@ export async function deleteCourse(user_id, course_id) {
 export async function deleteAllCourses(user_id) {
   return await execAsync('DELETE FROM COURSE WHERE user_id = ?',
     [user_id],
-    `delete course by user_id ${user_id}`);
-}
-
-// 添加某课程的学生
-export async function addCourseMember(course_id, student_id) {
-  return await execAsync('INSERT INTO COURSE_MEMBER WHERE course_id = ? AND student_id = ?',
-    [course_id, student_id],
     `delete course by user_id ${user_id}`);
 }
