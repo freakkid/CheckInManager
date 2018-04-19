@@ -17,35 +17,54 @@ export async function dropUserTable() {
   return await execAsync('DROP TABLE USER', undefined, 'drop table USER');
 }
 
+// 创建老师
 export async function createUser(user) {
-  return await execAsync(`INSERT INTO USER
-  (user_id, username, password) VALUES (?, ?, ?)`,
+  return await execAsync(`INSERT INTO USER (user_id, username, password) VALUES (?, ?, ?)`,
     [user.user_id, user.username, user.password],
     'create user ' + JSON.stringify(user));
 }
 
+// 登录
 export async function getUserByUserId(user_id, password) {
   return await execAsync(`SELECT user_id, username, is_manager FROM USER
-  WHERE user_id = ? AND password = ?`,
+    WHERE user_id = ? AND password = ?`,
     [user_id, password],
     `select user by user_id ${user_id} and password`);
 }
 
-// export async function getUsernameByUserID(user_id) {
-//   return await execAsync('SELECT username FROM USER WHERE user_id = ?',
-//     [user_id],
-//     `select user by user_id ${user_id}`);
-// }
+// 管理员获取所有老师列表
+export async function getAllUsersList() {
+  return await execAsync(`SELECT user_id, username FROM USER WHERE is_manager = 0`,
+    undefined,
+    `select all users`);
+}
 
+// 老师修改密码
 export async function changePassword(new_password, user_id, password) {
-  return await execAsync('UPDATE USER SET password = ? WHERE user_id = ? AND password = ?',
+  return await execAsync('UPDATE USER SET password = ? WHERE user_id = ? AND password = ? AND is_manager = 0',
     [new_password, user_id, password],
     `update user password by user_id: ${user_id} and password`);
 }
 
-// 只能删除非管理员的用户
+// 只能删除老师
 export async function deleteUser(user_id) {
   return await execAsync('DELETE FROM USER WHERE user_id = ? AND is_manager = 0',
     [user_id],
     `delete user [user_id: ${user_id}]`);
 }
+
+// 删除所有老师
+export async function deleteAllUsers() {
+  return await execAsync('DELETE FROM USER WHERE is_manager = 0',
+    undefined,
+    `delete all user`);
+}
+
+// 查看某教师下的所有课程列表
+export async function getAllCoursesByUserID(user_id) {
+  return await execAsync('SELECT course_id, course_name, semester FROM COURSE WHERE user_id = ?',
+    [user_id],
+    `select all courses by user_id ${user_id}`);
+}
+
+// 

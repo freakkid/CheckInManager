@@ -24,6 +24,21 @@ export async function dropCourseTable() {
   return await execAsync('DROP TABLE COURSE', undefined, 'drop table COURSE');
 }
 
+// 获得某个教师的所有课程列表
+export async function getAllCoursesList(user_id) {
+  return await execAsync(`SELECT course_id, course_name, is_closed FROM COURSE WHERE user_id = ?`,
+  [user_id],
+  `select course by user_id ${user_id}`);
+}
+
+// //
+// export async function getCourseNameByCourseID(course_id) {
+//   return await execAsync('SELECT course_name FROM COURSE WHERE course_id = ?',
+//     [course_id],
+//     `select course by course_id ${course_id}`);
+// }
+
+// 创建新课程
 export async function createCourse(course) {
   return await execAsync(`INSERT INTO COURSE
   (course_id, course_name, user_id, credit, semester, class_time, position) VALUES (?, ?, ?, ?, ?, ?, ?)`,
@@ -32,20 +47,23 @@ export async function createCourse(course) {
     'create course ' + JSON.stringify(course));
 }
 
-export async function getCourseListByTeacher(user_id) {
-  return await execAsync(`SELECT course_id, course_name, is_closed FROM COURSE WHERE teacher_id = ?`,
-  [user_id],
-  `select course by teacher_id ${user_id}`);
+// 删除某老师的某一门课程
+export async function deleteCourse(user_id, course_id) {
+  return await execAsync('DELETE FROM COURSE WHERE user_id = ? AND course_id = ?',
+    [user_id, course_id],
+    `delete course by user_id ${user_id} and course_id ${course_id}`);
 }
 
-export async function getCoursenameByCourseID(course_id) {
-  return await execAsync('SELECT course_name FROM COURSE WHERE course_id = ?',
-    [course_id],
-    `select course by course_id ${course_id}`);
+// 删除某老师的所有课程
+export async function deleteAllCourses(user_id) {
+  return await execAsync('DELETE FROM COURSE WHERE user_id = ?',
+    [user_id],
+    `delete course by user_id ${user_id}`);
 }
 
-export async function deleteCourse(course_id, password) {
-  return await execAsync('DELETE FROM COURSE WHERE course_id = ? AND password = ?',
-    [course_id, password],
-    `delete course [course_id: ${course_id}]`);
+// 添加某课程的学生
+export async function addCourseMember(course_id, student_id) {
+  return await execAsync('INSERT INTO COURSE_MEMBER WHERE course_id = ? AND student_id = ?',
+    [course_id, student_id],
+    `delete course by user_id ${user_id}`);
 }
