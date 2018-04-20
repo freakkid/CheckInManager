@@ -9,7 +9,7 @@ export async function createCheckinCourseTable() {
       date_time    DATETIME     DEFAULT CURRENT_TIMESTAMP NOT NULL
     )`,
     undefined,
-    'Table CHECKIN_COURSE created...');
+    'create CHECKIN_COURSE');
 }
 
 export async function dropCheckinCourseTable() {
@@ -21,11 +21,4 @@ export async function createCheckinCourse(checkin_course) {
   return await execAsync(`INSERT INTO CHECKIN_COURSE (checkin_id, course_id) VALUES (?, ?)`,
     [checkin_course.checkin_id, checkin_course.course_id],
     'create checkin_course ' + JSON.stringify(checkin_course));
-}
-
-// 查看课程签到人数
-export async function getCheckinStudentNumber(course_id) {
-  return await execAsync(`INSERT INTO CHECKIN_STUDENT (checkin_id, student_id) VALUES (?, ?)`,
-    [checkin_student.checkin_id, checkin_student.student_id],
-    'create checkin_student ' + JSON.stringify(checkin_student));
 }

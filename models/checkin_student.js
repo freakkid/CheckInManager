@@ -11,19 +11,21 @@ export async function createCheckinStudentTable() {
       PRIMARY KEY (checkin_id, student_id)
     )`,
     undefined,
-    'Table CHECKIN_STUDENT created...');
+    'create CHECKIN_STUDENT');
 }
 
 export async function dropCheckinStudentTable() {
   return await execAsync('DROP TABLE CHECKIN_STUDENT', undefined, 'drop table CHECKIN_STUDENT');
 }
 
-// 学生进行签到
+// 学生进行签到 插入签到数据：学号 签到id
 // TODO: 记录ip/mac信息
-export async function createCheckinStudent(checkin_student) {
-  return await execAsync(`INSERT INTO CHECKIN_STUDENT (checkin_id, student_id) VALUES (?, ?)`,
-    [checkin_student.checkin_id, checkin_student.student_id],
-    'create checkin_student ' + JSON.stringify(checkin_student));
+export async function createCheckinStudent(student_id, checkin_id) {
+  return await execAsync(
+    `INSERT INTO CHECKIN_STUDENT (student_id, checkin_id) VALUES (?, ?)`,
+    [student_id, checkin_id],
+    `insert checkin data by student_id ${student_id} and checkin_id ${checkin_id}`
+  );
 }
 
 // 获得课程所有签到历史记录
@@ -100,15 +102,6 @@ export async function getAllCourseUncheckinStudent(checkin_id) {
   );
 }
 
-// 插入签到数据：学号 签到id
-export async function createCheckinStudent(student_id, checkin_id) {
-  return await execAsync(
-    `INSERT INTO CHECKIN_STUDENT (student_id, checkin_id) VALUES (?, ?)`,
-    [student_id, checkin_id],
-    `insert checkin data by student_id ${student_id} and checkin_id ${checkin_id}`
-  );
-}
-
 // 查看某学生是否属于该签到课程
 export async function checkIfStudentInCheckinCourse(student_id, student_name, checkin_id) {
   return await execAsync(
@@ -130,9 +123,9 @@ export async function checkIfStudentInCheckinCourse(student_id, student_name, ch
 // 查看某次签到的签到人数
 export async function getStudentNumInCheckinStudent(checkin_id) {
   return await execAsync(
-    `SELECT COUNT(*) AS checkedin_num
+    `SELECT COUNT(student_id) AS checkedin_num
       FROM
-      (SELECT * FROM
+      (SELECT student_id FROM
         CHECKIN_STUDENT
       GROUP BY checkin_id)
     WHERE checkin_id = ?`,

@@ -1,14 +1,20 @@
 import process from 'process';
 import { createUserTable, dropUserTable } from './users';
-import { createBlogTable, dropBlogTable } from './blogs';
+import { createStudentTable, dropStudentTable } from './students';
+import { createCourseTable, dropCourseTable } from './courses';
+import { createCourseMemberTable, dropCourseMemberTable } from './course_member';
+import { createCheckinStudentTable, dropCheckinStudentTable } from './checkin_student';
+import { createCheckinCourseTable, dropCheckinCourseTable } from './checkin_course';
+import { createDatabase } from './util';
 
 export async function initDatabase() {
   try {
+    await createDatabase();
     await createUserTable();
     await createStudentTable();
     await createCourseTable();
-    await createCheckinStudentTable();
     await createCourseMemberTable();
+    await createCheckinStudentTable();
     await createCheckinCourseTable();
   } catch (err) {
     process.exit(1);
@@ -19,8 +25,11 @@ export async function initDatabaseForTest() {
   try {
     //? just for test
     await dropUserTable();
-    await dropBlogTable();
-    await dropCommentTable();
+    await dropStudentTable();
+    await dropCourseTable();
+    await dropCourseMemberTable();
+    await dropCheckinStudentTable();
+    await dropCheckinCourseTable();
     //?-------------------
     await initDatabase();
   } catch (err) {

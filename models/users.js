@@ -10,7 +10,7 @@ export async function createUserTable() {
       is_manager TINYINT(1)	   DEFAULT 0 NOT NULL
     )`,
     undefined,
-    'Created USER Table');
+    'create USER');
 }
 
 export async function dropUserTable() {
@@ -75,5 +75,3 @@ export async function getAllCoursesByUserID(user_id) {
     [user_id],
     `select all courses by user_id ${user_id}`);
 }
-
-//

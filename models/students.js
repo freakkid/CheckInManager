@@ -10,7 +10,7 @@ export async function createStudentTable() {
       student_name NVARCHAR(50) NOT NULL
     )`,
     undefined,
-    'Created STUDENT Table');
+    'create STUDENT');
 }
 
 export async function dropStudentTable() {

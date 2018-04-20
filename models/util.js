@@ -1,7 +1,7 @@
 import mysql from 'mysql';
 
-import {db} from '../config';
-import {logger} from '../utils';
+import { db } from '../config';
+import { logger } from '../utils';
 
 
 export async function createDatabase() {
@@ -49,7 +49,7 @@ export async function execAsync(sqlstatement, values, message) {
           return;
         }
         conn.end();
-        logger.info.log(message);
+        logger.info(message);
         resolve(result);
       });
     });
