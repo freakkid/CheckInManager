@@ -8,7 +8,7 @@ import { createCheckinCourseTable, dropCheckinCourseTable } from './checkin_cour
 import { createDatabase } from './util';
 
 export async function initDatabase() {
-  try {
+  // try {
     await createDatabase();
     await createUserTable();
     await createStudentTable();
@@ -16,13 +16,13 @@ export async function initDatabase() {
     await createCourseMemberTable();
     await createCheckinStudentTable();
     await createCheckinCourseTable();
-  } catch (err) {
-    process.exit(1);
-  }
+  // } catch (err) {
+  //   process.exit(1);
+  // }
 }
 
 export async function initDatabaseForTest() {
-  try {
+  // try {
     //? just for test
     await dropUserTable();
     await dropStudentTable();
@@ -32,9 +32,10 @@ export async function initDatabaseForTest() {
     await dropCheckinCourseTable();
     //?-------------------
     await initDatabase();
-  } catch (err) {
-    process.exit(1);
-  }
+  // } catch (err) {
+  //   console.log(err);
+  //   process.exit(1);
+  // }
 }
 
 

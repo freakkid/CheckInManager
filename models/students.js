@@ -25,9 +25,9 @@ export async function createStudent(student) {
     'create student ' + JSON.stringify(student));
 }
 
-// 根据学号查找学生
-export async function getStudentByStudentId(student_id) {
-  return await execAsync(`SELECT student_id, student_name FROM STUDENT WHERE student_id = ?`,
+// 根据学号查找学生姓名
+export async function getStudentNameByStudentId(student_id) {
+  return await execAsync(`SELECT student_name FROM STUDENT WHERE student_id = ?`,
     [student_id],
     `select student by student_id ${student_id}`);
 }
@@ -41,7 +41,7 @@ export async function getAllStudentsList() {
 
 // 删除某个学生
 export async function deleteStudentByStudentId(student_id) {
-  return await execAsync(`SEDELETE FROM STUDENT WHERE student_id = ?`,
+  return await execAsync(`DELETE FROM STUDENT WHERE student_id = ?`,
     [student_id],
     `delete student by student_id ${student_id}`);
 }

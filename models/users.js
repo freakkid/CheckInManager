@@ -5,7 +5,7 @@ export async function createUserTable() {
   return await execAsync(
     `CREATE TABLE IF NOT EXISTS USER(
       user_id    VARCHAR(50)   PRIMARY KEY NOT NULL,
-      user_name  NVARCHAR(50)  NOT NULL,
+      username   NVARCHAR(50)  NOT NULL,
       password   VARCHAR(50)   NOT NULL,
       is_manager TINYINT(1)	   DEFAULT 0 NOT NULL
     )`,
@@ -41,9 +41,9 @@ export async function getAllUsersList() {
     `select all users`);
 }
 
-// 根据id查找某个老师
-export async function getUserByUserID(user_id) {
-  return await execAsync(`SELECT user_id, username FROM USER WHERE user_id = ？`,
+// 根据id查找某个老师姓名
+export async function getUsernameByUserID(user_id) {
+  return await execAsync(`SELECT username FROM USER WHERE user_id = ?`,
     [user_id],
     `select user ${user_id}`);
 }
