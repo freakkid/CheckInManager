@@ -1,4 +1,4 @@
-import { initDatabase, initDatabaseForTest } from '../../models';
+import { initDatabaseForTest } from '../../models';
 import { userModelTest } from './user_test';
 import { studentModelTest } from './student_test';
 import { courseModelTest } from './course_test';
@@ -16,7 +16,7 @@ export async function modelTest() {
     await courseMemberModelTest();
     await checkinCourseModelTest();
     await checkinStudentModelTest();
-    logger.info("Pass all test!");
+    logger.info('Pass all test!');
   } catch (err) {
     logger.error(err);
     process.exit(1);

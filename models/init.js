@@ -1,4 +1,3 @@
-import process from 'process';
 import { createUserTable, dropUserTable } from './users';
 import { createStudentTable, dropStudentTable } from './students';
 import { createCourseTable, dropCourseTable } from './courses';
