@@ -19,14 +19,11 @@ export async function dropCourseMemberTable() {
 // 获得某个课程的学生列表
 export async function getCourseMember(course_id) {
   return await execAsync(
-    `SELECT student_id, student_name
-    FROM
-      (SELECT student_id
-        FROM COURSE_MEMBER
-        GROUP BY course_id
-      ) AS COURSE_STUDENT_ID
-      LEFT JOIN STUDENT
-        ON STUDENT.student_id = COURSE_MEMBER.student_id
+    `SELECT STUDENT.student_id, student_name
+        FROM STUDENT
+      LEFT JOIN
+        COURSE_MEMBER
+	    ON STUDENT.student_id = COURSE_MEMBER.student_id
     WHERE course_id = ?`,
     [course_id],
     `select all students by course_id ${course_id}`
@@ -40,7 +37,7 @@ export async function insertCourseMember(course_id, student_id) {
   return await execAsync(
     `INSERT INTO COURSE_MEMBER (course_id, student_id) VALUE (?, ?)`,
     [course_id, student_id],
-    `select student ${student_id} by course_id ${course_id}`
+    `insert student ${student_id} by course_id ${course_id}`
   );
 }
 

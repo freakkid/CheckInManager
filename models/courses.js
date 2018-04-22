@@ -17,7 +17,7 @@ export async function createCourseTable() {
       position	    NVARCHAR(255) NOT NULL
     )`,
     undefined,
-    'create COURSE ...');
+    'create COURSE');
 }
 
 export async function dropCourseTable() {

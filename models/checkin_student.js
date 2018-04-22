@@ -33,22 +33,22 @@ export async function createCheckinStudent(student_id, checkin_id) {
 // 按签到日期递减顺序排列
 export async function getAllCourseCheckin(course_id) {
   return await execAsync(
-    `SELECT checkin_id, date_time, checkedin_num, (couser_member_num - checkedin_num) AS uncheckedin_num
+    `SELECT CHECKIN_COURSE.checkin_id, date_time, checkedin_num, (couser_member_num - checkedin_num) AS uncheckedin_num
       FROM
-        ((SELECT COUNT(student_id) AS checkedin_num
+        ((SELECT COUNT(student_id) AS checkedin_num, checkin_id
           FROM CHECKIN_STUDENT
           GROUP BY checkin_id
         ) AS CHECKEDIN_COUNT
       LEFT JOIN CHECKIN_COURSE
         ON CHECKIN_COURSE.checkin_id = CHECKEDIN_COUNT.checkin_id
       LEFT JOIN
-        (SELECT COUNT(student_id) AS couser_member_num
+        (SELECT COUNT(student_id) AS couser_member_num, course_id
           FROM COURSE_MEMBER
           GROUP BY course_id
         ) AS COURSE_MEMBER_COUNT
-        ON COURSE_MEMBER_COUNT.course_id = COURSE_MEMBER.course_id
-      WHERE course_id = ?)
-    ORDER BY date_time DESC`,
+        ON COURSE_MEMBER_COUNT.course_id = CHECKIN_COURSE.course_id)
+      WHERE CHECKIN_COURSE.course_id = ?
+    ORDER BY date_time DESC;`,
     [course_id],
     `get all checkin history by course_id ${course_id}`);
 }
@@ -56,16 +56,13 @@ export async function getAllCourseCheckin(course_id) {
 // 选择某一条签到记录查看已签到学生列表
 export async function getAllCourseCheckinStudent(checkin_id) {
   return await execAsync(
-    `SELECT student_id, student_name
+    `SELECT CHECKIN_STUDENT.student_id, student_name
       FROM
-        ((SELECT student_id
-          FROM CHECKIN_STUDENT
-          GROUP BY checkin_id
-        ) AS CHECKEDIN_STUDENT
+        CHECKIN_STUDENT
       LEFT JOIN STUDENT
         ON STUDENT.student_id = CHECKIN_STUDENT.student_id
-      WHERE checkin_id = ?)
-    ORDER BY student_id`,
+      WHERE checkin_id = ?
+    ORDER BY CHECKIN_STUDENT.student_id`,
     [checkin_id],
     `get a checkin history by checkin_id ${checkin_id}`
   );
@@ -77,44 +74,41 @@ export async function getAllCourseUncheckinStudent(checkin_id) {
   return await execAsync(
     `SELECT student_id, student_name
       FROM
-        (SELECT student_id, student_name
+        (SELECT STUDENT.student_id, student_name
           FROM STUDENT
         LEFT JOIN COURSE_MEMBER
           ON STUDENT.student_id = COURSE_MEMBER.student_id
         LEFT JOIN CHECKIN_COURSE
-          ON STUDENT.course_id = CHECKIN_COURSE.course_id
+          ON COURSE_MEMBER.course_id = CHECKIN_COURSE.course_id
         WHERE checkin_id = ?
         ) AS ALL_STUDENT
-      WHERE ALL_STUDENT.student_id NOT IN (
-        SELECT student_id
-        FROM
-          ((SELECT student_id
-            FROM
-              CHECKIN_STUDENT
-            GROUP BY checkin_id
-          ) AS CHECKEDIN_STUDENT
-        LEFT JOIN STUDENT
-          ON STUDENT.student_id = CHECKIN_STUDENT.student_id
-        WHERE checkin_id = ?))
-    ORDER BY student_id`,
-    [checkin_id, checkin_id],
-    `get a uncheckin history by checkin_id ${checkin_id}`
+      WHERE student_id NOT IN (
+        SELECT CHECKIN_STUDENT.student_id
+          FROM
+            CHECKIN_STUDENT
+          LEFT JOIN STUDENT
+            ON STUDENT.student_id = CHECKIN_STUDENT.student_id
+          WHERE checkin_id = ?
+        ORDER BY CHECKIN_STUDENT.student_id)
+  ORDER BY student_id`,
+  [checkin_id, checkin_id],
+  `get a uncheckin history by checkin_id ${checkin_id}`
   );
 }
 
 // 查看某学生是否属于该签到课程
 export async function checkIfStudentInCheckinCourse(student_id, student_name, checkin_id) {
   return await execAsync(
-    `SELECT student_id, student_name
+    `SELECT STUDENT.student_id, student_name
       FROM
-        (SELECT student_id
-          FROM COURSE_MEMBER
-         GROUP BY course_id) AS COURSE_STUDENTID
+        STUDENT
+      LEFT JOIN COURSE_MEMBER
+        ON COURSE_MEMBER.student_id = STUDENT.student_id
       LEFT JOIN COURSE
-        ON COURSE_STUDENTID.course_id = COURSE.course_id
+        ON COURSE_MEMBER.course_id = COURSE.course_id
       LEFT JOIN CHECKIN_COURSE
         ON CHECKIN_COURSE.course_id = COURSE.course_id
-    WHERE checkin_id = ? AND student_id = ? AND student_name = ?`,
+    WHERE checkin_id = ? AND STUDENT.student_id = ? AND student_name = ?`,
     [checkin_id, student_id, student_name],
     `check if student ${student_id} ${student_name} in checkin-course ${checkin_id}`
   );
@@ -123,11 +117,12 @@ export async function checkIfStudentInCheckinCourse(student_id, student_name, ch
 // 查看某次签到的签到人数
 export async function getStudentNumInCheckinStudent(checkin_id) {
   return await execAsync(
-    `SELECT COUNT(student_id) AS checkedin_num
+    `SELECT COALESCE(checkedin_num, 0) AS checkedin_num
       FROM
-      (SELECT student_id FROM
-        CHECKIN_STUDENT
-      GROUP BY checkin_id)
+        (SELECT COUNT(student_id) AS checkedin_num, checkin_id
+          FROM
+            CHECKIN_STUDENT
+        GROUP BY checkin_id) AS CHECKIN_NUM
     WHERE checkin_id = ?`,
     [checkin_id],
     `get number of checkined student by checkin_id ${checkin_id}`
