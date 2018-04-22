@@ -4,16 +4,16 @@ import app from '../app';
 import http from 'http';
 import process from 'process';
 
-import { port as defaultPort } from '../config';
+import { defaultPort } from '../config';
 import { logger } from '../utils';
-import { test } from '../models/init';
+// import { test } from '../models/init';
 
-try {
-  test();
-} catch (error) {
-  logger.error(error);
-  process.exit(1);
-}
+// try {
+//   test();
+// } catch (error) {
+//   logger.error(error);
+//   process.exit(1);
+// }
 
 
 

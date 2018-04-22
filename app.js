@@ -3,14 +3,16 @@ const app = new Koa();
 import json from 'koa-json';
 import bodyparser from 'koa-bodyparser';
 import logger from 'koa-logger';
-
-// import router from './routes/index';
+import { userRouter } from './routers';
 
 app.use(bodyparser({
   enableTypes: ['json', 'form', 'text']
 }));
+
 app.use(json());
 app.use(logger());
+
+
 
 // handle error
 const handler = async (ctx, next) => {
@@ -25,14 +27,17 @@ const handler = async (ctx, next) => {
 app.use(handler);
 
 // logger
-app.use(function* (next) {
+async function test(next) {
   const start = new Date();
-  yield next;
+  next();
   const ms = new Date() - start;
   logger.log(`${this.method} ${this.url} - ${ms}ms`);
-});
+}
+app.use(test);
 
-// // router
-// app.use(router.routes());
+// router
+
+app.use(userRouter.routes())
+  .use(userRouter.allowedMethods());
 
 export default app;
