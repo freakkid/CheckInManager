@@ -1,11 +1,11 @@
 {
-  "name": "minicousermanager",
+  "name": "checkinmanager",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "babel-node test/index.js",
     "dev": "babel-node bin/index.js"
   },
   "repository": {
@@ -26,7 +26,7 @@
     "koa-json": "^2.0.2",
     "koa-logger": "^3.1.0",
     "log4js": "^2.5.3",
-    "sqlite3": "^4.0.0"
+    "mysql": "^2.15.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

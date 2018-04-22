@@ -1,4 +1,4 @@
-# MiniCouserManager
+# CheckInManager
 
 ## 开发文档
 
@@ -23,5 +23,3 @@
     > npm install
 
     > npm run dev
-
-    
