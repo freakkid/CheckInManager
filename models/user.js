@@ -32,6 +32,13 @@ export async function changePassword(new_password, user_id, password) {
     `update user password by user_id: ${user_id} and password`);
 }
 
+// 查看某教师下的所有课程列表
+export async function getAllCoursesByUserID(user_id) {
+  return await execAsync('SELECT course_id, course_name, semester FROM COURSE WHERE user_id = ?',
+    [user_id],
+    `select all courses by user_id ${user_id}`);
+}
+
 // 管理员的权限 ----------------------------
 
 // 获取所有老师列表
@@ -67,11 +74,4 @@ export async function deleteAllUsers() {
   return await execAsync('DELETE FROM USER WHERE is_manager = 0',
     undefined,
     'delete all user');
-}
-
-// 查看某教师下的所有课程列表
-export async function getAllCoursesByUserID(user_id) {
-  return await execAsync('SELECT course_id, course_name, semester FROM COURSE WHERE user_id = ?',
-    [user_id],
-    `select all courses by user_id ${user_id}`);
 }
