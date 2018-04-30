@@ -3,17 +3,19 @@
 
 // user_id【8位数字】
 export function is_userID(user_id) {
-  return true;
+  //var reg=/^1[0-9]{8}/;
+  return /^[0-9]{8}/.test(user_id.value);
 }
 
 // password【6-18位，数字+大小写字母】
 export function is_password(password) {
-  return true;
+  
+  return /^[0-9a-zA-Z]{6,18}/.test(password.value);
 }
 
-// course_id 大于0的数字
+// course_id 正整数
 export function is_courseID(course_id) {
-  return true;
+  return /^[1-9]\d*$/.test(course_id.value);
 }
 
 // student_id 【8位数字】
