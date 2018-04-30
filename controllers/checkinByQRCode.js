@@ -1,7 +1,7 @@
-import { sendPage } from "../utils";
-import { validator } from "../services";
+import { sendPage } from '../utils';
+import { validator } from '../services';
 
-async function test(ctx) {
+export async function getQRcodePage(ctx) {
   
   // TODO
   const course_id = ctx.params.course_id;
@@ -9,3 +9,4 @@ async function test(ctx) {
   // 
   sendPage(ctx, 200, '');
 }
+

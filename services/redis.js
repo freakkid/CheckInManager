@@ -9,7 +9,7 @@ export async function testRedis() {
       if (err) {
         reject('redis error: ' + err);
       } else {
-        resolve("connect redis successfully");
+        resolve('connect redis successfully');
       }
     });
   });
@@ -53,19 +53,17 @@ export async function del(key) {
   });
 }
 
-async function test() {
-  try {
-    logger.info(">>??");
-    // logger.info(await testRedis());
-    logger.info(await set('123', '456'));
-    if(!await get('123d')) {
-      console.log('ss');
-    }
-    logger.info(await del('123'));
-    logger.info(await del('123'));
-  } catch (err) {
-    logger.error(err);
-  }
-}
-
-test();
+// async function test() {
+//   try {
+//     logger.info('>>??');
+//     // logger.info(await testRedis());
+//     logger.info(await set('123', '456'));
+//     if(!await get('123d')) {
+//       console.log('ss');
+//     }
+//     logger.info(await del('123'));
+//     logger.info(await del('123'));
+//   } catch (err) {
+//     logger.error(err);
+//   }
+// }

@@ -1,10 +1,9 @@
-import { sendPage, sendData } from "../utils";
-import { userModel } from "../models";
-import { validator } from "../services";
+import { sendPage, sendData } from '../utils';
+import { userModel } from '../models';
+import { validator } from '../services';
 
 // 获取登录页面
 export async function getLoginPage(ctx) {
-
   // 若是已经登陆，则重定向到登陆首页
   if (ctx.user_id) {
     ctx.status = 302;
@@ -35,12 +34,12 @@ export async function login(ctx) {
       sendData(ctx, 401, JSON.stringify({ message: '{密码不能为空}' }));      
       return;
     }
-    if (await userModel.getUserByUserId(user_id, password).length === 1 
-    && ) {
-      sendData(ctx, 200, JSON.stringify({ message: '{登录成功}' }));
-    } else {
-      sendData(ctx, 401, JSON.stringify({ message: '{用户名或密码错误}' }));      
-    }
+    // if (await userModel.getUserByUserId(user_id, password).length === 1 
+    // && ) {
+    //   sendData(ctx, 200, JSON.stringify({ message: '{登录成功}' }));
+    // } else {
+    //   sendData(ctx, 401, JSON.stringify({ message: '{用户名或密码错误}' }));      
+    // }
   }
 }
 
@@ -62,30 +61,36 @@ export async function changePassword(ctx, next) {
 }
 
 export async function getAllCoursesByTeacherID(ctx, next) {
-
+  // TODO
+  var test = 1 + 1;
 }
 
 // 仅管理员的权限 ----------------------------
 
 // 获取所有老师列表
 export async function getAllTeachersList(ctx, next) {
-
+  // TODO
+  var test = 1 + 1;
 }
 
 // 手动添加一个教师
 export async function addTeacher(ctx, next) {
-
+  // TODO
+  var test = 1 + 1;
 }
 
 // 文件导入多个教师
 export async function addTeachersFromFile(ctx, next) {
-
+  // TODO
+  var test = 1 + 1;
 }
 
 export async function deleteTeacher(ctx, next) {
-
+  // TODO
+  var test = 1 + 1;
 }
 
 export async function deleteAllTeachers(ctx, next) {
-
+  // TODO
+  var test = 1 + 1;
 }

@@ -3,17 +3,17 @@
 
 // user_id【8位数字】
 export function is_userID(user_id) {
-
+  return true;
 }
 
 // password【6-18位，数字+大小写字母】
 export function is_password(password) {
-
+  return true;
 }
 
 // course_id 大于0的数字
 export function is_courseID(course_id) {
-
+  return true;
 }
 
 // student_id 【8位数字】

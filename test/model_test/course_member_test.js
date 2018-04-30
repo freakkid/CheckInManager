@@ -35,8 +35,3 @@ export async function courseMemberModelTest() {
     assert.deepEqual((await courseMemberModel.getCourseMember(i)).length, Math.floor(students.length / 2) + 1);
   }
 }
-
-// update mysql.user set authentication_string=password('11111111') where user='ugnamsung';
-
-
-// select user,authentication_string,host from user;
