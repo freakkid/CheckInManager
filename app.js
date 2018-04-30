@@ -5,6 +5,7 @@ import bodyparser from 'koa-bodyparser';
 import logger from 'koa-logger';
 
 // import router from './routes/index';
+// gfriend
 
 app.use(bodyparser({
   enableTypes: ['json', 'form', 'text']
