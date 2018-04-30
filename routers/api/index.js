@@ -7,7 +7,18 @@ import { router as studentRouter } from './student';
 import { router as studentsRouter } from './students';
 import { router as checkinStudentRouter } from './checkin_student';
 
+import { sendData } from '../../utils';
+
 export const router = new Router();
+
+// ?待修改
+router.use(function(ctx, next) {
+  if (ctx.user_id) {
+    next();
+  } else {
+    sendData(ctx, 401, JSON.stringify({message:'{请先登录}'}));
+  }
+});
 
 router.use('/user', userRouter.routes(), userRouter.allowedMethods());
 router.use('/users', usersRouter.routes(), usersRouter.allowedMethods());

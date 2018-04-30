@@ -3,7 +3,7 @@ const app = new Koa();
 import json from 'koa-json';
 import bodyparser from 'koa-bodyparser';
 import logger from 'koa-logger';
-import { userRouter } from './routers';
+// import { userRouter } from './routers';
 import Router from 'koa-router';
 
 app.use(bodyparser({
@@ -15,16 +15,16 @@ app.use(logger());
 
 
 // handle error
-// const handler = async (ctx, next) => {
-//   try {
-//     await next();
-//   } catch (err) {
-//     ctx.response.status = 500;
-//     ctx.response.body = 'Server error';
-//   }
-// };
+const handler = async (ctx, next) => {
+  try {
+    await next();
+  } catch (err) {
+    ctx.response.status = 500;
+    ctx.response.body = err.toString();
+  }
+};
 
-// app.use(handler);
+app.use(handler);
 
 // logger
 // async function test(ctx, next) {
@@ -42,9 +42,21 @@ app.use(logger());
 const router = new Router();
 
 const user_router = new Router();
-user_router.get('/', (ctx)=>{
-  ctx.body = 'user';
+user_router.post('/', (ctx)=>{
+  
+  ctx.set('Location', '/user/12/check_id');
   ctx.status = 200;
+  // ctx.response.body = ;
+  // ctx.response.set('Fosso', ['dew', 'we']);
+  // ctx.response.set('Set-Cookie', 'k=sl[lp[rdtfyguhijok');
+  // ctx.res.end(ctx.request.header.sessionid);
+  ctx.body = ctx.request.body.user_id + ctx.request.body.password;
+  // logger.info('?????');//+this.response.body);
+  // ctx.status = 500;
+  //var a = 1/0;
+  // ctx.response.body = a;
+
+  //ctx.throw(120);
 });
 
 router.get('/', (ctx)=>{

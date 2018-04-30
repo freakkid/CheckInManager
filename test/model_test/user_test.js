@@ -1,6 +1,7 @@
 import { userModel } from '../../models';
 import assert from 'assert';
 
+
 export var users = [
   {
     user_id: '12454561', username: '蔡国杨', password: '12454561'

@@ -1,11 +1,22 @@
 import Router from 'koa-router';
 import { userCtrl } from '../controllers';
+import { sendPage } from '../utils';
+
 
 export const router = new Router();
 
 // 管理员登录页面
 // 页面 GET /user
 router.get('/user/login', userCtrl.login);
+
+router.use(function(ctx, next) {
+  if (ctx.user_id) {
+    next();
+  } else {
+    // TODO
+    sendPage(ctx, 401, JSON.stringify({message:'{请先登录}'}));
+  }
+});
 
 // 获取修改密码页面
 // GET /user/{user_id}/change_password

@@ -1,6 +1,6 @@
 import assert from 'assert';
 import { checkinCourseModel } from '../../models';
-import { generateCheckinID } from '../../services';
+import { generateCheckinID } from '../../services/';
 import { courses } from './course_test';
 
 
@@ -10,4 +10,5 @@ export async function checkinCourseModelTest() {
   for (let i = 0; i < courses.length; i++) {
     assert.deepEqual((await checkinCourseModel.createCheckinCourse({ course_id: i + 1, checkin_id: checkinIDs[i] })).affectedRows, 1);
   }
+
 }

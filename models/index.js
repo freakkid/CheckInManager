@@ -6,4 +6,5 @@ import * as courseMemberModel from './course_member';
 import * as checkinStudentModel from './checkin_student';
 import * as checkinCourseModel from './checkin_course';
 
+
 export { userModel, studentModel, courseModel, courseMemberModel, checkinStudentModel, checkinCourseModel};

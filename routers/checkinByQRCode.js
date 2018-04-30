@@ -5,4 +5,4 @@ export const router = new Router();
 
 // 学生扫二维码获取的页面
 // GET /checkinByQRCode/{checkin_id} 
-router.get('/checkinByQRCode/:checkin_id');
+router.get('/:checkin_id');

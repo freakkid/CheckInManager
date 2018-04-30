@@ -50,7 +50,7 @@ export async function getAllUsersList() {
 
 // 根据id查找某个老师姓名
 export async function getUsernameByUserID(user_id) {
-  return await execAsync(`SELECT username FROM USER WHERE user_id = ?`,
+  return await execAsync(`SELECT username, is_manager FROM USER WHERE user_id = ?`,
     [user_id],
     `select user ${user_id}`);
 }
