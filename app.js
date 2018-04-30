@@ -50,7 +50,7 @@ user_router.post('/', (ctx)=>{
   // ctx.response.set('Fosso', ['dew', 'we']);
   // ctx.response.set('Set-Cookie', 'k=sl[lp[rdtfyguhijok');
   // ctx.res.end(ctx.request.header.sessionid);
-  ctx.body = ctx.request.body.user_id + ctx.request.body.password;
+  ctx.body = ctx.query.gps;//ctx.request.body.user_id + ctx.request.body.password;
   // logger.info('?????');//+this.response.body);
   // ctx.status = 500;
   //var a = 1/0;

@@ -6,3 +6,5 @@ export const db = {
   password: 'ugnamsung@1117',
   database: 'checkInManager'
 };
+export const hostname = '192.168.1.1'; // ? 供学生扫码链接
+
