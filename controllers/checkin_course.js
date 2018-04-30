@@ -12,15 +12,17 @@ export async function getQRcodePage(ctx) {
   const course_id = ctx.params.course_id,
     user_id = ctx.user_id,
     gps = ctx.query.gps;
-  // 课程id和gps是否有误
+  // 课程id和gps格式是否有误
   // TODO gps的格式校验
   if (!course_id || !validator.is_courseID(course_id) || !gps) {
     sendData(ctx, 401, JSON.stringify({'message':'请求二维码失败'}));
   }
+  // 发起签到请求的用户是否为任课教师
   const users = courseModel.getUserIDByCourseID(course_id);
   if (users.length !== 1 || users[0].user_id !== user_id) {
     sendData(ctx, 401, JSON.stringify({'message':'请求二维码失败'}));    
   }
+  // 是否正在进行签到
   if () {
     const checkinUrl = null;
     getQRCode(checkinUrl);
