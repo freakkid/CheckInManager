@@ -31,7 +31,9 @@ app.use(function* (next) {
   const ms = new Date() - start;
   logger.log(`${this.method} ${this.url} - ${ms}ms`);
 });
+
 //haha
+
 // // router
 // app.use(router.routes());
 

@@ -1,0 +1,28 @@
+
+{
+    "parser": "babel-eslint",
+    "rules": {
+      "impliedStrict": 6,
+      "quotes": [
+        "error",
+        "single",
+        {
+          "allowTemplateLiterals": true
+        }
+      ],
+      "indent": "off",
+      "no-console": "error",
+      "no-cond-assign": "error",
+      "no-dupe-args": "error",
+      "no-duplicate-case": "error",
+      "no-empty": "error",
+      "no-else-return": "error",
+      "no-empty-function": "error",
+      "no-eval": "error",
+      "eol-last": "error"
+    },
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  }
