@@ -20,6 +20,14 @@
 
 + 运行方式
 
+    + 确保已经安装mysql和redis服务端，并将config/index.js中数据库的参数改成和本机数据库一致
+
     > npm install
+
+    + 跑测试文件（仅测试model层接口）
+
+    > npm run test
+    
+    + 运行服务端（目前尚不能运行）
 
     > npm run dev

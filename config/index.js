@@ -1,8 +1,8 @@
 export const defaultPort = 8000;
 export const logFilePath = './checkIn.log';
 export const db = {
-  host: '127.0.0.1',
+  host: 'localhost',
   user: 'root',
-  password: 'pincushion147',
+  password: 'ugnamsung@1117',
   database: 'checkInManager'
 };

@@ -2,6 +2,7 @@ import Router from 'koa-router';
 // import { userCtrl } from '../controllers';
 
 export const router = new Router();
+// TODO 增加对应处理的函数
 
 // 老师主页面获取所教课程列表
 // 页面 GET /course
@@ -10,6 +11,10 @@ router.get('/course');
 // 老师选择某个课程信息
 // 页面 GET /course/{course_id}
 router.get('/course/:course_id');
+
+// 选择某个课程的学生列表
+// 页面 GET /course/{course_id}/course_member
+router.use('/course/:course_id/course_member')
 
 // 老师选择某个课程的查看签到信息
 // 页面 GET /course/{course_id}/checkin_student

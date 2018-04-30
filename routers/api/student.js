@@ -3,5 +3,5 @@ import Router from 'koa-router';
 
 export const router = new Router();
 
-
-router.get('/course');
+// DELETE /api/student/{student_id}
+router.delete('/api/student/{student_id}');

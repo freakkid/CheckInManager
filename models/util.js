@@ -6,10 +6,11 @@ import { logger } from '../utils';
 
 export async function createDatabase() {
   return await new Promise(function (resolve, reject) {
+    
     const conn = mysql.createConnection({
       host: db.host,
       user: db.user,
-      password: db.password
+      password: db.password,
     });
     conn.connect(function (err) {
       if (err) {
