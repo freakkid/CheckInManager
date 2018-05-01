@@ -76,7 +76,7 @@ export async function getAllCoursesByTeacherIDPage(ctx) {
   if (ctx.is_manager === 1) {
     const user_id = ctx.params.user_id;
     if (!user_id || !validator.is_userID(user_id || (await userModel.getUsernameByUserID(user_id)).length !== 1)) {
-      sendData(ctx, 401, JSON.stringify({ message: '请求错误' }));
+      sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
     sendPage(ctx, 200, JSON.stringify(await userModel.getAllCoursesByUserID(user_id)));
@@ -114,7 +114,7 @@ export async function courseMemberPage(ctx) {
     if (!user_id || !course_id
       || !validator.is_userID(user_id) || !validator.is_courseID(course_id)
       || (await courseModel.getUserIDByCourseID(user_id)) != user_id) {
-      sendData(ctx, 401, JSON.stringify({ message: '请求错误' }));
+      sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
     sendPage(ctx, 200, JSON.stringify(await courseMemberModel.getCourseMember(course_id)));
@@ -137,7 +137,7 @@ export async function addCourseMemberPage(ctx) {
     if (!user_id || !course_id
       || !validator.is_userID(user_id) || !validator.is_courseID(course_id)
       || (await courseModel.getUserIDByCourseID(user_id)) != user_id) {
-      sendData(ctx, 401, JSON.stringify({ message: '请求错误' }));
+      sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
     sendPage(ctx, 200);
