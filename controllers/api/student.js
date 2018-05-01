@@ -8,7 +8,7 @@ export async function deleteStudent(ctx) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
-    if ((await studentModel.getStudentNameByStudentId(student_id).length() === 0)) {
+    if ((await studentModel.getStudentNameByStudentId(student_id).length === 0)) {
       sendData(ctx, 400, JSON.stringify({ message: '不存在该学生' }));
       return;
     }

@@ -9,11 +9,11 @@ export async function changePassword(ctx) {
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }
-    if ((await userModel.getUserByUserId(ctx.user_id, old_password)).length() !== 1) {
+    if ((await userModel.getUserByUserId(ctx.user_id, old_password)).length !== 1) {
       sendData(ctx, 401, JSON.stringify({ message: '密码错误' }));
       return;
     }
-    if ((await userModel.changePassword(password, ctx.user_id)).affectedRows() !== 1) {
+    if ((await userModel.changePassword(password, ctx.user_id)).affectedRows !== 1) {
       sendData(ctx, 400, JSON.stringify({ message: '修改密码失败' }));
     } else {
       sendData(ctx, 201, JSON.stringify({ message: '修改密码成功' }));
@@ -31,7 +31,7 @@ export async function createUser(ctx) {
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }
-    if ((await userModel.getUsernameByUserID(user_id).length() !== 0)) {
+    if ((await userModel.getUsernameByUserID(user_id).length !== 0)) {
       sendData(ctx, 400, JSON.stringify({ message: '存在相同id的用户' }));
       return;
     }
@@ -52,7 +52,7 @@ export async function deleteUser(ctx) {
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }
-    if ((await userModel.getUsernameByUserID(user_id).length() === 0)) {
+    if ((await userModel.getUsernameByUserID(user_id).length === 0)) {
       sendData(ctx, 400, JSON.stringify({ message: '不存在该用户' }));
       return;
     }

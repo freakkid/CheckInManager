@@ -5,7 +5,7 @@ import * as addStudentCtrl from './add_student';
 import * as checkinByQRCodeCtrl from './checkinByQRCode';
 import * as apiUserCtrl from './api/user';
 import * as apiUsersCtrl from './api/users';
-import * as apiCourseCtrl from './course';
+import * as apiCourseCtrl from './api/course';
 import * as apiStudentCtrl from './api/student';
 import * as apiStudentsCtrl from './api/students';
 import * as apiCheckinStudentCtrl from './api/checkin_student';

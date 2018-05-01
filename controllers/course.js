@@ -104,9 +104,9 @@ export async function checkinInfoPage(ctx) {
   }
 
   const checkedin = await checkinStudentModel.getAllCourseCheckinStudent(course_id),
-    checkedin_num = checkedin.length(),
+    checkedin_num = checkedin.length,
     uncheckedin = await checkinStudentModel.getAllCourseUncheckinStudent(course_id),
-    uncheckedin_num = uncheckedin.length();
+    uncheckedin_num = uncheckedin.length;
 
   // TODO
     sendPage(ctx, 200, JSON.stringify({
