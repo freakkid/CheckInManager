@@ -23,9 +23,3 @@ router.use('/user', userRouter.routes(), userRouter.allowedMethods());
 router.use('/course', courseRouter.routes(), courseRouter.allowedMethods());
 router.use('/student', studentRouter.routes(), studentRouter.allowedMethods());
 router.use('/add_student', addStudentRouter.routes(), addStudentRouter.allowedMethods());
-
-// export {
-//   userRouter, courseRouter, studentRouter,
-//   courseMemberRouter, checkinCourseRouter,
-//   checkinStudentRouter, apiRouter
-// };

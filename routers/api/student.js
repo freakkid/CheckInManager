@@ -1,7 +1,8 @@
 import Router from 'koa-router';
-// import { userCtrl } from '../controllers';
+import { apiStudentCtrl } from '../../controllers';
+
 
 export const router = new Router();
 
 // DELETE /api/student/{student_id}
-router.delete('/api/student/{student_id}');
+router.delete('/api/student/{student_id}', apiStudentCtrl.deleteStudent);

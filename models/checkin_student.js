@@ -28,9 +28,15 @@ export async function createCheckinStudent(student_id, checkin_id) {
   );
 }
 
-// 获得课程所有签到历史记录
-// 返回 checkin_id 签到日期【yyyy-mm-dd hh:mm:ss】 签到人数 未签到人数
-// 按签到日期递减顺序排列
+/**
+ * 获得课程所有签到历史记录
+ * 返回 checkin_id 签到日期【yyyy-mm-dd hh:mm:ss】 签到人数 未签到人数
+ * 按签到日期递减顺序排列
+ * 
+ * @export
+ * @param {any} course_id 
+ * @returns 
+ */
 export async function getAllCourseCheckin(course_id) {
   return await execAsync(
     `SELECT CHECKIN_COURSE.checkin_id, date_time, checkedin_num, (couser_member_num - checkedin_num) AS uncheckedin_num

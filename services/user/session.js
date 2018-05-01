@@ -8,7 +8,7 @@ function generateSessionID(user_id) {
     .digest('hex');
 }
 
-export async function addSession(user_id) {
+export async function addSessionID(user_id) {
   var session_id = generateSessionID(user_id);
   while (await redisService.get(session_id)) {
     session_id = generateSessionID(user_id);
@@ -17,10 +17,10 @@ export async function addSession(user_id) {
   return session_id;
 }
 
-export async function getSessionID(session_id) {
+export async function getUserID(session_id) {
   return await redisService.get(session_id);
 }
 
-export async function deleteSession(session_id) {
+export async function deleteSessionID(session_id) {
   await redisService.del(session_id);
 }

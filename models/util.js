@@ -30,11 +30,13 @@ export async function createDatabase() {
   });
 }
 /**
+ * @description 护卫的
  * @param   {string} sqlstatement
  * @param   {object} values
  * @param   {string} message
  *
  * @returns {Promise<any>}
+ * 
  */
 export async function execAsync(sqlstatement, values, message) {
   return await new Promise(function (resolve, reject) {
