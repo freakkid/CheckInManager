@@ -1,6 +1,6 @@
 import Router from 'koa-router';
 import { apiUsersCtrl } from '../../controllers';
-// import { userCtrl } from '../controllers';
+
 
 export const router = new Router();
 
