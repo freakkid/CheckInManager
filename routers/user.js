@@ -1,6 +1,6 @@
 import Router from 'koa-router';
 import { userCtrl, courseCtrl } from '../controllers';
-import { sendPage } from '../utils';
+import { sendPage, sendData } from '../utils';
 import { courseModel } from '../models';
 
 
@@ -15,7 +15,7 @@ router.use(function(ctx, next) {
     next();
   } else {
     // TODO
-    sendPage(ctx, 401, JSON.stringify({message:'{请先登录}'}));
+    sendData(ctx, 401, JSON.stringify({message:'{请先登录}'}));
   }
 });
 
