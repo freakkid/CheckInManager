@@ -1,10 +1,10 @@
 import Router from 'koa-router';
+import { studentCtrl } from '../controllers';
 // import { userCtrl } from '../controllers';
 
 export const router = new Router();
 
 // 管理员添加全级学生的页面
 // 页面 GET /student
-// TODO
-router.get('/student');
+router.get('/student', studentCtrl.studentList);
 
