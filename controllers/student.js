@@ -1,4 +1,4 @@
-import { studentModel } from "../models";
+import { studentModel } from '../models';
 /**
  * 管理员手动添加全级学生的页面
  * 

@@ -32,10 +32,6 @@ export var users = [
   }
 ];
 
-async function test() {
-console.log(JSON.stringify(await userModel.getAllUsersList()));
-}
-test();
 export async function userModelTest() {
 
 

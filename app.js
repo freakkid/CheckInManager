@@ -3,7 +3,6 @@ const app = new Koa();
 import json from 'koa-json';
 import bodyparser from 'koa-bodyparser';
 import logger from 'koa-logger';
-// import { userRouter } from './routers';
 import Router from 'koa-router';
 import request from 'request';
 import { toMid } from './utils';
@@ -61,7 +60,7 @@ user_router.get('/', async (ctx)=>{
   try {
     ctx.response.body = await test();
     // var body = ctx.response.body;
-    console.log(ctx.response.body);
+    // console.log(ctx.response.body);
     // Content-Type: image/png
     // data = "data:" + 'image/png' + ";base64," + new Buffer(body).toString('base64');
     //     console.log(data);
