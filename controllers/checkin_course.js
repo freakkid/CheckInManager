@@ -30,9 +30,8 @@ export async function getQRcodePage(ctx) {
     checkinID = await checkinServ.set(course_id);
   }
   const checkinUrl = `${hostname}:${port}/checkinByQRCode/${checkinID}`;
-  // TODO 不知道
+  // TODO 不知道该返回什么
   getQRCode(checkinUrl);
-
-  // TODO 把请求获得的图片放进去
-  sendPage(ctx, 200)
+  // TODO 把请求获得的图片/base64字符串放进去
+  sendPage(ctx, 200);
 }
