@@ -4,7 +4,7 @@ import app from '../app';
 import http from 'http';
 import process from 'process';
 
-import { defaultPort } from '../config';
+import { port } from '../config';
 import { logger } from '../utils';
 // import { test } from '../models/init';
 
@@ -15,25 +15,10 @@ import { logger } from '../utils';
 //   process.exit(1);
 // }
 
-
-
-var port = normalizePort(process.env.PORT) || defaultPort;
-
 var server = http.createServer(app.callback());
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-function normalizePort(val) {
-  let port = parseInt(val, 10);
-  if (isNaN(port)) {
-    return val;
-  }
-  if (port >= 0) {
-    return port;
-  }
-  return false;
-}
 
 function onError(error) {
   if (error.syscall !== 'listen') {
