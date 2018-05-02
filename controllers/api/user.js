@@ -1,11 +1,11 @@
-import { validator } from "../../services";
-import { userModel } from "../../models";
+import { validator } from '../../services';
+import { userModel } from '../../models';
 
 export async function changePassword(ctx) {
   if (ctx.is_manager === 0) {
     const old_password = ctx.body.old_password,
       password = ctx.body.password;
-    if (!old_password || validator.is_password(password)) {
+    if (!old_password || old_password != '' || validator.isPassword(password)) {
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }
@@ -27,7 +27,7 @@ export async function createUser(ctx) {
   if (ctx.is_manager === 1) {
     const username = ctx.body.username,
       user_id = ctx.body.user_id;
-    if (!username || username === '' || !user_id || !validator.is_userID(user_id)) {
+    if (!validator.isUsername(username) || !validator.isUserID(user_id)) {
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }
@@ -48,7 +48,7 @@ export async function createUser(ctx) {
 export async function deleteUser(ctx) {
   if (ctx.is_manager === 1) {
     const user_id = ctx.params.user_id;
-    if (!user_id || !validator.is_userID(user_id)) {
+    if (!validator.isUserID(user_id)) {
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }

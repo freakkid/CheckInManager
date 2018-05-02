@@ -1,5 +1,5 @@
-import { userModel, courseModel, courseMemberModel, studentModel } from "../../models";
-import { validator } from "../../services";
+import { userModel, courseModel, courseMemberModel, studentModel } from '../../models';
+import { validator } from '../../services';
 
 export async function createCourse(ctx) {
   if (ctx.is_manager === 1) {
@@ -31,7 +31,7 @@ export async function deleteCourse(ctx) {
   if (ctx.is_manager === 1) {
     const { course_id  } = ctx.body;
 
-    if (!course_id || !validator.is_courseID(course_id)) {
+    if (!validator.isCourseID(course_id)) {
       sendData(ctx, 400, JSON.stringify({ message: '请求失败' }));
       return;
     }
@@ -55,8 +55,7 @@ export async function addCourseMember(ctx) {
     const course_id = ctx.params.course_id;
     const { student_id, student_name } = ctx.body;
 
-    if (!course_id || !student_id || !student_name|| student_name !== ''
-      || !validator.is_courseID(course_id) || !validator.is_studentID(student_id) ) {
+    if (!validator.isStudentName(student_name) || !validator.isCourseID(course_id) || !validator.isStudentID(student_id) ) {
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }
@@ -84,8 +83,7 @@ export async function deleteCourseMember(ctx) {
   if (ctx.is_manager === 1) {
     const { course_id, student_id } = ctx.params;
 
-    if (!course_id || !student_id
-      || !validator.is_courseID(course_id) || !validator.is_studentID(student_id)) {
+    if (!validator.isCourseID(course_id) || !validator.isStudentID(student_id)) {
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }

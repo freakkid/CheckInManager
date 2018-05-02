@@ -75,7 +75,7 @@ export async function getAllCoursesByTeacherIDPage(ctx) {
   // TODO
   if (ctx.is_manager === 1) {
     const user_id = ctx.params.user_id;
-    if (!user_id || !validator.is_userID(user_id || (await userModel.getUsernameByUserID(user_id)).length !== 1)) {
+    if (!validator.isUserID(user_id) || (await userModel.getUsernameByUserID(user_id)).length !== 1) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
@@ -111,8 +111,7 @@ export async function courseMemberPage(ctx) {
   if (ctx.is_manager === 1) {
     const user_id = ctx.params.user_id,
       course_id = ctx.params.course_id;
-    if (!user_id || !course_id
-      || !validator.is_userID(user_id) || !validator.is_courseID(course_id)
+    if (!validator.isUserID(user_id) || !validator.isCourseID(course_id)
       || (await courseModel.getUserIDByCourseID(user_id)) != user_id) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
@@ -134,8 +133,7 @@ export async function addCourseMemberPage(ctx) {
   if (ctx.is_manager === 1) {
     const user_id = ctx.params.user_id,
       course_id = ctx.params.course_id;
-    if (!user_id || !course_id
-      || !validator.is_userID(user_id) || !validator.is_courseID(course_id)
+    if (!validator.isUserID(user_id) || !validator.isCourseID(course_id)
       || (await courseModel.getUserIDByCourseID(user_id)) != user_id) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;

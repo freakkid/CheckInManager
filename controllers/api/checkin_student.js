@@ -1,5 +1,5 @@
-import { checkinServ, validator } from "../../services";
-import { courseModel, courseMemberModel, checkinStudentModel, studentModel, checkinCourseModel } from "../../models";
+import { checkinServ, validator } from '../../services';
+import { courseModel, courseMemberModel, checkinStudentModel, studentModel, checkinCourseModel } from '../../models';
 
 /**
  * 学生输入：姓名+学号进行签到
@@ -12,10 +12,10 @@ export async function studentCheckin(ctx) {
     { student_name, student_id } = ctx.body,
     course_id = await checkinServ.getCourseID(checkin_id);
 
-  if (!checkin_id || !course_id || !validator.is_courseID(course_id) || (await courseModel.getUserIDByCourseID(course_id)).length !== 1) {
+  if (!checkin_id || !validator.isCourseID(course_id) || (await courseModel.getUserIDByCourseID(course_id)).length !== 1) {
     return;
   }
-  if (!student_id || !student_name || !validator.is_studentID() || student_name !== '') {
+  if (!validator.isStudentID(student_id) || !validator.isStudentName(student_name)) {
     sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
     return;
   }
@@ -47,7 +47,7 @@ export async function getCheckinNum(ctx) {
   const checkin_id = ctx.params.checkin_id,
     course_id = await checkinCourseModel.getCourseIDByCheckID(checkin_id);
 
-  if (!checkin_id || !course_id || !validator.is_courseID(course_id)) {
+  if (!checkin_id || !validator.isCourseID(course_id)) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
@@ -75,7 +75,7 @@ export async function stopCheckin(ctx) {
   const checkin_id = ctx.params.checkin_id,
     course_id = await checkinCourseModel.getCourseIDByCheckID(checkin_id);
 
-  if (!checkin_id || !course_id || !validator.is_courseID(course_id)) {
+  if (!validator.isCourseID(course_id)) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }

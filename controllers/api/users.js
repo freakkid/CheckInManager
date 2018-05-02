@@ -1,11 +1,11 @@
-import { sendData } from "../../utils";
-import { validator, loginServ, logoutServ, sessionServ } from "../../services";
-import { userModel } from "../../models";
+import { sendData } from '../../utils';
+import { validator, loginServ, logoutServ, sessionServ } from '../../services';
+import { userModel } from '../../models';
 
 export async function login(ctx) {
   const user_id = ctx.body.user_id,
     password = ctx.body.password;
-  if (!user_id || !password || validator.is_userID(password)) {
+  if (!password || password != '' || !validator.isUserID(user_id)) {
     sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
     return;
   }
