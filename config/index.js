@@ -16,7 +16,7 @@ export const logFilePath = './checkIn.log';
 export const db = {
   host: 'localhost',
   user: 'root',
-  password: 'ugnamsung@1117',
+  password: 'pincushion147',
   database: 'checkInManager'
 };
 

@@ -36,6 +36,47 @@ export async function userModelTest() {
 
 
   for (let user of users) {
+    try {
+    await userModel.createUser(user);
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
+  for (let user of users) {
+    await userModel.getUserByUserId(user.user_id, user.password);
+  }
+
+  for (let user of users) {
+    await userModel.changePassword('123456789', user.user_id, user.password);
+  }
+
+  for (let user of users) {
+    await userModel.getUserByUserId(user.user_id, '123456789');
+  }
+
+  await userModel.deleteAllUsers();
+
+  for (let user of users) {
+    await userModel.createUser(user);
+  }
+
+  await userModel.getAllUsersList();
+
+  for (let user of users) {
+    await userModel.getUsernameByUserID(user.user_id);
+  }
+
+  // for (let user of users) {
+  //   assert.deepEqual((await userModel.deleteUser(user.user_id)).affectedRows, 1);
+  // }
+
+}
+
+export async function userModelTest1() {
+
+
+  for (let user of users) {
     assert.deepEqual((await userModel.createUser(user)).affectedRows, 1);
   }
 
