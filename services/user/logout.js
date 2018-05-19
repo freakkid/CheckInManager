@@ -1,4 +1,4 @@
-import { sessionServ } from "..";
+import { sessionServ } from '..';
 
 export async function logoutServ(session_id, user_id) {
   if (await sessionServ.getSessionID(session_id) === user_id) {

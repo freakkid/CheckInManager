@@ -1,14 +1,14 @@
-import { validator } from "../../services";
-import { studentModel } from "../../models";
+import { validator } from '../../services';
+import { studentModel } from '../../models';
 
 export async function deleteStudent(ctx) {
   if (ctx.is_manager === 1) {
     const student_id = ctx.params.student_id;
-    if (!student_id || !validator.is_studentID(student_id)) {
+    if (!validator.isStudentID(student_id)) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
-    if ((await studentModel.getStudentNameByStudentId(student_id).length() === 0)) {
+    if ((await studentModel.getStudentNameByStudentId(student_id).length === 0)) {
       sendData(ctx, 400, JSON.stringify({ message: '不存在该学生' }));
       return;
     }

@@ -1,4 +1,4 @@
-import { studentModel } from "../../models";
+import { studentModel } from '../../models';
 
 export async function deleteAllStudents(ctx) {
   if (ctx.is_manager === 1) {

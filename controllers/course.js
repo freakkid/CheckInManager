@@ -1,4 +1,4 @@
-import { validator, checkinServ, getQRCode } from '../services';
+import { validator, checkinServ } from '../services';
 import { sendPage, sendData } from '../utils';
 import { userModel, courseModel, courseMemberModel, checkinStudentModel, checkinCourseModel } from '../models';
 
@@ -24,7 +24,7 @@ export async function courseListPage(ctx) {
 export async function coursePage(ctx) {
   const course_id = ctx.params.course_id;
 
-  if (!course_id || !validator.is_courseID(course_id)) {
+  if (!validator.isCourseID(course_id)) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
@@ -45,7 +45,7 @@ export async function coursePage(ctx) {
 export async function courseMemberPage(ctx) {
   const course_id = ctx.params.course_id;
 
-  if (!course_id || !validator.is_courseID(course_id)) {
+  if (!validator.isCourseID(course_id)) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
@@ -67,7 +67,7 @@ export async function courseMemberPage(ctx) {
 export async function checkinHistoryPage(ctx) {
   const course_id = ctx.params.course_id;
 
-  if (!course_id || !validator.is_courseID(course_id)) {
+  if (!validator.isCourseID(course_id)) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
@@ -90,7 +90,7 @@ export async function checkinInfoPage(ctx) {
   const course_id = ctx.params.course_id,
     checkedin = ctx.params.checkedin;
 
-  if (!course_id || !validator.is_courseID(course_id) || !checkedin) {
+  if (!validator.isCourseID(course_id) || !checkedin) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
@@ -104,12 +104,12 @@ export async function checkinInfoPage(ctx) {
   }
 
   const checkedin = await checkinStudentModel.getAllCourseCheckinStudent(course_id),
-    checkedin_num = checkedin.length(),
+    checkedin_num = checkedin.length,
     uncheckedin = await checkinStudentModel.getAllCourseUncheckinStudent(course_id),
-    uncheckedin_num = uncheckedin.length();
+    uncheckedin_num = uncheckedin.length;
 
   // TODO
-    sendPage(ctx, 200, JSON.stringify({
+  sendPage(ctx, 200, JSON.stringify({
     checkedin: checkedin, checkedin_num: checkedin_num,
     uncheckedin: uncheckedin, uncheckedin_num: uncheckedin_num
   }));
@@ -124,8 +124,8 @@ export async function checkinInfoPage(ctx) {
 export async function launchCheckinPage(ctx) {
   const course_id = ctx.params.course_id,
     gps = ctx.query.gps;
-  if (!course_id || !validator.is_courseID(course_id)
-    || !gps || !validator.is_gps(gps)) {
+  if (!validator.isCourseID(course_id)
+    || !gps || !validator.isGps(gps)) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
@@ -140,7 +140,7 @@ export async function launchCheckinPage(ctx) {
     checkin_id = await checkinServ.set(course_id);
   }
   // TODO 不确定返回值
-  getQRCode(generateCheckinURL(checkin_id));
+
   // TODO
-  sendPage(ctx, 200);
+  sendPage(ctx, 200, JSON.stringify({ checkinURL: generateCheckinURL(checkin_id) }));
 }
