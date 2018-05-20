@@ -147,3 +147,12 @@ export async function getStudentNumInCheckinStudent(checkin_id) {
     `get number of checkined student by checkin_id ${checkin_id}`
   );
 }
+
+// 查看根据学号和签到id找到签到记录
+export async function getOneStudentCheckin(student_id, checkin_id) {
+  return await execAsync(
+    'SELECT * FROM CHECKIN_STUDENT WHERE student_id = ? AND checkin_id = ?',
+    [student_id, checkin_id],
+    `get checkin reccord by student_id ${student_id} and checkin_id ${checkin_id}`
+  );
+}

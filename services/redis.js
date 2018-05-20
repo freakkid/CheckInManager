@@ -43,12 +43,12 @@ export async function del(key) {
   return await new Promise(function (resolve, reject) {
     client.del(key, function (err, reply) {
       if (err) {
-        reject(err);
+        resolve(err);
       }
       if (reply !== 1) {
-        reject('delete ${key} fail');
+        resolve('delete ${key} fail');
       }
-      resolve('delete ${key}');
+      resolve(null);
     });
   });
 }

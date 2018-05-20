@@ -10,10 +10,10 @@ import { courseModel, studentModel } from '../models';
 export async function QRCodeUrlPage(ctx) {
   const checkin_id = ctx.params.checkin_id;
   if (!checkin_id || !await checkinServ.getCourseID(checkin_id)) {
-    sendData(ctx, 400, JSON.stringify({message:'您请求的页面已失效'}));
+    sendData(ctx, 400, JSON.stringify({ message: '您请求的页面已失效' }));
   } else {
     // TODO
-    sendPage(ctx, 200);
+    sendPage(ctx, 200, JSON.stringify({ message: '发送填写签到信息的页面' }));
   }
 }
 

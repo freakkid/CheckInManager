@@ -20,7 +20,7 @@ export async function dropUserTable() {
 // 登录
 export async function getUserByUserId(user_id, password) {
   return await execAsync(`SELECT user_id, username, is_manager, password FROM USER
-    WHERE user_id = ? -- AND password = ?`,
+    WHERE user_id = ? AND password = ?`,
     [user_id, password],
     `select user by user_id ${user_id} and password ${password}`);
 }

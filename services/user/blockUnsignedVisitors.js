@@ -7,10 +7,10 @@ import { sendData } from "../../utils";
  * @param {any} ctx 
  * @param {any} next 
  */
-export function blockUnsignedVisitors(ctx, next) {
+export async function blockUnsignedVisitors(ctx, next) {
   console.log('你在blockUnsignedVisitors')
   if (ctx.user_id) {
-    next();
+    await next();
   } else {
     sendData(ctx, 401, JSON.stringify({message:'{请先登录}'}));
   }

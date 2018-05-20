@@ -7,8 +7,9 @@ import { router as addStudentRouter } from './add_student';
 import { router as checkinByQRCodeRouter } from './checkinByQRCode';
 import { router as apiRouter } from './api';
 
-import { toMid } from '../utils';
+import { toMid, sendData } from '../utils';
 import { is_login } from '../services/user/is_login';
+import { blockUnsignedVisitors } from '../services';
 
 export const router = new Router();
 
@@ -17,6 +18,8 @@ router.use('/checkinByQRCode', checkinByQRCodeRouter.routes(), checkinByQRCodeRo
 router.use(is_login);
 
 router.use('/api', apiRouter.routes(), apiRouter.allowedMethods());
+
+router.use(blockUnsignedVisitors);
 
 // 页面显示的api
 router.use('/user', userRouter.routes(), userRouter.allowedMethods());

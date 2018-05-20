@@ -2,6 +2,7 @@ import crypto from 'crypto';
 
 import * as redisService from '../redis';
 import { port, hostname } from '../../config';
+import { logger } from '../../utils';
 
 
 export function generateCheckinID(course_id) {
@@ -35,7 +36,7 @@ export async function getCheckinID(course_id) {
   return await redisService.get(course_id);
 }
 
-export async function del(checkin_id) {
-  const course_id = await redisService.get(course_id);
-  await redisService.del(checkin_id);
+export async function del(checkin_id, course_id) {
+  logger.log(await redisService.del(checkin_id));
+  logger.log(await await redisService.del(course_id));
 }

@@ -12,8 +12,9 @@ import { blockUnsignedVisitors } from '../../services';
 
 export const router = new Router();
 
-
 router.use('/users', usersRouter.routes(), usersRouter.allowedMethods());
+
+router.use('/checkin_student', checkinStudentRouter.routes(), checkinStudentRouter.allowedMethods());
 
 router.use(blockUnsignedVisitors);
 
@@ -24,4 +25,3 @@ router.use('/course', courseRouter.routes(), courseRouter.allowedMethods());
 router.use('/student', studentRouter.routes(), studentRouter.allowedMethods());
 router.use('/students', studentsRouter.routes(), studentsRouter.allowedMethods());
 
-router.use('/checkin_student', checkinStudentRouter.routes(), checkinStudentRouter.allowedMethods());

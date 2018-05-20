@@ -22,5 +22,5 @@ export async function getUserID(session_id) {
 }
 
 export async function deleteSessionID(session_id) {
-  await redisService.del(session_id);
+  return (await redisService.del(session_id)) === 1;
 }

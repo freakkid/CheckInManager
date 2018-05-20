@@ -1,6 +1,7 @@
 import { validator, checkinServ } from '../services';
 import { sendPage, sendData } from '../utils';
 import { userModel, courseModel, courseMemberModel, checkinStudentModel, checkinCourseModel } from '../models';
+import { generateCheckinURL } from '../services/checkin/checkin';
 
 // TODO 所有的函数都需要修改sendPage()
 
@@ -12,7 +13,7 @@ import { userModel, courseModel, courseMemberModel, checkinStudentModel, checkin
  */
 export async function courseListPage(ctx) {
   // TODO
-  sendPage(ctx, 200, JSON.stringify(await courseModel.getAllCoursesList(ctx.user_id)));
+  sendPage(ctx, 200, JSON.stringify({ courses: await courseModel.getAllCoursesList(ctx.user_id) }));
 }
 
 /**
@@ -23,17 +24,18 @@ export async function courseListPage(ctx) {
  */
 export async function coursePage(ctx) {
   const course_id = ctx.params.course_id;
-
   if (!validator.isCourseID(course_id)) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
-  if ((await courseModel.getUserIDByCourseID(course_id)) !== ctx.user_id) {
+
+  const user_ids = await courseModel.getUserIDByCourseID(course_id);
+  if (user_ids.length === 0 || user_ids[0].user_id !== ctx.user_id) {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
     return;
   }
   // TODO
-  sendPage(ctx, 200, JSON.stringify(await courseModel.getCourseByCourseID()))
+  sendPage(ctx, 200, JSON.stringify((await courseModel.getCourseByCourseID(course_id))[0]));
 }
 
 /**
@@ -49,13 +51,16 @@ export async function courseMemberPage(ctx) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
-  if ((await courseModel.getUserIDByCourseID(course_id)) !== ctx.user_id) {
+
+  const user_ids = await courseModel.getUserIDByCourseID(course_id);
+  if (user_ids.length === 0 || user_ids[0].user_id !== ctx.user_id) {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
     return;
   }
 
+  const course_member = await courseMemberModel.getCourseMember(course_id);
   // TODO
-  sendPage(ctx, 200, JSON.stringify(await courseMemberModel.getCourseMember(course_id)));
+  sendPage(ctx, 200, JSON.stringify({ course_member: course_member, course_member_num: course_member.length }));
 }
 
 /**
@@ -71,13 +76,15 @@ export async function checkinHistoryPage(ctx) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
-  if ((await courseModel.getUserIDByCourseID(course_id)) !== ctx.user_id) {
+
+  const user_ids = await courseModel.getUserIDByCourseID(course_id);
+  if (user_ids.length === 0 || user_ids[0].user_id !== ctx.user_id) {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
     return;
   }
 
   // TODO
-  sendPage(ctx, 200, JSON.stringify(await checkinStudentModel.getAllCourseCheckin(course_id)));
+  sendPage(ctx, 200, JSON.stringify({ checkin_history: await checkinStudentModel.getAllCourseCheckin(course_id) }));
 }
 
 /**
@@ -88,27 +95,30 @@ export async function checkinHistoryPage(ctx) {
  */
 export async function checkinInfoPage(ctx) {
   const course_id = ctx.params.course_id,
-    checkedin_id = ctx.params.checkedin_id;
+    checkin_id = ctx.params.checkin_id;
 
-  // 检查course_id和checkedin_id格式
-  if (!validator.isCourseID(course_id) || !checkedin_id) {
+  // 检查course_id和checkin_id格式
+  if (!validator.isCourseID(course_id) || !checkin_id) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
+
   // 检查用户对这个course_id是否有权限
-  if ((await courseModel.getUserIDByCourseID(course_id)) !== ctx.user_id) {
+  const user_ids = await courseModel.getUserIDByCourseID(course_id);
+  if (user_ids.length === 0 || user_ids[0].user_id !== ctx.user_id) {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
     return;
   }
   // 检查checkin_id是否属于这个课程
-  if ((await checkinCourseModel.getCourseIDByCheckID(checkedin_id)).course_id !== course_id) {
+  const course_ids = await checkinCourseModel.getCourseIDByCheckID(checkin_id);
+  if (course_ids.length === 0 || course_ids[0].course_id !== course_id) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
 
-  const checkedin = await checkinStudentModel.getAllCourseCheckinStudent(course_id),
+  const checkedin = await checkinStudentModel.getAllCourseCheckinStudent(checkin_id),
     checkedin_num = checkedin.length,
-    uncheckedin = await checkinStudentModel.getAllCourseUncheckinStudent(course_id),
+    uncheckedin = await checkinStudentModel.getAllCourseUncheckinStudent(checkin_id),
     uncheckedin_num = uncheckedin.length;
 
   // TODO
@@ -132,7 +142,9 @@ export async function launchCheckinPage(ctx) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
-  if ((await courseModel.getUserIDByCourseID(course_id)) !== ctx.user_id) {
+
+  const user_ids = await courseModel.getUserIDByCourseID(course_id);
+  if (user_ids.length === 0 || user_ids[0].user_id !== ctx.user_id) {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
     return;
   }
@@ -141,9 +153,13 @@ export async function launchCheckinPage(ctx) {
   var checkin_id = await checkinServ.getCheckinID(course_id);
   if (!checkin_id) {
     checkin_id = await checkinServ.set(course_id);
+    // TODO
+    if ((await checkinCourseModel.createCheckinCourse(checkin_id, course_id, gps)).affectedRows === 0) {
+      // TODO  不知道是用sendData好还是用sendPage好
+      sendData(ctx, 400, JSON.stringify({ message: '发起签到失败qaq' }));
+    }
   }
-  // TODO 不确定返回值
-
-  // TODO
   sendPage(ctx, 200, JSON.stringify({ checkinURL: generateCheckinURL(checkin_id) }));
+
+
 }

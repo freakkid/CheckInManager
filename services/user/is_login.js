@@ -3,8 +3,8 @@ import { userModel } from '../../models';
 import { sendData, sendPage, logger } from '../../utils';
 
 export async function is_login(ctx, next) {
-  // logger.info('-----------------')
-  const session_id = ctx.request.header.sessionid;
+  console.log('你在login这里')
+  const session_id = ctx.request.header.key;
   let user_id, users;
   if (session_id) {
     user_id = await sessionService.getUserID(session_id);
@@ -14,9 +14,8 @@ export async function is_login(ctx, next) {
   }
 
   if (users && users.length === 1) {
-    console.log("users" + users);
     ctx.is_manager = users[0].is_manager;
     ctx.user_id = user_id;
   }
-  next();
+  await next();
 }

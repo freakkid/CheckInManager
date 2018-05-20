@@ -34,12 +34,12 @@ export async function getAllCoursesList(user_id) {
 // 获取某个课程信息
 export async function getCourseByCourseID(course_id) {
   return await execAsync(
-    `SELECT course_name, username, credit, semester, class_time, position, student_num
+    `SELECT course_name, username, credit, semester, class_time, position, COALESCE(student_num, 0) AS student_num
       FROM COURSE
         LEFT JOIN USER
           ON COURSE.user_id = USER.user_id
         LEFT JOIN
-          (SELECT course_id, COALESCE(COUNT(student_id), 0) AS student_num
+          (SELECT course_id, COUNT(student_id) AS student_num
             FROM COURSE_MEMBER
             GROUP BY course_id
           ) AS COURSE_STUDENT_NUM

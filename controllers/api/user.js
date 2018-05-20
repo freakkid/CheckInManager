@@ -1,19 +1,27 @@
-import { validator } from '../../services';
+import { validator, md5Hash } from '../../services';
 import { userModel } from '../../models';
+import { sendData } from '../../utils';
 
 export async function changePassword(ctx) {
   if (ctx.is_manager === 0) {
-    const old_password = ctx.body.old_password,
-      password = ctx.body.password;
-    if (!old_password || old_password !== '' || validator.isPassword(password)) {
+    let old_password = ctx.request.body.old_password,
+      password = ctx.request.body.password;
+    if (!old_password || old_password === '' || !validator.isPassword(password)) {
+      console.log(password + '---------' + old_password)
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }
+
+    old_password = md5Hash(old_password);
+    password = md5Hash(password);
+
     if ((await userModel.getUserByUserId(ctx.user_id, old_password)).length !== 1) {
       sendData(ctx, 401, JSON.stringify({ message: '密码错误' }));
       return;
+    } else {
+      console.log((await userModel.getUserByUserId(ctx.user_id, old_password)))
     }
-    if ((await userModel.changePassword(password, ctx.user_id)).affectedRows !== 1) {
+    if ((await userModel.changePassword(password, ctx.user_id, old_password)).affectedRows !== 1) {
       sendData(ctx, 400, JSON.stringify({ message: '修改密码失败' }));
     } else {
       sendData(ctx, 201, JSON.stringify({ message: '修改密码成功' }));
@@ -25,17 +33,19 @@ export async function changePassword(ctx) {
 
 export async function createUser(ctx) {
   if (ctx.is_manager === 1) {
-    const username = ctx.body.username,
-      user_id = ctx.body.user_id;
+    const username = ctx.request.body.username,
+      user_id = ctx.request.body.user_id;
     if (!validator.isUsername(username) || !validator.isUserID(user_id)) {
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }
-    if ((await userModel.getUsernameByUserID(user_id).length !== 0)) {
+    if ((await userModel.getUsernameByUserID(user_id)).length > 0) {
+      console.log(await userModel.getUsernameByUserID(user_id))
       sendData(ctx, 400, JSON.stringify({ message: '存在相同id的用户' }));
       return;
     }
-    if ((await userModel.createUser({ user_id: user_id, username: username, password: user_id })).affectedRows === 1) {
+
+    if ((await userModel.createUser({ user_id: user_id, username: username, password: md5Hash(user_id) })).affectedRows === 1) {
       sendData(ctx, 201, JSON.stringify({ message: '添加用户成功' }));
     } else {
       sendData(ctx, 400, JSON.stringify({ message: '添加用户失败' }));

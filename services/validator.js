@@ -17,7 +17,7 @@ export function isUserID(user_id) {
 
 // password【6-18位，数字+大小写字母】
 export function isPassword(password) {
-  return !!password && /^[-\w]{6,18}$/.test(password);
+  return !!password && /^[\w]{6,18}$/.test(password);
 }
 
 // course_id 正整数

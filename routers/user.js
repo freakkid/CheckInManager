@@ -19,6 +19,7 @@ router.get('/change_password', userCtrl.changePasswordPage);
 // 管理员权限 --------------
 
 // 管理员登录页面 教师列表
+// GET /user
 router.get('/', userCtrl.getAllTeachersListPage);
 
 // 管理员手动添加教师的页面

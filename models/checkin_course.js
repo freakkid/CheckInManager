@@ -18,10 +18,10 @@ export async function dropCheckinCourseTable() {
 }
 
 // 发起一次签到
-export async function createCheckinCourse(checkin_course) {
+export async function createCheckinCourse(checkin_id, course_id, gps) {
   return await execAsync('INSERT INTO CHECKIN_COURSE (checkin_id, course_id) VALUES (?, ?)',
-    [checkin_course.checkin_id, checkin_course.course_id],
-    'create checkin_course ' + JSON.stringify(checkin_course));
+    [checkin_id, course_id, gps],
+    'create checkin_course ' + JSON.stringify({ checkin_id: checkin_id, course_id: course_id, gos: gps }));
 }
 
 // 获得课程id

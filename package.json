@@ -7,6 +7,7 @@
     "lint": "eslint ./",
     "test": "babel-node test/index.js",
     "dev": "babel-watch bin/index.js",
+    "start": "babel-node bin/index.js",
     "watch-linux": "netstat -ap | grep 8000",
     "watch-mac": "lsof -i tcp:8000"
   },

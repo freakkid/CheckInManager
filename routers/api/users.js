@@ -1,6 +1,8 @@
 import Router from 'koa-router';
 import { apiUsersCtrl } from '../../controllers';
-import { blockUnsignedVisitors } from '../../services';
+import { blockUnsignedVisitors, validator, md5Hash } from '../../services';
+import { sendData } from '../../utils';
+import { userModel } from '../../models';
 
 
 export const router = new Router();
@@ -8,7 +10,6 @@ export const router = new Router();
 // api：POST /api/users/session
 router.post('/session', apiUsersCtrl.login);
 
-console.log('不科学')
 router.use(blockUnsignedVisitors);
 
 // api: DELETE /api/users/session
