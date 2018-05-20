@@ -24,7 +24,7 @@ export async function set(key, value, seconds = 1 * 60 * 60) {
       }
     });
     client.expire(key, seconds);
-    resolve('set ${key} ${value} ${seconds}(s)');
+    resolve(`set ${key} ${value} ${seconds}(s)`);
   });
 }
 

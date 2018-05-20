@@ -1,6 +1,6 @@
-export function toMid(func) {
-  return function(ctx, next) {
-    func(ctx);
+export async function toMid(func) {
+  return async function(ctx, next) {
+    await func(ctx);
     next();
   }
 }

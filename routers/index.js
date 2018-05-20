@@ -7,14 +7,14 @@ import { router as addStudentRouter } from './add_student';
 import { router as checkinByQRCodeRouter } from './checkinByQRCode';
 import { router as apiRouter } from './api';
 
-import {toMid} from '../utils';
+import { toMid } from '../utils';
 import { is_login } from '../services/user/is_login';
 
 export const router = new Router();
 
 router.use('/checkinByQRCode', checkinByQRCodeRouter.routes(), checkinByQRCodeRouter.allowedMethods());
 
-router.use(toMid(is_login));
+router.use(is_login);
 
 router.use('/api', apiRouter.routes(), apiRouter.allowedMethods());
 

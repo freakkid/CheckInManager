@@ -6,14 +6,18 @@ import process from 'process';
 
 import { port } from '../config';
 import { logger } from '../utils';
-// import { test } from '../models/init';
+import { initDatabase } from '../models';
 
-// try {
-//   test();
-// } catch (error) {
-//   logger.error(error);
-//   process.exit(1);
-// }
+async function tryInitDatabase() {
+  try {
+    await initDatabase();
+  } catch (error) {
+    logger.error(error);
+    process.exit(1);
+  }
+}
+
+tryInitDatabase();
 
 var server = http.createServer(app.callback());
 server.listen(port);

@@ -88,17 +88,20 @@ export async function checkinHistoryPage(ctx) {
  */
 export async function checkinInfoPage(ctx) {
   const course_id = ctx.params.course_id,
-    checkedin = ctx.params.checkedin;
+    checkedin_id = ctx.params.checkedin_id;
 
-  if (!validator.isCourseID(course_id) || !checkedin) {
+  // 检查course_id和checkedin_id格式
+  if (!validator.isCourseID(course_id) || !checkedin_id) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
+  // 检查用户对这个course_id是否有权限
   if ((await courseModel.getUserIDByCourseID(course_id)) !== ctx.user_id) {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
     return;
   }
-  if ((await checkinCourseModel.getCourseIDByCheckID(checkedin)).course_id !== course_id) {
+  // 检查checkin_id是否属于这个课程
+  if ((await checkinCourseModel.getCourseIDByCheckID(checkedin_id)).course_id !== course_id) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }

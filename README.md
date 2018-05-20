@@ -32,6 +32,8 @@
 
     + 确保已经安装mysql和redis服务端，并将config/index.js中数据库的参数改成和本机数据库一致
 
+    + 保证mysql和redis服务端正在运行
+
     > npm install
 
     + 跑测试文件（仅测试model层接口）

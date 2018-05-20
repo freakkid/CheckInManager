@@ -8,6 +8,7 @@ export async function createCheckinStudentTable() {
       checkin_id          VARCHAR(50)  NOT NULL,
       student_id          VARCHAR(50)  NOT NULL,
       checkined_datetime  DATETIME     DEFAULT CURRENT_TIMESTAMP NOT NULL,
+      mac                 VARCHAR(50),
       PRIMARY KEY (checkin_id, student_id)
     )`,
     undefined,
@@ -59,7 +60,13 @@ export async function getAllCourseCheckin(course_id) {
     `get all checkin history by course_id ${course_id}`);
 }
 
-// 选择某一条签到记录查看已签到学生列表
+/**
+ * 选择某一条签到记录查看已签到学生列表【student_id, student_name】
+ * 
+ * @export
+ * @param {any} checkin_id 
+ * @returns 
+ */
 export async function getAllCourseCheckinStudent(checkin_id) {
   return await execAsync(
     `SELECT CHECKIN_STUDENT.student_id, student_name
@@ -74,9 +81,15 @@ export async function getAllCourseCheckinStudent(checkin_id) {
   );
 }
 
-// 选择某一条签到记录查看未签到学生列表
-// 先选择签到对应的全班 not in 选择已签到的人
+/**
+ * 选择某一条签到记录查看未签到学生列表【student_id, student_name】
+ * 
+ * @export
+ * @param {any} checkin_id 
+ * @returns 
+ */
 export async function getAllCourseUncheckinStudent(checkin_id) {
+  // 先选择签到对应的全班 not in 选择已签到的人
   return await execAsync(
     `SELECT student_id, student_name
       FROM

@@ -11,8 +11,8 @@ export async function modelTest() {
   try {
     // while (true) {
     await initDatabaseForTest();
-    // await userModelTest();
-    // await studentModelTest();
+    await userModelTest();
+    await studentModelTest();
     // await courseModelTest();
     // await courseMemberModelTest();
     // await checkinCourseModelTest();

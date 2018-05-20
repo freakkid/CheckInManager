@@ -20,7 +20,7 @@ export async function getLoginPage(ctx) {
     }
   } else {
     // TODO 若是未登陆，则发送对应的网页
-    sendPage(ctx, 200);
+    sendPage(ctx, 200, JSON.stringify({msg:'为登陆，发送页面'}));
   }
 }
 
@@ -112,7 +112,7 @@ export async function courseMemberPage(ctx) {
     const user_id = ctx.params.user_id,
       course_id = ctx.params.course_id;
     if (!validator.isUserID(user_id) || !validator.isCourseID(course_id)
-      || (await courseModel.getUserIDByCourseID(user_id)) != user_id) {
+      || (await courseModel.getUserIDByCourseID(user_id)) !== user_id) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
@@ -134,7 +134,7 @@ export async function addCourseMemberPage(ctx) {
     const user_id = ctx.params.user_id,
       course_id = ctx.params.course_id;
     if (!validator.isUserID(user_id) || !validator.isCourseID(course_id)
-      || (await courseModel.getUserIDByCourseID(user_id)) != user_id) {
+      || (await courseModel.getUserIDByCourseID(user_id)) !== user_id) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }

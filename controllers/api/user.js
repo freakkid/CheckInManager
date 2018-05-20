@@ -5,7 +5,7 @@ export async function changePassword(ctx) {
   if (ctx.is_manager === 0) {
     const old_password = ctx.body.old_password,
       password = ctx.body.password;
-    if (!old_password || old_password != '' || validator.isPassword(password)) {
+    if (!old_password || old_password !== '' || validator.isPassword(password)) {
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }

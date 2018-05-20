@@ -1,12 +1,12 @@
 import { execAsync } from './util';
 
-// 课程签到信息（待定：gps）
+// TODO 课程签到信息（待定：gps）
 export async function createCheckinCourseTable() {
   return await execAsync(
     `CREATE TABLE IF NOT EXISTS CHECKIN_COURSE(
       checkin_id   VARCHAR(50) 	PRIMARY KEY NOT NULL,
       course_id    VARCHAR(50) 	NOT NULL,
-      gps          VARCHAR(50) 	NOT NULL,
+      gps          VARCHAR(50) 	,
       date_time    DATETIME     DEFAULT CURRENT_TIMESTAMP NOT NULL
     )`,
     undefined,
