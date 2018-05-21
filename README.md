@@ -40,16 +40,30 @@
 
     > npm run test
     
-    + 运行服务端（目前尚不能运行）
+    + 开发服务端
 
     > npm run dev
+
+    + 运行服务端
+
+    > npm run start
+
+    + 查看8000端口占用进程
+
+        + linux
+        
+        > npm run watch-linux
+
+        + mac
+
+        > npm run watch-mac
 
 
 + 后端进度
 
     + 尚未完成：
         
-        * 对controller和router层代码的测试（未来交给后端会完成）
+        * 对controller和router层代码的测试（正在测试）
 
         * 由于尚未定下前端获取签到绑定是mac还是ip，数据库未对此做出唯一性的检验
 

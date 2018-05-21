@@ -10,19 +10,19 @@ import { logger } from '../../utils';
 export async function modelTest() {
   try {
     // while (true) {
-    // await initDatabaseForTest();
-    // await userModelTest();
-    // await studentModelTest();
+    await initDatabaseForTest();
+    await userModelTest();
+    await studentModelTest();
     await courseModelTest();
     await courseMemberModelTest();
-    await checkinCourseModelTest();
-    await checkinStudentModelTest();
+    // await checkinCourseModelTest();
+    // await checkinStudentModelTest();
     // }
     logger.info('Pass all test!');
   } catch (err) {
-    await initDatabase();
+    // await initDatabase();
     logger.error(err);
-    process.exit(1);
+    // process.exit(1);
   }
 }
 

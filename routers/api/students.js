@@ -5,4 +5,4 @@ import { apiStudentsCtrl } from '../../controllers';
 export const router = new Router();
 
 // DELETE /api/students
-router.delete('/api/students', apiStudentsCtrl.deleteAllStudents);
+router.delete('/', apiStudentsCtrl.deleteAllStudents);

@@ -12,7 +12,7 @@ export async function courseMemberModelTest() {
   }
 
   for (let i = 1; i <= courses.length; i++) {
-    assert.deepEqual((await courseMemberModel.deleteCourseMember(i, students[3].student_id)).affectedRows, 1);
+    assert.deepEqual((await courseMemberModel.deleteACourseMember(students[3].student_id, i)).affectedRows, 1);
     assert.deepEqual((await courseMemberModel.getCourseMember(i)).length, students.length - 1);
   }
 
