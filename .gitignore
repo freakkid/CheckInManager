@@ -7,5 +7,6 @@ package-lock.json
 新逻辑文档.md
 *.rdb
 新*
-temp.js
+temp.*
 新逻辑功能.md
+*.rdb

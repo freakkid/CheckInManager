@@ -14,13 +14,13 @@ export async function getLoginPage(ctx) {
   if (ctx.user_id) {
     ctx.status = 302;
     if (ctx.is_manager) {
-      ctx.set('Location', '/userd');
+      ctx.set('Location', '/user');
     } else {
       ctx.set('Location', '/course');
     }
   } else {
     // TODO 若是未登陆，则发送对应的网页
-    sendPage(ctx, 200);
+    sendPage(ctx, 200, JSON.stringify({ msg: '未登陆，发送登陆页面' }));
   }
 }
 
@@ -32,7 +32,7 @@ export async function getLoginPage(ctx) {
  */
 export async function changePasswordPage(ctx) {
   // TODO
-  sendPage(ctx, 200);
+  sendPage(ctx, 200, JSON.stringify({ message: '发送一个修改密码的页面' }));
 }
 
 /**
@@ -44,7 +44,7 @@ export async function changePasswordPage(ctx) {
 export async function getAllTeachersListPage(ctx) {
   // TODO
   if (ctx.is_manager === 1) {
-    sendPage(ctx, 200, JSON.stringify(await userModel.getAllUsersList()));
+    sendPage(ctx, 200, JSON.stringify({ teachers: await userModel.getAllUsersList() }));
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
@@ -59,7 +59,7 @@ export async function getAllTeachersListPage(ctx) {
 export async function addTeacherPage(ctx) {
   // TODO
   if (ctx.is_manager === 1) {
-    sendPage(ctx, 200);
+    sendPage(ctx, 200, JSON.stringify({ message: '管理员手动添加教师的页面' }));
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
@@ -79,7 +79,7 @@ export async function getAllCoursesByTeacherIDPage(ctx) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
-    sendPage(ctx, 200, JSON.stringify(await userModel.getAllCoursesByUserID(user_id)));
+    sendPage(ctx, 200, JSON.stringify({ courses: await userModel.getAllCoursesByUserID(user_id) }));
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
@@ -94,7 +94,7 @@ export async function getAllCoursesByTeacherIDPage(ctx) {
 export async function addCoursePage(ctx) {
   // TODO
   if (ctx.is_manager === 1) {
-    sendPage(ctx, 200);
+    sendPage(ctx, 200, JSON.stringify({ message: '管理员添加课程的页面' }));
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
@@ -110,13 +110,15 @@ export async function courseMemberPage(ctx) {
   // TODO
   if (ctx.is_manager === 1) {
     const user_id = ctx.params.user_id,
-      course_id = ctx.params.course_id;
-    if (!validator.isUserID(user_id) || !validator.isCourseID(course_id)
-      || (await courseModel.getUserIDByCourseID(user_id)) != user_id) {
+      course_id = ctx.params.course_id,
+      user_ids = await courseModel.getUserIDByCourseID(course_id);
+      console.log(user_ids+'?????')
+      if (!validator.isUserID(user_id) || !validator.isCourseID(course_id)
+      || user_ids.length === 0 || user_ids[0].user_id !== user_id) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
-    sendPage(ctx, 200, JSON.stringify(await courseMemberModel.getCourseMember(course_id)));
+    sendPage(ctx, 200, JSON.stringify({course_member:await courseMemberModel.getCourseMember(course_id)}));
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
@@ -132,13 +134,15 @@ export async function addCourseMemberPage(ctx) {
   // TODO
   if (ctx.is_manager === 1) {
     const user_id = ctx.params.user_id,
-      course_id = ctx.params.course_id;
+      course_id = ctx.params.course_id,
+      user_ids = await courseModel.getUserIDByCourseID(course_id);
+      console.log(user_ids)
     if (!validator.isUserID(user_id) || !validator.isCourseID(course_id)
-      || (await courseModel.getUserIDByCourseID(user_id)) != user_id) {
+      || user_ids.length === 0 || user_ids[0].user_id !== user_id) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
-    sendPage(ctx, 200);
+    sendPage(ctx, 200, JSON.stringify({message:'管理员手动添加课程学生的页面'}));
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }

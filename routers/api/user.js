@@ -1,13 +1,15 @@
 import Router from 'koa-router';
 import { apiUserCtrl } from '../../controllers';
+import { sendData } from '../../utils';
 
 export const router = new Router();
 
-// PATCH  api/user/password
-router.patch('api/user/password', apiUserCtrl.changePassword);
+
+// PATCH  api/user/change_password
+router.patch('/change_password', apiUserCtrl.changePassword);
 
 // POST /api/user
-router.post('/api/user', apiUserCtrl.createUser);
+router.post('/', apiUserCtrl.createUser);
 
 // DELETE /api/user/{user_id}
-router.delete('/api/user/{user_id}', apiUserCtrl.deleteUser);
+router.delete('/:user_id', apiUserCtrl.deleteUser);

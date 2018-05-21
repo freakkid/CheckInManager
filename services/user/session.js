@@ -9,11 +9,11 @@ function generateSessionID(user_id) {
 }
 
 export async function addSessionID(user_id) {
-  var session_id = generateSessionID(user_id);
+  let session_id = generateSessionID(user_id);
   while (await redisService.get(session_id)) {
     session_id = generateSessionID(user_id);
   }
-  await redisService.set(session_id, user_id);
+  console.log(await redisService.set(session_id, user_id));
   return session_id;
 }
 
@@ -22,5 +22,5 @@ export async function getUserID(session_id) {
 }
 
 export async function deleteSessionID(session_id) {
-  await redisService.del(session_id);
+  return (await redisService.del(session_id)) === 1;
 }

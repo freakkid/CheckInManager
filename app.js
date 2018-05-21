@@ -5,20 +5,8 @@ import bodyparser from 'koa-bodyparser';
 import logger from 'koa-logger';
 import Router from 'koa-router';
 import request from 'request';
-import { toMid } from './utils';
 
-import {router} from './routers';
-async function test() {
-  return await new Promise(function(resolve, reject) {
-    request('http://apis.juhe.cn/qrcode/api?key=df6616c88fd11236bba916113cbb704b&text=https://www.baidu.com&type=2', function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        resolve(body);
-      } else {
-        reject(error);
-      }
-    });
-  });
-}
+import { router } from './routers';
 
 
 app.use(bodyparser({
@@ -28,14 +16,15 @@ app.use(bodyparser({
 app.use(json());
 app.use(logger());
 
-
 // handle error
 const handler = async (ctx, next) => {
   try {
     await next();
   } catch (err) {
     ctx.response.status = 500;
-    ctx.response.body = err.toString();
+    console.log(err);
+    
+    ctx.response.body = err;
   }
 };
 

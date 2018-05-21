@@ -8,7 +8,7 @@ export var checkinIDs = new Array(courses.length).fill().map((_, i) => generateC
 
 export async function checkinCourseModelTest() {
   for (let i = 0; i < courses.length; i++) {
-    assert.deepEqual((await checkinCourseModel.createCheckinCourse({ course_id: i + 1, checkin_id: checkinIDs[i] })).affectedRows, 1);
+    assert.deepEqual((await checkinCourseModel.createCheckinCourse(i + 1, checkinIDs[i])).affectedRows, 1);
   }
 
 }

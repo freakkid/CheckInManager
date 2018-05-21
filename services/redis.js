@@ -24,7 +24,7 @@ export async function set(key, value, seconds = 1 * 60 * 60) {
       }
     });
     client.expire(key, seconds);
-    resolve('set ${key} ${value} ${seconds}(s)');
+    resolve(`set ${key} ${value} ${seconds}(s)`);
   });
 }
 
@@ -43,12 +43,12 @@ export async function del(key) {
   return await new Promise(function (resolve, reject) {
     client.del(key, function (err, reply) {
       if (err) {
-        reject(err);
+        resolve(err);
       }
       if (reply !== 1) {
-        reject('delete ${key} fail');
+        resolve('delete ${key} fail');
       }
-      resolve('delete ${key}');
+      resolve(null);
     });
   });
 }

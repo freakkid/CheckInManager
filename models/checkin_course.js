@@ -1,12 +1,12 @@
 import { execAsync } from './util';
 
-// 课程签到信息（待定：gps）
+// TODO 课程签到信息（待定：gps）
 export async function createCheckinCourseTable() {
   return await execAsync(
     `CREATE TABLE IF NOT EXISTS CHECKIN_COURSE(
       checkin_id   VARCHAR(50) 	PRIMARY KEY NOT NULL,
       course_id    VARCHAR(50) 	NOT NULL,
-      gps          VARCHAR(50) 	NOT NULL,
+      gps          VARCHAR(50) 	,
       date_time    DATETIME     DEFAULT CURRENT_TIMESTAMP NOT NULL
     )`,
     undefined,
@@ -18,10 +18,10 @@ export async function dropCheckinCourseTable() {
 }
 
 // 发起一次签到
-export async function createCheckinCourse(checkin_course) {
+export async function createCheckinCourse(checkin_id, course_id, gps) {
   return await execAsync('INSERT INTO CHECKIN_COURSE (checkin_id, course_id) VALUES (?, ?)',
-    [checkin_course.checkin_id, checkin_course.course_id],
-    'create checkin_course ' + JSON.stringify(checkin_course));
+    [checkin_id, course_id, gps],
+    'create checkin_course ' + JSON.stringify({ checkin_id: checkin_id, course_id: course_id, gos: gps }));
 }
 
 // 获得课程id

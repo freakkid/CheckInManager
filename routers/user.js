@@ -2,22 +2,15 @@ import Router from 'koa-router';
 import { userCtrl, courseCtrl } from '../controllers';
 import { sendPage, sendData } from '../utils';
 import { courseModel } from '../models';
-
+import { blockUnsignedVisitors } from '../services'
 
 export const router = new Router();
 
 // 登录页面
-// 页面 GET /user
+// 页面 GET /user/login
 router.get('/login', userCtrl.getLoginPage);
 
-router.use(function(ctx, next) {
-  if (ctx.user_id) {
-    next();
-  } else {
-    // TODO
-    sendData(ctx, 401, JSON.stringify({message:'{请先登录}'}));
-  }
-});
+router.use(blockUnsignedVisitors);
 
 // 获取修改密码页面
 // GET /user/change_password
@@ -26,6 +19,7 @@ router.get('/change_password', userCtrl.changePasswordPage);
 // 管理员权限 --------------
 
 // 管理员登录页面 教师列表
+// GET /user
 router.get('/', userCtrl.getAllTeachersListPage);
 
 // 管理员手动添加教师的页面
