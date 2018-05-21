@@ -46,7 +46,7 @@ export var students = [
 export async function studentModelTest() {
 
   for (let stu of students) {
-    assert.deepEqual((await studentModel.createStudent(stu)).affectedRows, 1);
+    assert.deepEqual((await studentModel.createStudent(stu.student_id, stu.student_name)).affectedRows, 1);
   }
 
   for (let stu of students) {
@@ -56,7 +56,7 @@ export async function studentModelTest() {
   assert.deepEqual((await studentModel.deleteAllStudents()).affectedRows, students.length);
 
   for (let stu of students) {
-    assert.deepEqual((await studentModel.createStudent(stu)).affectedRows, 1);
+    assert.deepEqual((await studentModel.createStudent(stu.student_id, stu.student_name)).affectedRows, 1);
   }
 
   assert.deepEqual((await studentModel.getAllStudentsList()).length, students.length);
