@@ -84,8 +84,8 @@ export async function userModelTest() {
   }
 
   for (let user of users) {
-    console.log(await userModel.getUserByUserId(user.user_id, md5Hash(user.password)));
-    console.log('??????')
+    // console.log(await userModel.getUserByUserId(user.user_id, md5Hash(user.password)));
+    // console.log('??????')
     // assert.deepEqual((await userModel.getUserByUserId(user.user_id, md5Hash(user.password)))[0].user_id, user.user_id);
   }
 
