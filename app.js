@@ -3,12 +3,16 @@ const app = new Koa();
 import json from 'koa-json';
 import bodyparser from 'koa-bodyparser';
 import logger from 'koa-logger';
+import Router from 'koa-router';
+import request from 'request';
 
-// import router from './routes/index';
+import { router } from './routers';
+
 
 app.use(bodyparser({
   enableTypes: ['json', 'form', 'text']
 }));
+
 app.use(json());
 app.use(logger());
 
@@ -18,21 +22,18 @@ const handler = async (ctx, next) => {
     await next();
   } catch (err) {
     ctx.response.status = 500;
-    ctx.response.body = 'Server error';
+    console.log(err);
+    
+    ctx.response.body = err;
   }
 };
 
 app.use(handler);
 
-// logger
-app.use(function* (next) {
-  const start = new Date();
-  yield next;
-  const ms = new Date() - start;
-  logger.log(`${this.method} ${this.url} - ${ms}ms`);
-});
+// router
+app.use(router.routes())
+  .use(router.allowedMethods());
 
-// // router
-// app.use(router.routes());
+app.use(router.routes()).use(router.allowedMethods());
 
 export default app;

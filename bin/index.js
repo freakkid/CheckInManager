@@ -4,36 +4,25 @@ import app from '../app';
 import http from 'http';
 import process from 'process';
 
-import { port as defaultPort } from '../config';
+import { port } from '../config';
 import { logger } from '../utils';
-import { test } from '../models/init';
+import { initDatabase } from '../models';
 
-try {
-  test();
-} catch (error) {
-  logger.error(error);
-  process.exit(1);
+async function tryInitDatabase() {
+  try {
+    await initDatabase();
+  } catch (error) {
+    logger.error(error);
+    process.exit(1);
+  }
 }
 
-
-
-var port = normalizePort(process.env.PORT) || defaultPort;
+tryInitDatabase();
 
 var server = http.createServer(app.callback());
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-function normalizePort(val) {
-  let port = parseInt(val, 10);
-  if (isNaN(port)) {
-    return val;
-  }
-  if (port >= 0) {
-    return port;
-  }
-  return false;
-}
 
 function onError(error) {
   if (error.syscall !== 'listen') {

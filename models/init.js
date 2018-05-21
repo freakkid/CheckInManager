@@ -1,6 +1,6 @@
-import { createUserTable, dropUserTable } from './users';
-import { createStudentTable, dropStudentTable } from './students';
-import { createCourseTable, dropCourseTable } from './courses';
+import { createUserTable, dropUserTable } from './user';
+import { createStudentTable, dropStudentTable } from './student';
+import { createCourseTable, dropCourseTable } from './course';
 import { createCourseMemberTable, dropCourseMemberTable } from './course_member';
 import { createCheckinStudentTable, dropCheckinStudentTable } from './checkin_student';
 import { createCheckinCourseTable, dropCheckinCourseTable } from './checkin_course';
