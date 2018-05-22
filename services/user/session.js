@@ -13,7 +13,7 @@ export async function addSessionID(user_id) {
   while (await redisService.get(session_id)) {
     session_id = generateSessionID(user_id);
   }
-  console.log(await redisService.set(session_id, user_id));
+  // console.log(await redisService.set(session_id, user_id));
   return session_id;
 }
 

@@ -112,7 +112,7 @@ export async function courseMemberPage(ctx) {
     const user_id = ctx.params.user_id,
       course_id = ctx.params.course_id,
       user_ids = await courseModel.getUserIDByCourseID(course_id);
-      console.log(user_ids+'?????')
+      // console.log(user_ids+'?????')
       if (!validator.isUserID(user_id) || !validator.isCourseID(course_id)
       || user_ids.length === 0 || user_ids[0].user_id !== user_id) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
@@ -136,7 +136,7 @@ export async function addCourseMemberPage(ctx) {
     const user_id = ctx.params.user_id,
       course_id = ctx.params.course_id,
       user_ids = await courseModel.getUserIDByCourseID(course_id);
-      console.log(user_ids)
+      // console.log(user_ids)
     if (!validator.isUserID(user_id) || !validator.isCourseID(course_id)
       || user_ids.length === 0 || user_ids[0].user_id !== user_id) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
