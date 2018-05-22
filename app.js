@@ -22,7 +22,7 @@ const handler = async (ctx, next) => {
     await next();
   } catch (err) {
     ctx.response.status = 500;
-    console.log(err);
+    // console.log(err);
     
     ctx.response.body = err;
   }

@@ -7,7 +7,7 @@ export async function changePassword(ctx) {
     let old_password = ctx.request.body.old_password,
       password = ctx.request.body.password;
     if (!old_password || old_password === '' || !validator.isPassword(password)) {
-      console.log(password + '---------' + old_password)
+      // console.log(password + '---------' + old_password)
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }
@@ -18,8 +18,6 @@ export async function changePassword(ctx) {
     if ((await userModel.getUserByUserId(ctx.user_id, old_password)).length !== 1) {
       sendData(ctx, 401, JSON.stringify({ message: '密码错误' }));
       return;
-    } else {
-      console.log((await userModel.getUserByUserId(ctx.user_id, old_password)))
     }
     if ((await userModel.changePassword(password, ctx.user_id, old_password)).affectedRows !== 1) {
       sendData(ctx, 400, JSON.stringify({ message: '修改密码失败' }));
@@ -40,7 +38,7 @@ export async function createUser(ctx) {
       return;
     }
     if ((await userModel.getUsernameByUserID(user_id)).length > 0) {
-      console.log(await userModel.getUsernameByUserID(user_id))
+      // console.log(await userModel.getUsernameByUserID(user_id))
       sendData(ctx, 400, JSON.stringify({ message: '存在相同id的用户' }));
       return;
     }

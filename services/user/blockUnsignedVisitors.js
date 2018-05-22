@@ -1,4 +1,4 @@
-import { sendData } from "../../utils";
+import { sendData } from '../../utils';
 
 /**
  * 检查是否登录，阻止未登录访问
@@ -8,7 +8,7 @@ import { sendData } from "../../utils";
  * @param {any} next 
  */
 export async function blockUnsignedVisitors(ctx, next) {
-  console.log('你在blockUnsignedVisitors')
+  // console.log('你在blockUnsignedVisitors')
   if (ctx.user_id) {
     await next();
   } else {
