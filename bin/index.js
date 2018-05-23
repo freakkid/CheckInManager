@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-
-import app from '../app';
 import http from 'http';
 import process from 'process';
 
-import { port } from '../config';
+import app from '../app';
+import { port, hostname } from '../config';
 import { logger } from '../utils';
 import { initDatabase } from '../models';
 
@@ -18,6 +17,8 @@ async function tryInitDatabase() {
 }
 
 tryInitDatabase();
+
+logger.info('hostname', hostname);
 
 var server = http.createServer(app.callback());
 server.listen(port);

@@ -1,7 +1,12 @@
-import { userModel } from '../../models';
 import assert from 'assert';
-import { md5Hash } from '../../services';
+import crypto from 'crypto';
+import { userModel } from '../../models';
 
+// import { md5Hash } from '../../services';
+
+function md5Hash(data) {
+  return crypto.createHash('md5').update(data).digest('hex');
+}
 
 export var users = [
   {
@@ -39,8 +44,8 @@ export async function userModelTest1() {
   for (let user of users) {
     user.password = md5Hash(user.password)
     try {
-    await userModel.createUser(user);
-    } catch(err) {
+      await userModel.createUser(user);
+    } catch (err) {
       // console.log(err);
     }
   }
