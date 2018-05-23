@@ -43,8 +43,8 @@ export async function changePasswordPage(ctx) {
  */
 export async function getAllTeachersListPage(ctx) {
   // TODO
-  if (ctx.is_manager === 1) {
-    sendPage(ctx, 200, JSON.stringify({ teachers: await userModel.getAllUsersList() }));
+  if (ctx.is_manager === 0) {
+    sendPage(ctx, 200, JSON.stringify({ username: (await userModel.getUsernameByUserID(ctx.user_id))[0].username, teachers: await userModel.getAllUsersList() }));
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
