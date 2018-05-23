@@ -44,8 +44,8 @@ export async function userModelTest1() {
   for (let user of users) {
     user.password = md5Hash(user.password)
     try {
-    await userModel.createUser(user);
-    } catch(err) {
+      await userModel.createUser(user);
+    } catch (err) {
       // console.log(err);
     }
   }
