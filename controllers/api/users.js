@@ -23,7 +23,7 @@ export async function login(ctx) {
   const sessionID = await loginServ(user_id);
   if (sessionID) {
     ctx.response.set('key', sessionID);
-    sendData(ctx, 201, JSON.stringify({ message: '登录成功' }));
+    sendData(ctx, 201, JSON.stringify({ username: (await userModel.getUsernameByUserID(user_id))[0].username }));
   } else {
     sendData(ctx, 400, JSON.stringify({ message: '登录失败' }));
   }
