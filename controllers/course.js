@@ -13,10 +13,7 @@ import { generateCheckinURL } from '../services/checkin/checkin';
  */
 export async function courseListPage(ctx) {
   // TODO
-  sendPage(ctx, 200, JSON.stringify({
-    username: (await userModel.getUsernameByUserID(ctx.user_id))[0].username,
-    courses: await courseModel.getAllCoursesList(ctx.user_id)
-  }));
+  sendPage(ctx, 200, JSON.stringify({ courses: await courseModel.getAllCoursesList(ctx.user_id) }));
 }
 
 /**
