@@ -1,5 +1,11 @@
 import Koa from 'koa';
 const app = new Koa();
+
+//静态资源处理
+const path = require('path');
+const serve = require('koa-static');
+const static_resource_handler = serve(path.join(__dirname, '/views'));
+
 import json from 'koa-json';
 import bodyparser from 'koa-bodyparser';
 import logger from 'koa-logger';
@@ -30,6 +36,8 @@ const handler = async (ctx, next) => {
 
 app.use(handler);
 
+// 静态文件处理
+app.use(static_resource_handler);
 // router
 app.use(router.routes())
   .use(router.allowedMethods());

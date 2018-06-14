@@ -11,6 +11,7 @@ import { userCtrl, courseCtrl } from '.';
  */
 export async function getLoginPage(ctx) {
   // 若是已经登陆，则重定向到登陆首页
+  console.log('getLoginPage');
   if (ctx.user_id) {
     ctx.status = 302;
     if (ctx.is_manager) {

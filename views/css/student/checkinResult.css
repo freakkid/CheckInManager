@@ -1,0 +1,18 @@
+
+html, body{
+  font-family: "Microsoft YaHei", "Century Gothic", cursive;
+  color: grey;
+  background-color: #EFEBE8;
+}
+#image{
+	width: 60px;
+	height: 60px;
+    margin:auto;
+    display:block;
+    margin-top: 100px;
+}
+#message{
+	text-align: center;
+    display:block;
+    margin-top: 30px;
+}

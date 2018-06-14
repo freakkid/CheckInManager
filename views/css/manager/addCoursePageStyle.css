@@ -1,0 +1,222 @@
+
+@font-face{
+  
+}
+
+/* main position */
+html, body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  min-width:1200px; 
+
+  font-family: "Microsoft YaHei", "Century Gothic", cursive;
+  color: grey;
+  background-color: #EFEBE8;
+}
+
+#topBar{
+  margin-left: 0px;
+  margin-right: 0px;
+  height: 80px;
+  width: 100%;  
+  vertical-align: top;
+  
+  position: relative;
+
+  background-color: #439940;
+}
+
+#bookIMG{  
+  float: left;
+  margin-left: 30px;
+  margin-top: 25px;
+}
+
+#heading{
+  float: left;
+  margin-left: 5px;  
+  margin-top: 25px;
+  margin-left: 10px;
+
+  font-size: 14pt;
+  letter-spacing: 1px;
+  color: black;
+  font-weight: bold;
+}
+
+#topBar ul{
+  margin-left: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 100%;
+  width: 85%;
+  display: inline-block;
+  padding: 0;
+
+}
+
+#topBar ul li{  
+  background-color: #439940;
+  width: 140px;
+  height: 100%;
+  float: left;
+  list-style: none;
+  line-height: 500%;
+
+  text-align: center;
+}
+
+.topbar-item{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+}
+
+#topBar ul li a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+}
+
+#topBar ul li:hover:not(#teacherHeadList){
+  background-color: #059900;
+}
+
+#topBar ul li ul{
+  display: none;
+  margin: 0;
+  margin-top: -1px;
+}
+
+#topBar ul li:hover ul{
+  padding: 0;
+  display: block;
+}
+
+#welcomeInfo{  
+  width: 120px;
+  height: 20px;
+  display: inline-block;
+  float: right;
+  margin-top: 30px;
+  margin-right: 3%;
+  font-size: 13px;
+  color: black;
+  text-align: right;
+
+}
+
+#teacherHeadList{
+  margin-left: 60%;
+}
+
+#teacherHead{
+  width: 30px;
+  height: 30px;
+  float: right;
+  margin-right: 55px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+#bodyBlock{
+  width: 85%;
+  height: 460px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+
+  background-color: white;
+  box-shadow: 3px 3px 2px grey;
+  border-radius: 10px;
+}
+
+#title{
+  width: 80%;
+  height: auto;
+  margin: 0 auto 0 auto;
+
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+  color: #6B6B6B;
+}
+
+#upperHr{
+  margin-top: 2%;
+  width: 90%;
+}
+
+#modifyDiv{
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
+#modifyDiv p{
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: justify;
+  text-align-last:justify;
+  text-indent: 10px;
+
+}
+#left,#right{
+  width: 250px;
+  display: inline;
+  margin-left: 50px;
+  float: left;
+}
+
+#button{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+#ensurePost, #back{
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+  background-color: #439940;
+  color: white;
+  cursor: pointer;
+  border-color: #059900;
+  outline-color: #059900;
+  display: inline;
+}
+
+#NameInput{
+  margin-top: 10px;
+  height: 40px;
+}
+
+#NumberInput{
+  margin-top: 10px;
+  height: 40px;
+}
+
+input{
+  margin-bottom: 5px;
+}
+#errorMessage1, #errorMessage2, #errorMessage3{
+  
+  color: #b3b3b4;
+  margin-left: 0px;
+  width: 500px;
+  margin-left: 60px;
+  font-size: 14px;
+}
+

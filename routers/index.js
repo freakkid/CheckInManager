@@ -19,7 +19,7 @@ router.use(is_login);
 
 router.use('/api', apiRouter.routes(), apiRouter.allowedMethods());
 
-router.use(blockUnsignedVisitors);
+//router.use(blockUnsignedVisitors);
 
 // 页面显示的api
 router.use('/user', userRouter.routes(), userRouter.allowedMethods());

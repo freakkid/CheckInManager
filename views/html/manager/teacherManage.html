@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>教师管理</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/css/manager/teachermanageStyle.css">
+</head>
+
+<body>
+
+<div id="teacherManage">
+  <div id="topBar">
+    <img id="bookIMG" src="/pic/book.png">
+    <p id="heading">管理员系统</p>
+    <ul >
+      <li id="addAllStudents">添加全级学生</li>
+      <li id="teacherHeadList">
+        <img src="/pic/manager/defaultHead.png" id="teacherHead" />
+        <ul id="teacherHeadUL">
+          <li><a href="">退出登录</a></li>
+        </ul>
+      </li>
+      <p id="welcomeInfo">登录获得管理员名字，欢迎您！</p>
+    </ul>
+    
+  </div>
+
+  <div id="bodyBlock">
+      <p id="title">教师管理</p>
+      <img id="deletePic" src="/pic/manager/add.png">
+      <hr id="upperHr" />
+      
+      <table>  
+        <thead>
+          <tr>
+            <td><b>工号</b></td>
+            <td><b>姓名</b></td>
+            <td></td>      
+          </tr>   
+        </thead>
+        <tbody>
+          <tr v-for = "teacher in teachers">
+            <td>{{teacher.user_id}}</td>
+            <td>{{teacher.username}}</td>
+            <td><img src="/pic/manager/delete.png"></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+
+
+  <script src="/scripts/jquery-3.3.1.js"></script>
+  <script src="/scripts/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/scripts/manager/teacherManage.js"></script>
+
+
+
+</body>
+</html>

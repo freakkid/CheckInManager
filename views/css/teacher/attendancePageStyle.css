@@ -1,0 +1,189 @@
+@font-face{
+  
+}
+
+/* main position */
+html, body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  min-width:1280px; 
+
+  font-family: "Microsoft YaHei", "Century Gothic", cursive;
+  color: grey;
+  background-color: #EFEBE8;
+}
+
+#topBar{
+  margin-left: 0px;
+  margin-right: 0px;
+  height: 80px;
+  width: 100%;  
+  vertical-align: top;
+  
+  position: relative;
+
+  background-color: #439940;
+}
+
+#bookIMG{  
+  float: left;
+  margin-left: 30px;
+  margin-top: 25px;
+}
+
+#heading{
+  float: left;
+  margin-left: 5px;  
+  margin-top: 25px;
+  margin-left: 10px;
+
+  font-size: 14pt;
+  letter-spacing: 1px;
+  color: black;
+  font-weight: bold;
+}
+
+#topBar ul{
+  margin-left: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 100%;
+  width: 85%;
+  display: inline-block;
+  padding: 0;
+
+}
+
+
+#topBar ul li {  
+  background-color: #439940;
+  width: 140px;
+  height: 100%;
+  float: left;
+  list-style: none;
+  line-height: 500%;
+
+  text-align: center;
+}
+
+#topBar ul li a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+}
+
+#topBar ul li:hover:not(#teacherHeadList){
+  background-color: #059900;
+}
+
+#topBar ul li ul{
+  display: none;
+  margin: 0;
+  margin-top: -1px;
+}
+
+#topBar ul li:hover ul{
+  padding: 0;
+  display: block;
+}
+
+#welcomeInfo{  
+  width: 120px;
+  height: 20px;
+  display: inline;
+  float: right;
+  margin-top: 30px;
+
+  font-size: 13px;
+  color: black;
+  text-align: right;
+
+}
+
+#teacherHeadList{
+  margin-left: 25%;
+}
+
+#teacherHead{
+  width: 30px;
+  height: 30px;
+  float: right;
+  margin-right: 55px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+#bodyBlock{
+  display: inline-block;
+  width: 30%;
+  height: 400px;
+  vertical-align: top;
+  margin-top: 5%;
+  margin-left: 35%;
+}
+
+#QRText{
+  width: 100%;
+  height: 15%;
+  margin: 0;
+
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+}
+
+#QRCodePic{
+  width: 75%;
+  height: 75%;
+  margin-left: 12%;
+  margin-right: 12%;
+  margin-top: 3%;
+}
+
+#bodyRight{
+  width: 20%;
+  height: 20%;
+  display: inline-block;
+  vertical-align: top;
+
+  margin-top: 10%;
+  margin-left: 0;
+
+}
+
+#bodyRight p{
+  font-size: 24px;
+  color: black;
+  margin-bottom: 5%;
+}
+
+#attendanceNumber{
+  display: inline-block;
+  width: 30%;
+
+  border: 1px solid grey;
+  background-color: white;
+  text-align: center;
+}
+
+#stopBT{
+  width: 34%;
+  height: 34%;
+  margin-top: 10%;
+  border-radius: 10px;
+  background-color: #439940;
+  color: white;
+  letter-spacing: 1px;
+  cursor: pointer;
+  outline: none;
+}
+
+
+
+

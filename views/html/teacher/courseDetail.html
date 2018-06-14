@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>教师系统</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/css/teacher/teacherMainPageStyle.css">
+</head>
+
+<body>
+<div id="CourseDetail">
+  <div id="topBar">
+    <img id="bookIMG" src="/pic/book.png">
+    <p id="heading">教师系统</p>
+    <ul>
+      <li><a href="javascript:void(0)" v-on:click="to_mainPage">主页</a></li>
+      <li><a href="javascript:void(0)" >查看信息</a>
+        <ul>
+          <li><a href="javascript:void(0)" v-on:click="to_studentList"  >学生名单</a></li>
+          <li><a href="javascript:void(0)" v-on:click="to_attendencePage"  >历史签到</a></li>
+        </ul>
+      </li>
+      <li><a href="javascript:void(0)" v-on:click="to_checkAttendencn"  >发起签到</a></li>
+      <li><a href="javascript:void(0)" v-on:click="to_courselist"  >课程列表</a></li>
+      <li id="teacherHeadList">
+      <img src="/pic/defaultHead.png" id="teacherHead" />
+        <ul id="teacherHeadUL">
+          <li><a href="javascript:void(0)" v-on:click="setting"  >修改密码</a></li>
+          <li><a href="javascript:void(0)" v-on:click="logout"  >退出登录</a></li>
+        </ul>
+      </li>
+      <p id="welcomeInfo">{{ username }}，欢迎您！</p>
+    </ul>
+  </div>
+
+
+  <div id="bodyBlock">
+  	<div id="bodyLeft">
+  		<img src="/pic/teacher/defaultTeacher.png" id="defaultTeacher" />
+  	</div>
+  	<div id="bodyRight">
+  	  <p id="courseName">{{ course_name }}<span id="teacherName">{{ username }}</span></p>
+  	  <p class="courseInfoDisplay" id="semester">{{ semester }}</p>
+  	  <p class="courseInfoDisplay" id="credit">{{ credit }} 学分</p>
+  	  <p class="courseInfoDisplay" id="timeDisplay">上课时间：<span id="courseTime">{{ class_time }}</span></p>
+  	  <p class="courseInfoDisplay" id="locDisplay">上课地点：<span id="location">{{ position }}</span></p>
+  	  <p class="courseInfoDisplay" id="countDisplay">学生人数：<span id="studentCount">{{ student_num }} 人</span></p>
+  	</div>	
+  </div>
+</div>
+
+      <script src="/scripts/vue.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="/scripts/teacher/courseDetail.js"></script>
+
+    
+</body>
+</html>

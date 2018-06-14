@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>登录系统</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/css/logInStyle.css">
+</head>
+
+<body>
+  <div id="bodyBlock">
+    <div id="bodyTop">
+      <img src="/pic/greenBook.png" />
+      <p>课程签到管理系统</p>
+    </div>
+
+    <div id="bodyBottom">
+        <div id="usernameInput">
+          <img src="/pic/userName.png" />
+          <input v-model="name" type="text" name="username">
+        </div>
+        <p id="errorMessage1">{{ em1 }}</p>
+        <div id="passwordInput">
+          <img src="/pic/password.png">
+          <input v-model="pw" type="password" name="password">
+        </div>
+        <p id="errorMessage2">{{ em2 }}</p>
+        <!-- <input type="submit" id="submitBT" value="登录">-->
+        <button v-on:click="checkInput" id="submitBT">登录</button>
+        <p id="T_NAME" hidden="hidden">{{username}}</p>
+    </div>
+
+  </div>
+
+  <script src="/scripts/jquery-3.3.1.js"></script>
+  <script src="/scripts/vue.js"></script>
+  <script src="/scripts/axios.min.js"></script>
+  <script src="/scripts/login.js"></script>
+</body>
+
+</html>

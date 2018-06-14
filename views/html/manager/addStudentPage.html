@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>添加学生</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/css/manager/addStudentPageStyle.css">
+</head>
+
+<body>
+<div id="addStudent">
+  <div id="topBar">
+    <img id="bookIMG" src="/pic/teacher/book.png">
+    <p id="heading">管理员系统</p>
+    <ul>
+      <li><a href="javascript:void(0)" v-on:click="to_addStudentPage"  >添加全级学生</a></li>
+      <li id="teacherHeadList"><img src="/pic/teacher/defaultHead.png" id="teacherHead" />
+        <ul id="teacherHeadUL">
+          <li class="topbar-item" v-on:click="quitLogin">退出登录</li>
+        </ul>
+      </li>
+      <p id="welcomeInfo">衣扬，欢迎您！</p>
+    </ul>
+  </div>
+
+
+
+  <div id="bodyBlock">
+      <p id="title">添加学生</p>
+      <hr id="upperHr" />
+      <div id="modifyDiv">
+          <div id="NameInput">
+            <div>姓名：</div>
+            <input v-model="username" type="text" name="username">
+          </div>
+          <p id="username">{{ em1 }}</p> 
+          <div id="NumberInput">
+            <div>学号：</div>
+            <input v-model="user_id" type="text" name="user_id">
+          </div>
+          <p id="user_id">{{ em2 }}</p>
+          <div>
+              <input type="submit" name="ensurePost" id="ensurePost" value="确认提交" v-on:click="checkInput">
+              <input type="button" name="back" id="back" value="返回" v-on:click="back">
+          </div>
+      
+      </div>
+
+    
+  </div>
+</div>
+      <script src="/scripts/jquery-3.3.1.js"></script>
+      <script src="/scripts/vue.js"></script>
+      <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+      <script src="/scripts/axios.min.js"></script>
+      <script src="/scripts/manager/addStudent.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,211 @@
+@font-face{
+  
+}
+
+/* main position */
+html, body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  min-width:1280px; 
+
+  font-family: "Microsoft YaHei", "Century Gothic", cursive;
+  color: grey;
+  background-color: #EFEBE8;
+}
+
+#topBar{
+  margin-left: 0px;
+  margin-right: 0px;
+  height: 80px;
+  width: 100%;  
+  vertical-align: top;
+  position: relative;
+  z-index: 1;
+  
+
+  background-color: #439940;
+}
+
+#bookIMG{  
+  float: left;
+  margin-left: 30px;
+  margin-top: 25px;
+}
+
+#heading{
+  float: left;
+  margin-left: 5px;  
+  margin-top: 25px;
+  margin-left: 10px;
+  width: auto;
+
+  font-size: 14pt;
+  letter-spacing: 1px;
+  color: black;
+  font-weight: bold;
+}
+
+
+#topBar ul{
+  margin-left: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 100%;
+  width: 85%;
+  display: inline-block;
+  padding: 0;
+
+}
+
+
+#topBar ul li {  
+  background-color: #439940;
+  width: 140px;
+  height: 100%;
+  float: left;
+  list-style: none;
+  line-height: 500%;
+
+  text-align: center;
+}
+
+#topBar ul li a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+}
+
+#topBar ul li:hover:not(#teacherHeadList){
+  background-color: #059900;
+}
+
+#topBar ul li ul{
+  display: none;
+  margin: 0;
+  margin-top: -1px;
+
+}
+
+#topBar ul li:hover ul{
+  padding: 0;
+  display: block;
+}
+
+#teacherHeadList a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+}
+
+#topBar ul li:hover:not(#teacherHeadList){
+  background-color: #059900;
+}
+
+#teacherHeadUL{
+  display: none;
+  margin: 0;
+  margin-top: -1px;
+}
+
+#topBar ul li:hover ul{
+  padding: 0;
+  display: block;
+}
+
+#welcomeInfo{  
+  width: 120px;
+  height: 20px;
+  display: inline-block;
+  float: right;
+  margin-top: 30px;
+  margin-right: 3%;
+
+
+  font-size: 13px;
+  color: black;
+  text-align: right;
+}
+
+#addAllStudents{
+  color: black;
+}
+
+
+#teacherHeadList{
+  margin-left: 60%;
+
+}
+
+#teacherHead{
+  width: 30px;
+  height: 30px;
+  float: right;
+  margin-right: 55px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+#bodyBlock{
+  width: 85%;
+  height: 440px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  overflow-y: scroll;
+
+  background-color: white;
+  box-shadow: 3px 3px 2px grey;
+  border-radius: 10px;
+}
+
+#title{
+  width: auto;
+  height: auto;
+  margin: 0 0 0 5%;
+  display: inline-block;
+
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+  color: #6B6B6B;
+}
+
+#addTeacher{
+  display: inline-block;
+  vertical-align: bottom;
+  float: right;
+  margin-right: 25%;
+}
+
+#upperHr{
+  margin-top: 2%;
+  width: 90%;
+}
+
+#bodyBlock table{
+  width: 60%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  border-collapse: collapse;
+}
+
+#bodyBlock table tr td{
+  width: 45%;
+  padding: 10px;
+  color: black;
+  border-bottom: dashed;
+  border-color:#D9D9D9;
+}

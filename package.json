@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "eslint ./",
     "test": "babel-node test/index.js",
-    "dev": "npm run lint && babel-watch bin/index.js",
-    "start": "npm run lint && babel-node bin/index.js",
+    "dev": "babel-watch bin/index.js",
+    "start": "babel-node bin/index.js",
     "watch-linux": "netstat -ap | grep 8000",
     "watch-mac": "lsof -i tcp:8000"
   },
@@ -29,6 +29,7 @@
     "koa-json": "^2.0.2",
     "koa-logger": "^3.1.0",
     "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2",
     "lint": "^1.1.2",
     "log4js": "^2.5.3",
     "mysql": "^2.15.0",
