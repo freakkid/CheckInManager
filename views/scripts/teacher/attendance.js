@@ -69,7 +69,18 @@ if(navigator.geolocation){
 }  
 
 
-
+function get_checkin_num() {
+    console.log('/api/checkin_student/'+localStorage.getItem("checkin_id"));
+    axios.get('/api/checkin_student/'+localStorage.getItem("checkin_id"))
+    .then(function(response) {
+        console.log(response.data.checkined);
+        //alert(response.data.checkined);
+        $("#attendanceNumber").text(response.data.checkined);
+    })
+    .catch(function(error) {
+        console.log(error);
+    })
+}
 
 $(document).ready(function() {
     var course_id = localStorage.getItem("course_id");
@@ -77,11 +88,13 @@ $(document).ready(function() {
 
     $("#QRCodePic").attr("src",
     'http://qr.liantu.com/api.php?text=' + 'http://' + $("#QRCodePic").attr("src"));
-    alert($("#QRCodePic").attr("src"));
+    //alert($("#QRCodePic").attr("src"));
     var qr_src = $("#QRCodePic").attr("src");
     var pos = qr_src.indexOf("checkinByQRCode");
 
     localStorage.setItem("checkin_id",qr_src.substring(pos + 16, qr_src.length));
+
+    window.setInterval("get_checkin_num()",1000);
 
      $("#mainPage").click(function() {
          window.location='/course/'+course_id; 
