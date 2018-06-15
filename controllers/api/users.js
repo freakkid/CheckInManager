@@ -42,6 +42,8 @@ export async function login(ctx) {
 export async function logout(ctx) {
   console.log('logout cookie',ctx.cookies.key);
   console.log('logout cookie',ctx.cookies.get('key'));
+  sendData(ctx, 400, JSON.stringify({ message: '登出失败' }));
+  return;
   //if (await logoutServ(ctx.request.header.key, ctx.user_id)) {
     if (await logoutServ(ctx.cookies.get('key'), ctx.user_id)) {
     sendData(ctx, 204, JSON.stringify({ message: '登出成功' }));

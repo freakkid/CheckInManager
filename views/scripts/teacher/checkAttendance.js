@@ -83,9 +83,7 @@ function addEvents() {
             window.location="/";
         })
         .catch(function (error) {
-            alert(response.data);
-            console.log(error);
-            alert(error);
+            alert(error.response.data.message);
         });
     });
 

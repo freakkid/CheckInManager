@@ -124,9 +124,7 @@ $(document).ready(function() {
             window.location="/";
         })
         .catch(function (error) {
-            alert(response.data);
-            console.log(error);
-            alert(error);
+            alert(error.response.data.message);
         });
      });
     $("#stopBT").click(function(){
@@ -139,7 +137,7 @@ $(document).ready(function() {
 
         })
         .catch(function (error) {
-            alert(response.data);
+            alert(error.response.data.message);
         });
     })
 

@@ -55,7 +55,7 @@ var changePasswordform = new Vue({
             })
             .catch(function (error) {
                 //alert(error.status);
-                console.log(error.response.status);
+                alert(error.response.data.message);
             });
         },
         back:function () {
@@ -69,7 +69,7 @@ var changePasswordform = new Vue({
                 window.location="/";
             })
             .catch(function (error) {
-                alert(response.data);
+                alert(error.response.data.message);
             });
         },
         changPassword:function() {

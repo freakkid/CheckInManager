@@ -77,7 +77,8 @@ var addcourseform = new Vue({
                 }
             })
             .catch(function (error) {
-                alert(error.status);
+                //alert(error.status);
+                alert(error.response.data.message);
                 //console.log(error.response.status);
             });
         },
