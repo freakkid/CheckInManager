@@ -13,7 +13,7 @@ export async function QRCodeUrlPage(ctx) {
     sendData(ctx, 400, JSON.stringify({ message: '您请求的页面已失效' }));
   } else {
     // TODO
-    sendPage(ctx, 200, JSON.stringify({ message: '发送填写签到信息的页面' }));
+    sendPage(ctx, 200, JSON.stringify({ message: '发送填写签到信息的页面' }),'student_checkin');
   }
 }
 

@@ -71,73 +71,6 @@ if(navigator.geolocation){
 
 
 
-
-
-
-var checkin = new Vue({
-	el:'#checkin',
-	data:{
-		checkinURL:'',//这个应该是后端渲染回来的
-		checkedin:0  //实时签到人数，这个是api请求得到的
-
-	},
-	methods:{ //还没改
-        stopSign:function(){
-            checkin_id = localStorage.getItem("checkin_id");
-            axios.delete('/api/checkin_student/'+checkin_id)
-            .then(function (response) {
-                console.log(response.status);
-                course_id = localStorage.getItem("course_id");
-                window.location =  '/course/'+course_id+'/checkin_student';
-
-            })
-            .catch(function (error) {
-                alert(response.data);
-            });
-
-        },
-        to_mainPage:function(course_id) {
-            course_id = localStorage.getItem("course_id");
-            window.location='/course/'+course_id; 
-        },
-        to_studentList:function(course_id){
-            course_id = localStorage.getItem("course_id");
-            window.location =  '/course/'+course_id+'/course_member';
-        },
-        to_attendencePage:function(course_id){
-            course_id = localStorage.getItem("course_id");
-            window.location =  '/course/'+course_id+'/checkin_student';
-
-        },
-        to_checkAttendencn:function(){
-            //本页面，不跳转
-        },
-        to_courselist:function(){
-            window.location = '/course';
-
-        },
-        setting:function(){
-           window.location =  '/user/change_password';
-        },
-        logout:function(){
-            console.log('cookie',document.cookie);
-            axios.delete('/api/users/session')
-            .then(function (response) {
-                console.log(response.status);
-                window.location="/";
-            })
-            .catch(function (error) {
-                alert(response.data);
-                console.log(error);
-                alert(error);
-            });
-        }
-    }
-
-
-
-})
-
 $(document).ready(function() {
     var course_id = localStorage.getItem("course_id");
     $("#welcomeInfo").text(localStorage.getItem("username") + '，欢迎您！');
@@ -147,9 +80,55 @@ $(document).ready(function() {
     
     var qr_src = $("#QRCodePic").attr("src");
     var pos = qr_src.indexOf("checkinByQRCode")
-    
-    //alert($("#QRCodePic").attr("src"));
-    //alert(qr_src.substring(pos + 16, qr_src.length));
-    
+
     localStorage.setItem("checkin_id",qr_src.substring(pos + 16, qr_src.length));
+
+     $("#mainPage").click(function() {
+         window.location='/course/'+course_id; 
+    });
+    $("#studentName").click(function() {
+        window.location =  '/course/'+course_id+'/course_member'; 
+    });
+    $("#signHistory").click(function() {
+        window.location =  '/course/'+course_id+'/checkin_student';
+    });
+    $("#Sign").click(function() {
+        //签到界面
+        //todo
+        //本界面，不操作
+    });
+    $("#courseList").click(function() {
+        window.location = "/course";
+    });
+    $("#changePass").click(function() {
+        window.location =  '/user/change_password';
+    });
+    $("#logout").click(function() {
+        console.log('cookie',document.cookie);
+        axios.delete('/api/users/session')
+        .then(function (response) {
+            console.log(response.status);
+            window.location="/";
+        })
+        .catch(function (error) {
+            alert(response.data);
+            console.log(error);
+            alert(error);
+        });
+     });
+    $("#stopBT").click(function(){
+        checkin_id = localStorage.getItem("checkin_id");
+        axios.delete('/api/checkin_student/'+checkin_id)
+        .then(function (response) {
+            console.log(response.status);
+            course_id = localStorage.getItem("course_id");
+            window.location =  '/course/'+course_id+'/checkin_student';
+
+        })
+        .catch(function (error) {
+            alert(response.data);
+        });
+    })
+
+
 });

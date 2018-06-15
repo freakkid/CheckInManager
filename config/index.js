@@ -18,8 +18,8 @@ export var port = normalizePort(process.env.PORT) || defaultPort;
 export const logFilePath = './checkIn.log';
 export const db = {
   host: 'localhost',
-  user: 'xxhi008',
-  password: 'asd001680',
+  user: 'root',
+  password: 'root',
   database: 'checkInManager'
 };
 

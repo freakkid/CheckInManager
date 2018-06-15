@@ -38,9 +38,13 @@ var student_checkin = new Vue({
             })
             .then(function(response) {
                 alert('签到成功');
+                $("#bodyBlock").style.display='null';
+
             })
             .catch(function(error) {
-                alert('签到失败');
+               
+                //更换图片
+                alert(error.response.data.message);
             });
         }
     }
