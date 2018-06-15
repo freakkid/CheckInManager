@@ -16,6 +16,32 @@ export function sendPage(ctx, status = 200, data) {
         console.log('你在登陆界面');
     };
 
+    if(ctx.request.path == '/user/change_password'){
+        ctx.response.status = status;
+        ctx.response.body = fs.createReadStream('./views/html/teacher/changePasswordPage.html');
+        ctx.response.type = 'html';
+        console.log('你在修改密码界面');
+    };
+
+
+
+
+    
+    //这个暂时有问题
+    if(ctx.request.path == '/add_student'){
+        ctx.response.status = status;
+        ctx.response.body = fs.createReadStream('./views/html/manager/addAllStudentPage.html');
+        ctx.response.type = 'html';
+        console.log('你在添加全级学生界面');
+    };
+
+    if(ctx.request.path == '/user/add_user'){
+        ctx.response.status = status;
+        ctx.response.body = fs.createReadStream('./views/html/manager/addTeacherPage.html');
+        ctx.response.type = 'html';
+        console.log('你在添加教师界面');
+    };
+
     if(ctx.request.path ==='/course'){
         console.log('你在课程列表');
         const courseList_renderer = render.createRenderer({
