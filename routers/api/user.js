@@ -6,7 +6,7 @@ export const router = new Router();
 
 
 // PATCH  api/user/change_password
-router.patch('/change_password', apiUserCtrl.changePassword);
+router.patch('/password', apiUserCtrl.changePassword);
 
 // POST /api/user
 router.post('/', apiUserCtrl.createUser);
