@@ -73,17 +73,19 @@ export function sendPage(ctx, status = 200, data,str) {
 
     };
 
-
-
-
-
-
-
-
-
+    //教师界面：修改密码界面
+    if(str==='changePasswordPage'){
+        ctx.response.status = status;
+        ctx.response.body = fs.createReadStream('./views/html/teacher/changePasswordPage.html');
+        ctx.response.type = 'html';
+        console.log('你在修改密码界面');
+    };
 
 
     
+
+
+
     //管理员主页：管理教师界面
     if(ctx.request.path =='/user'){
         console.log('你在教师列表界面');
@@ -110,13 +112,9 @@ export function sendPage(ctx, status = 200, data,str) {
 
     };
 
-    if(str==='changePasswordPage'){
-        ctx.response.status = status;
-        ctx.response.body = fs.createReadStream('./views/html/teacher/changePasswordPage.html');
-        ctx.response.type = 'html';
-        console.log('你在修改密码界面');
-    };
 
+
+    //管理员主页：添加教师界面
     if(str==='addTeacherPage'){
         ctx.response.status = status;
         ctx.response.body = fs.createReadStream('./views/html/manager/addTeacherPage.html');
