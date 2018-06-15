@@ -38,9 +38,12 @@
 
 function addEvents() {
 
+
     $("#welcomeInfo").text(localStorage.getItem("username") + '，欢迎您！') ;
 
     $(".name").click(function() {
+        
+        localStorage.setItem("course_id",$(this).children().text());
         window.location='/course/'+$(this).children().text(); 
     });
     //修改密码

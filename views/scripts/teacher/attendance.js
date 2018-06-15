@@ -5,7 +5,7 @@ if(navigator.geolocation){
      // getError是失败的回调函数  
      // getOptions是一个对象，用于设置getCurrentPosition的参数  
      // 后两个不是必要参数  
-     alert('支持获取gps');//判断浏览器是否支持geolocation  
+    // alert('支持获取gps');//判断浏览器是否支持geolocation  
      var getOptions = {  
           //是否使用高精度设备，如GPS。默认是true  
           enableHighAccuracy:true,  
@@ -82,25 +82,42 @@ var checkin = new Vue({
 
 	},
 	methods:{ //还没改
+        stopSign:function(){
+            checkin_id = localStorage.getItem("checkin_id");
+            axios.delete('/api/checkin_student/'+checkin_id)
+            .then(function (response) {
+                console.log(response.status);
+                course_id = localStorage.getItem("course_id");
+                window.location =  '/course/'+course_id+'/checkin_student';
+
+            })
+            .catch(function (error) {
+                alert(response.data);
+            });
+
+        },
         to_mainPage:function(course_id) {
-          // window.location='/course/'+course_id; 
+            course_id = localStorage.getItem("course_id");
+            window.location='/course/'+course_id; 
         },
         to_studentList:function(course_id){
-          //  window.location =  '/course/'+course_id+'/course_member';
+            course_id = localStorage.getItem("course_id");
+            window.location =  '/course/'+course_id+'/course_member';
         },
         to_attendencePage:function(course_id){
-           // window.location =  '/course/'+course_id+'/checkin_student';
+            course_id = localStorage.getItem("course_id");
+            window.location =  '/course/'+course_id+'/checkin_student';
 
         },
         to_checkAttendencn:function(){
-            
+            //本页面，不跳转
         },
         to_courselist:function(){
-            // window.location = '/course';
+            window.location = '/course';
 
         },
         setting:function(){
-          //  window.location =  '/user/change_password';
+           window.location =  '/user/change_password';
         },
         logout:function(){
             console.log('cookie',document.cookie);
@@ -118,6 +135,7 @@ var checkin = new Vue({
     }
 
 
+
 })
 
 $(document).ready(function() {
@@ -127,5 +145,9 @@ $(document).ready(function() {
     $("#QRCodePic").attr("src",
     'http://qr.liantu.com/api.php?text=' + 'http://172.18.139.33:8000/checkinByQRCode/123');
     localStorage.setItem("checkin_id",123);
+
+
+
+
 });
 

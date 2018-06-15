@@ -61,7 +61,7 @@ export async function courseMemberPage(ctx) {
 
   const course_member = await courseMemberModel.getCourseMember(course_id);
   // TODO
-  sendPage(ctx, 200, JSON.stringify({ course_member: course_member, course_member_num: course_member.length }));
+  sendPage(ctx, 200, JSON.stringify({ course_member: course_member, course_member_num: course_member.length }),'studentNameListPage');
 }
 
 /**
@@ -85,7 +85,7 @@ export async function checkinHistoryPage(ctx) {
   }
 
   // TODO
-  sendPage(ctx, 200, JSON.stringify({ checkin_history: await checkinStudentModel.getAllCourseCheckin(course_id) }));
+  sendPage(ctx, 200, JSON.stringify({ checkin_history: await checkinStudentModel.getAllCourseCheckin(course_id) }) , 'checkAttendancePage');
 }
 
 /**
@@ -126,7 +126,7 @@ export async function checkinInfoPage(ctx) {
   sendPage(ctx, 200, JSON.stringify({
     checkedin: checkedin, checkedin_num: checkedin_num,
     uncheckedin: uncheckedin, uncheckedin_num: uncheckedin_num
-  }));
+  }),'singleAttendancePage');
 }
 
 /**
@@ -139,7 +139,8 @@ export async function launchCheckinPage(ctx) {
   const course_id = ctx.params.course_id,
     gps = ctx.query.gps;
   if (!validator.isCourseID(course_id)
-    || !gps || !validator.isGps(gps)) {
+    //|| !gps || !validator.isGps(gps)
+    ) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
     return;
   }
@@ -160,7 +161,7 @@ export async function launchCheckinPage(ctx) {
       sendData(ctx, 400, JSON.stringify({ message: '发起签到失败qaq' }));
     }
   }
-  sendPage(ctx, 200, JSON.stringify({ checkinURL: generateCheckinURL(checkin_id) }));
+  sendPage(ctx, 200, JSON.stringify({ checkinURL: generateCheckinURL(checkin_id) }),'attendancePage');
 
 
 }
