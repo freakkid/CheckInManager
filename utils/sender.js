@@ -8,6 +8,7 @@ export function sendPage(ctx, status = 200, data,str) {
     console.log(status);
     console.log(ctx.request.path);
     console.log(ctx.request.url);
+    console.log(data);
     
     //教师/管理员登录界面
     if(ctx.request.path ==='/user/login'){
@@ -44,7 +45,6 @@ export function sendPage(ctx, status = 200, data,str) {
     };
 
     //教师界面：课程详情界面
-    var coursedetail_path ;
     if(str==='courseDetail'){
         console.log('你在课程详情界面');
         const courseDetail_renderer = render.createRenderer({
@@ -67,6 +67,85 @@ export function sendPage(ctx, status = 200, data,str) {
         })
 
     };
+
+    //教师界面：学生名单界面
+    if(str ==='studentNameListPage'){
+        console.log('你在studentNameListPage界面');
+        const studentNameListPage_renderer = render.createRenderer({
+            template: fs.readFileSync('./views/html/teacher/studentNameListPage_template.html', 'utf-8')
+        });
+        const tem = new Vue({
+            data:JSON.parse(data),
+            template: fs.readFileSync('./views/html/teacher/studentNameListPage_markup.html', 'utf-8')
+        });
+
+        studentNameListPage_renderer.renderToString(tem, (err, html) => {
+            if (err) {
+                console.log(err);
+                ctx.response.status = 500;
+                ctx.response.body = 'Internal Server Error';
+                return;
+            }
+            ctx.response.body = html;
+            console.log('studentNameListPage html');
+        })
+    }
+
+
+    //教师界面：历史签到界面
+    if(str ==='checkAttendancePage'){
+        console.log('你在checkAttendancePage界面');
+        const checkAttendancePage_renderer = render.createRenderer({
+            template: fs.readFileSync('./views/html/teacher/checkAttendancePage_template.html', 'utf-8')
+        });
+        const tem = new Vue({
+            data:JSON.parse(data),
+            template: fs.readFileSync('./views/html/teacher/checkAttendancePage_markup.html', 'utf-8')
+        });
+
+        checkAttendancePage_renderer.renderToString(tem, (err, html) => {
+            if (err) {
+                console.log(err);
+                ctx.response.status = 500;
+                ctx.response.body = 'Internal Server Error';
+                return;
+            }
+            ctx.response.body = html;
+            console.log('checkAttendancePage html');
+        })
+    }
+
+
+    //教师界面：点进某一个签到记录查看详情
+    if(str ==='singleAttendancePage'){
+        console.log('你在singleAttendancePage界面');
+        const singleAttendancePage_renderer = render.createRenderer({
+            template: fs.readFileSync('./views/html/teacher/singleAttendancePage_template.html', 'utf-8')
+        });
+        const tem = new Vue({
+            data:JSON.parse(data),
+            template: fs.readFileSync('./views/html/teacher/singleAttendancePage_markup.html', 'utf-8')
+        });
+
+        singleAttendancePage_renderer.renderToString(tem, (err, html) => {
+            if (err) {
+                console.log(err);
+                ctx.response.status = 500;
+                ctx.response.body = 'Internal Server Error';
+                return;
+            }
+            ctx.response.body = html;
+            console.log('singleAttendancePage html');
+        })
+    }
+
+    //教师界面：获取二维码签到界面
+    if(str ==='attendancePage'){
+        console.log('你在发起签到界面');
+        ctx.response.status = status;
+        ctx.response.type = 'html';
+        ctx.response.body = fs.createReadStream('./views/html/teacher/attendancePage.html');
+    }
 
 
 
