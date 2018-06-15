@@ -36,7 +36,7 @@ export async function coursePage(ctx) {
     return;
   }
   // TODO
-  sendPage(ctx, 200, JSON.stringify((await courseModel.getCourseByCourseID(course_id))[0]));
+  sendPage(ctx, 200, JSON.stringify((await courseModel.getCourseByCourseID(course_id))[0]),'courseDetail');
 }
 
 /**
