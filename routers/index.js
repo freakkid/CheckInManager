@@ -12,7 +12,16 @@ import { is_login } from '../services/user/is_login';
 import { blockUnsignedVisitors } from '../services';
 
 export const router = new Router();
+const logout_router = new Router();
+logout_router.get('/', async (ctx, next) => {
+    console.log('get / ');
+     ctx.response.status = 201;
+     console.log(ctx.response.status);
+     ctx.response.type = 'html';
+     ctx.response.body = require('fs').createReadStream('./views/html/initial.html');
+ });
 
+router.use('/', logout_router.routes());
 router.use('/checkinByQRCode', checkinByQRCodeRouter.routes(), checkinByQRCodeRouter.allowedMethods());
 
 router.use(is_login);

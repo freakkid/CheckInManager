@@ -28,7 +28,8 @@ export async function login(ctx) {
 
   const sessionID = await loginServ(user_id);
   if (sessionID) {
-    console.log('session');
+    console.log('save session to database');
+    console.log('cookie:',sessionID);
     //ctx.response.set('key', sessionID);
     ctx.cookies.set('key', sessionID);
     sendData(ctx, 201, JSON.stringify({ username: (await userModel.getUsernameByUserID(user_id))[0].username }));
@@ -39,7 +40,10 @@ export async function login(ctx) {
 
 
 export async function logout(ctx) {
-  if (await logoutServ(ctx.request.header.key, ctx.user_id)) {
+  console.log('logout cookie',ctx.cookies.key);
+  console.log('logout cookie',ctx.cookies.get('key'));
+  //if (await logoutServ(ctx.request.header.key, ctx.user_id)) {
+    if (await logoutServ(ctx.cookies.get('key'), ctx.user_id)) {
     sendData(ctx, 204, JSON.stringify({ message: '登出成功' }));
   } else {
     sendData(ctx, 400, JSON.stringify({ message: '登出失败' }));
