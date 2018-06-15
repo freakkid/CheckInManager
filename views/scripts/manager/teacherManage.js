@@ -25,10 +25,10 @@ function addEvents() {
 
     //退出登录
     $("#logout").click(function() {
-        console.log('cookie',document.cookie);
+        //console.log('cookie',document.cookie);
         axios.delete('/api/users/session')
         .then(function (response) {
-            console.log(response.status);
+            //console.log(response.status);
             window.location="/";
         })
         .catch(function (error) {
@@ -56,12 +56,12 @@ function addEvents() {
         if (check === true) {
             axios.delete('/api/user/'+teacher_id)
             .then(function(response) {
-                console.log(response.status);
+                //console.log(response.status);
                 alert('删除教师数据成功');
                 window.location = '/user';
             })
             .catch(function(error) {
-                console.log(error.response);
+                //console.log(error.response);
                 alert(error.response.data.message);
                 alert('删除教师数据失败');
             });

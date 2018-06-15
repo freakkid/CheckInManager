@@ -42,13 +42,13 @@ var changePasswordform = new Vue({
             if (p>0) {
                 return false;
             };
-            console.log('patch');
+            //console.log('patch');
             axios.patch('/api/user/password', {
                 old_password: changePasswordform.oldPW,
                 password: changePasswordform.newPW
             })
             .then(function (response) {
-                console.log(response.status);
+                //console.log(response.status);
                 if (response.status == 201) {
                     window.location="/user/login";
                 }
@@ -62,10 +62,10 @@ var changePasswordform = new Vue({
              window.location="/course";
         },
         quitLogin: function() {
-            console.log('cookie',document.cookie);
+            //console.log('cookie',document.cookie);
             axios.delete('/api/users/session')
             .then(function (response) {
-                console.log(response.status);
+                //console.log(response.status);
                 window.location="/";
             })
             .catch(function (error) {
@@ -86,27 +86,27 @@ $(function() {
 //如果这个界面用后端渲染，就需要下面那样对按钮添加事件
 
 /*function checkInput_jq() {
-    console.log('patch');
+    //console.log('patch');
     axios.patch('/api/user/password', {
         'old_password': changePasswordform.oldPW,
         'password': changePasswordform.newPW
     })
     .then(function (response) {
-        console.log(response.status);
+        //console.log(response.status);
         if (response.status == 201) {
             window.location="/user/login";
         }
     })
     .catch(function (error) {
         //alert(error.status);
-        console.log(error.response.status);
+        //console.log(error.response.status);
     });
 }
 
 function addEvents() {
     //alert('addevents');
     //alert(changePasswordform.checkInput);
-    console.log(changePasswordform.checkInput);
+    //console.log(changePasswordform.checkInput);
     //alert($("#ensurePost").val());
     //$("#ensurePost").click(changePasswordform.checkInput);
     $("#ensurePost").click(checkInput_jq);

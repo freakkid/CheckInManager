@@ -39,20 +39,20 @@ var addstudentform = new Vue({
                 return false;
             };
 
-            console.log('add all students');
+            //console.log('add all students');
             axios.post('/api/student', {
                 student_name : addstudentform.username,
                 student_id : addstudentform.user_id
             })
             .then(function (response) {
-                console.log(response.status);
+                //console.log(response.status);
                 if (response.status == 201) {
                     window.location='/user';
                 }
             })
             .catch(function (error) {
                 //alert(error.status);
-                console.log(error.response.status);
+                //console.log(error.response.status);
             });
         },
         back:function () {
@@ -63,15 +63,15 @@ var addstudentform = new Vue({
         },
 
         quitLogin: function() {
-            console.log('cookie',document.cookie);
+            //console.log('cookie',document.cookie);
             axios.delete('/api/users/session')
             .then(function (response) {
-                console.log(response.status);
+                //console.log(response.status);
                 window.location="/";
             })
             .catch(function (error) {
                 alert(error.response.data.message);
-                console.log(error);
+                //console.log(error);
                 alert('添加失败');
             });
         }

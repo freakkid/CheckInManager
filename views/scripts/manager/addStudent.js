@@ -43,15 +43,15 @@ var addstudentform = new Vue({
                 return false;
             };
 
-            console.log('post');
+            //console.log('post');
             //add_course_student_url = '/api/course/'+course_id+'/course_member';
-            console.log('name,id:',addstudentform.username,addstudentform.user_id);
+            //console.log('name,id:',addstudentform.username,addstudentform.user_id);
             axios.post('/api/course/'+course_id+'/course_member', {
                 student_id : addstudentform.user_id,
                 student_name : addstudentform.username
             })
             .then(function (response) {
-                console.log(response.status);
+                //console.log(response.status);
                 if (response.status == 201) {
                     window.location='/user/'+user_id+'/course/'+course_id+'/course_member';
 
@@ -59,7 +59,7 @@ var addstudentform = new Vue({
             })
             .catch(function (error) {
                 
-                console.log(error.response.status);
+                //console.log(error.response.status);
                 alert(error.response.data.message);
             });
         },
@@ -73,15 +73,15 @@ var addstudentform = new Vue({
         },
 
         quitLogin: function() {
-            console.log('cookie',document.cookie);
+            //console.log('cookie',document.cookie);
             axios.delete('/api/users/session')
             .then(function (response) {
-                console.log(response.status);
+                //console.log(response.status);
                 window.location="/";
             })
             .catch(function (error) {
                 alert(error.response.data.message);
-                console.log(error);
+                //console.log(error);
                 alert('添加失败');
             });
         }

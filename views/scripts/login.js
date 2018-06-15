@@ -27,7 +27,7 @@ var loginform = new Vue({
             if (p>0) {
                 return false;
             };
-            console.log('post'); 
+            //console.log('post'); 
             let that = this;
         
             axios.post('/api/users/session', {
@@ -35,16 +35,16 @@ var loginform = new Vue({
                 'password': loginform.pw
             })
             .then(function (response) {
-                console.log(response);
+                //console.log(response);
 
                 if (response.status == 201) {
-                    console.log(response.data);
+                    //console.log(response.data);
                     that.username = response.data.username; //然后要将这个名字保存下来以后用
-                    console.log(that.username);
+                    //console.log(that.username);
                     //alert(that.username);
                     var global_name = that.username;
                     localStorage.setItem("username",global_name);
-                    console.log(localStorage.getItem("username"));
+                    //console.log(localStorage.getItem("username"));
 
                     //怎么判断登录用户是管理员还是教师？再选择要跳转界面
                     window.location='/user/login';

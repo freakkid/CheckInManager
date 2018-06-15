@@ -56,7 +56,7 @@ function addEvents() {
 
    // localStorage.setItem("course_id",course_id);//这个界面获得course id，写进浏览器内存
     var course_id = localStorage.getItem("course_id"); 
-    console.log($("#courseId").text());//这个界面，测试服务器返回的课程id假定是1，
+    //console.log($("#courseId").text());//这个界面，测试服务器返回的课程id假定是1，
 
 
     $("#mainPage").click(function() {
@@ -82,10 +82,10 @@ function addEvents() {
         window.location =  '/user/change_password';
     });
     $("#logout").click(function() {
-        console.log('cookie',document.cookie);
+        //console.log('cookie',document.cookie);
         axios.delete('/api/users/session')
         .then(function (response) {
-            console.log(response.status);
+            //console.log(response.status);
             window.location="/";
         })
         .catch(function (error) {

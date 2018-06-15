@@ -80,10 +80,10 @@ function addEvents() {
         window.location =  '/user/change_password';
     });
     $("#logout").click(function() {
-        console.log('cookie',document.cookie);
+        //console.log('cookie',document.cookie);
         axios.delete('/api/users/session')
         .then(function (response) {
-            console.log(response.status);
+            //console.log(response.status);
             window.location="/";
         })
         .catch(function (error) {

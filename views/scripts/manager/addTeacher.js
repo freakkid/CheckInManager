@@ -32,13 +32,13 @@ var addTeacherform = new Vue({
                 return false;
             };
 
-            console.log('post');
+            //console.log('post');
             axios.post('/api/user', {
                 'username': addTeacherform.username,
                 'user_id': addTeacherform.user_id
             })
             .then(function (response) {
-                console.log(response.status);
+                //console.log(response.status);
                 if (response.status == 201) {
                     window.location="/user";
                 }
@@ -46,7 +46,7 @@ var addTeacherform = new Vue({
             })
             .catch(function (error) {
                 //alert(error.status);
-                console.log(error.response.status);
+                //console.log(error.response.status);
                 alert(error.response.data.message);
             });
         },
@@ -58,15 +58,15 @@ var addTeacherform = new Vue({
         },
 
         quitLogin: function() {
-            console.log('cookie',document.cookie);
+            //console.log('cookie',document.cookie);
             axios.delete('/api/users/session')
             .then(function (response) {
-                console.log(response.status);
+                //console.log(response.status);
                 window.location="/";
             })
             .catch(function (error) {
                 alert(error.response.data.message);
-                console.log(error);
+                //console.log(error);
                 alert('添加失败');
             });
         }

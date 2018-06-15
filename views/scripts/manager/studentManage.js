@@ -20,10 +20,10 @@ function addEvents() {
 
     //退出登录
     $("#logout").click(function() {
-        console.log('cookie',document.cookie);
+        //console.log('cookie',document.cookie);
         axios.delete('/api/users/session')
         .then(function (response) {
-            console.log(response.status);
+            //console.log(response.status);
             window.location="/";
         })
         .catch(function (error) {
@@ -46,7 +46,7 @@ function addEvents() {
     });
     // 删除某个学生数据
     $(".delete_course_student").click(function() {
-        console.log($(this).parent().prev().prev());
+        //console.log($(this).parent().prev().prev());
         var student_id = $(this).parent().prev().prev().text();
         var studentname =  $(this).parent().prev().text();
         var delete_url = '/api/course/'+course_id+'/course_member/'+student_id;
@@ -56,12 +56,12 @@ function addEvents() {
         if (check === true) {
             axios.delete(delete_url)
             .then(function(response) {
-                console.log(response.status);
+                //console.log(response.status);
                 alert('删除学生数据成功');
                 window.location='/user/'+ localStorage.getItem("user_id") +'/course/' + localStorage.getItem("course_id") + '/course_member';
             })
             .catch(function(error) {
-                console.log(error.response);
+                //console.log(error.response);
                 alert(error.response.data.message);
                 alert('删除学生数据失败');
             });

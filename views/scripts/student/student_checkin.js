@@ -28,7 +28,7 @@ var student_checkin = new Vue({
             if (p>0) {
                 return false;
             };
-            console.log('post'); 
+            //console.log('post'); 
             let that = this;
             //var checkin_id = localStorage.getItem("checkin_id");
             //alert(checkin_id);

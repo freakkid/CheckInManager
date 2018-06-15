@@ -22,21 +22,21 @@ if(navigator.geolocation){
           // getCurrentPosition执行成功后，会把getSuccess传一个position对象  
           // position有两个属性，coords和timeStamp  
           // coords是一个对象，包含了地理位置数据  
-          console.log(position.timeStamp);    // timeStamp表示地理数据创建的时间？？？？？？  
-          console.log(position.coords.latitude);  // 估算的纬度       
-          console.log(position.coords.longitude);   // 估算的经度           
-          console.log(position.coords.altitude);   // 估算的高度 (以米为单位的海拔值)           
-          console.log(position.coords.accuracy);   // 所得经度和纬度的估算精度，以米为单位    
-          console.log(position.coords.altitudeAccuracy);   // 所得高度的估算精度，以米为单位    
-          console.log(position.coords.heading);  // 宿主设备的当前移动方向，以度为单位，相对于正北方向顺时针方向计算       
-          console.log(position.coords.speed); // 设备的当前对地速度，以米/秒为单位      
+          //console.log(position.timeStamp);    // timeStamp表示地理数据创建的时间？？？？？？  
+          //console.log(position.coords.latitude);  // 估算的纬度       
+          //console.log(position.coords.longitude);   // 估算的经度           
+          //console.log(position.coords.altitude);   // 估算的高度 (以米为单位的海拔值)           
+          //console.log(position.coords.accuracy);   // 所得经度和纬度的估算精度，以米为单位    
+          //console.log(position.coords.altitudeAccuracy);   // 所得高度的估算精度，以米为单位    
+          //console.log(position.coords.heading);  // 宿主设备的当前移动方向，以度为单位，相对于正北方向顺时针方向计算       
+          //console.log(position.coords.speed); // 设备的当前对地速度，以米/秒为单位      
           
           
           if(position.address){  // Firefox还提供了另外一个属性address  
                //通过address，可以获得国家、省份、城市  
-               console.log(position.address.country);  
-               console.log(position.address.province);  
-               console.log(position.address.city);  
+               //console.log(position.address.country);  
+               //console.log(position.address.province);  
+               //console.log(position.address.city);  
           }  
      }  
      //失败回调  
@@ -46,13 +46,13 @@ if(navigator.geolocation){
           // 执行失败时，code属性会指向三个常量中的一个，从而指明错误原因  
           switch(error.code){  
                case error.TIMEOUT:  
-                    console.log('超时');  
+                    //console.log('超时');  
                     break;  
                case error.PERMISSION_DENIED:  
-                    console.log('用户拒绝提供地理位置');  
+                    //console.log('用户拒绝提供地理位置');  
                     break;  
                case error.POSITION_UNAVAILABLE:  
-                    console.log('地理位置不可用');  
+                    //console.log('地理位置不可用');  
                     break;  
                default:  
                     break;  
@@ -70,15 +70,15 @@ if(navigator.geolocation){
 
 
 function get_checkin_num() {
-    console.log('/api/checkin_student/'+localStorage.getItem("checkin_id"));
+    //console.log('/api/checkin_student/'+localStorage.getItem("checkin_id"));
     axios.get('/api/checkin_student/'+localStorage.getItem("checkin_id"))
     .then(function(response) {
-        console.log(response.data.checkined);
+        //console.log(response.data.checkined);
         //alert(response.data.checkined);
         $("#attendanceNumber").text(response.data.checkined);
     })
     .catch(function(error) {
-        console.log(error);
+        //console.log(error);
     })
 }
 
@@ -117,10 +117,10 @@ $(document).ready(function() {
         window.location =  '/user/change_password';
     });
     $("#logout").click(function() {
-        console.log('cookie',document.cookie);
+        //console.log('cookie',document.cookie);
         axios.delete('/api/users/session')
         .then(function (response) {
-            console.log(response.status);
+            //console.log(response.status);
             window.location="/";
         })
         .catch(function (error) {
@@ -131,7 +131,7 @@ $(document).ready(function() {
         checkin_id = localStorage.getItem("checkin_id");
         axios.delete('/api/checkin_student/'+checkin_id)
         .then(function (response) {
-            console.log(response.status);
+            //console.log(response.status);
             course_id = localStorage.getItem("course_id");
             window.location =  '/course/'+course_id+'/checkin_student';
 
