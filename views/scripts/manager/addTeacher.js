@@ -54,7 +54,7 @@ var addTeacherform = new Vue({
              window.location="/user";
         },
         to_addStudentPage:function(course_id){
-            window.location =  '/user/add_student'; 
+            window.location =  '/add_student'; 
         },
 
         quitLogin: function() {
