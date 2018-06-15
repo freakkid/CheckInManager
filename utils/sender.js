@@ -302,6 +302,14 @@ export function sendPage(ctx, status = 200, data, str) {
         ctx.response.type = 'html';
         console.log('你在添加学生界面');
     };
+
+    //学生扫码签到界面
+    if(str ==='student_checkin'){
+        ctx.response.status = status;
+        ctx.response.body = fs.createReadStream('./views/html/student/student_checkin.html');
+        ctx.response.type = 'html';
+        console.log('你在学生扫码签到界面');
+    }
     
 
 
