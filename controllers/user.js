@@ -33,7 +33,7 @@ export async function getLoginPage(ctx) {
  */
 export async function changePasswordPage(ctx) {
   // TODO
-  sendPage(ctx, 200, JSON.stringify({ message: '发送一个修改密码的页面' }));
+  sendPage(ctx, 200, JSON.stringify({ message: '发送一个修改密码的页面' }),'changePasswordPage');
 }
 
 /**
@@ -60,7 +60,7 @@ export async function getAllTeachersListPage(ctx) {
 export async function addTeacherPage(ctx) {
   // TODO
   if (ctx.is_manager === 1) {
-    sendPage(ctx, 200, JSON.stringify({ message: '管理员手动添加教师的页面' }));
+    sendPage(ctx, 200, JSON.stringify({ message: '管理员手动添加教师的页面' }),'addTeacherPage');
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
