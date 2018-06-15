@@ -12,10 +12,10 @@ export async function studentCheckin(ctx) {
   const checkin_id = ctx.params.checkin_id,
     { student_name, student_id } = ctx.request.body,
     course_id = await checkinServ.getCourseID(checkin_id);
-    console.log('学生扫码后输入学号姓名，处理逻辑');
-    console.log('checkin_id',checkin_id);
-    console.log('student_name',student_name);
-    console.log('student_id',student_id);
+    //console.log('学生扫码后输入学号姓名，处理逻辑');
+    //console.log('checkin_id',checkin_id);
+    //console.log('student_name',student_name);
+    //console.log('student_id',student_id);
   if (!checkin_id || !validator.isCourseID(course_id) || (await courseModel.getUserIDByCourseID(course_id)).length !== 1) {
     sendData(ctx, 400, JSON.stringify({ message: '该页面已失效' }));
     return;

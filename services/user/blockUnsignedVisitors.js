@@ -8,9 +8,9 @@ import { sendData } from '../../utils';
  * @param {any} next 
  */
 export async function blockUnsignedVisitors(ctx, next) {
-   console.log('你在blockUnsignedVisitors');
-   console.log(ctx.user_id);
-   console.log(ctx.request.body.user_id);
+   //console.log('你在blockUnsignedVisitors');
+   //console.log(ctx.user_id);
+   //console.log(ctx.request.body.user_id);
   if (ctx.user_id) {
     return await next();
   }
