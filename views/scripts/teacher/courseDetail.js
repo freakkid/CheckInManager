@@ -52,10 +52,10 @@
 
 function addEvents() {
 
-    var course_id = $("#courseId").text();
+    
 
-    localStorage.setItem("course_id",course_id);//这个界面获得course id，写进浏览器内存
-
+   // localStorage.setItem("course_id",course_id);//这个界面获得course id，写进浏览器内存
+    var course_id = localStorage.getItem("course_id"); 
     console.log($("#courseId").text());//这个界面，测试服务器返回的课程id假定是1，
 
 

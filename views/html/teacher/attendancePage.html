@@ -41,8 +41,8 @@
   </div>
 
   <div id="bodyRight">
-    <p>当前已签到:  <span id="attendanceNumber">56</span></p>
-    <input type="button" name="stopBT" id="stopBT" value="停止签到">
+    <p>当前已签到:  <span id="attendanceNumber">{{checkedin}}</span></p>
+    <input type="button" name="stopBT" id="stopBT" value="停止签到" v-on:click="stopSign">
   </div>
 </div>
 

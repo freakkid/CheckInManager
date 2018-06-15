@@ -67,7 +67,7 @@ function addEvents() {
     $("#Sign").click(function() {
         //签到界面
         //todo
-        //alert('hello');
+        window.location = '/course/'+course_id+'/checkin_course';
     });
     $("#courseList").click(function() {
         window.location = "/course";
