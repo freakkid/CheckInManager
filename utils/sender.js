@@ -2,12 +2,13 @@ const fs = require('fs');
 const Vue = require('vue');
 const render = require('vue-server-renderer');
 // TODO 发送网页
-export function sendPage(ctx, status = 200, data,str) {
+export function sendPage(ctx, status = 200, data, str) {
     //sendData(ctx, status, data);
     console.log(status);
     console.log(ctx.request.path);
     console.log(ctx.request.url);
     console.log(data);
+    console.log(str);
     
     //教师/管理员登录界面
     if(str === 'login'){
@@ -16,6 +17,8 @@ export function sendPage(ctx, status = 200, data,str) {
         ctx.response.type = 'html';
         console.log('你在登陆界面');
     };
+
+    
 
     //教师主页：教师的课程列表界面
     if(str ==='courseList'){
@@ -222,11 +225,31 @@ export function sendPage(ctx, status = 200, data,str) {
 
         })
 
-    }
+
+    };
+
+    if(str==='changePasswordPage'){
+        ctx.response.status = status;
+        ctx.response.body = fs.createReadStream('./views/html/teacher/changePasswordPage.html');
+        ctx.response.type = 'html';
+        console.log('你在修改密码界面');
+    };
+
+    if(str==='addTeacherPage'){
+        ctx.response.status = status;
+        ctx.response.body = fs.createReadStream('./views/html/manager/addTeacherPage.html');
+        ctx.response.type = 'html';
+        console.log('你在添加教师界面');
+    };
 
 
-
-
+    //这个暂时有问题
+    if( str==='addAllStudentPage' ){
+        ctx.response.status = status;
+        ctx.response.body = fs.createReadStream('./views/html/manager/addAllStudentPage.html');
+        ctx.response.type = 'html';
+        console.log('你在添加全级学生界面');
+    };
 }
 
 // TODO 仅发送数据
