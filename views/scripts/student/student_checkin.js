@@ -30,7 +30,11 @@ var student_checkin = new Vue({
             };
             console.log('post'); 
             let that = this;
-            var checkin_id = localStorage.getItem("checkin_id");
+            //var checkin_id = localStorage.getItem("checkin_id");
+            //alert(checkin_id);
+            var pos = window.location.href.indexOf("checkinByQRCode");
+            var checkin_id = window.location.href.substring(pos + 16, window.location.href.length);
+            //alert(checkin_id);
             var checkin_url = '/api/checkin_student/'+checkin_id;
             axios.post(checkin_url, {
                 student_id: student_checkin.student_id,

@@ -76,10 +76,10 @@ $(document).ready(function() {
     $("#welcomeInfo").text(localStorage.getItem("username") + '，欢迎您！');
 
     $("#QRCodePic").attr("src",
-    'http://qr.liantu.com/api.php?text=' + $("#QRCodePic").attr("src"));
-    
+    'http://qr.liantu.com/api.php?text=' + 'http://' + $("#QRCodePic").attr("src"));
+    alert($("#QRCodePic").attr("src"));
     var qr_src = $("#QRCodePic").attr("src");
-    var pos = qr_src.indexOf("checkinByQRCode")
+    var pos = qr_src.indexOf("checkinByQRCode");
 
     localStorage.setItem("checkin_id",qr_src.substring(pos + 16, qr_src.length));
 
