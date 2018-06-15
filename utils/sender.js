@@ -4,29 +4,29 @@ const render = require('vue-server-renderer');
 // TODO 发送网页
 export function sendPage(ctx, status = 200, data, str) {
     //sendData(ctx, status, data);
-    console.log(status);
-    console.log(ctx.request.path);
-    console.log(ctx.request.url);
-    console.log(data);
-    console.log(str);
+    //console.log(status);
+    //console.log(ctx.request.path);
+    //console.log(ctx.request.url);
+    //console.log(data);
+    //console.log(str);
     
     //教师/管理员登录界面
     if(str === 'login'){
         ctx.response.status = status;
         ctx.response.body = fs.createReadStream('./views/html/login.html');
         ctx.response.type = 'html';
-        console.log('你在登陆界面');
+        //console.log('你在登陆界面');
     };
 
 
     //教师主页：教师的课程列表界面
     if(str ==='courseList'){
-        console.log('你在课程列表');
+        //console.log('你在课程列表');
         const courseList_renderer = render.createRenderer({
             template: fs.readFileSync('./views/html/teacher/courseList_template.html', 'utf-8')
         });
-        console.log(data);
-        console.log(typeof(data));
+        //console.log(data);
+        //console.log(typeof(data));
         const tem = new Vue({
             //el:'#Courses',
             data: JSON.parse(data),
@@ -35,19 +35,19 @@ export function sendPage(ctx, status = 200, data, str) {
 
         courseList_renderer.renderToString(tem, (err, html) => {
             if (err) {
-                console.log(err);
+                //console.log(err);
                 ctx.response.status = 500;
                 ctx.response.body = 'Internal Server Error';
                 return;
             }
             ctx.response.body = html;
-            console.log('courseList html');
+            //console.log('courseList html');
         })
     };
 
     //教师界面：课程详情界面
     if(str==='courseDetail'){
-        console.log('你在课程详情界面');
+        //console.log('你在课程详情界面');
         const courseDetail_renderer = render.createRenderer({
             template: fs.readFileSync('./views/html/teacher/courseDetail_template.html', 'utf-8')
         });
@@ -58,13 +58,13 @@ export function sendPage(ctx, status = 200, data, str) {
 
         courseDetail_renderer.renderToString(tem, (err, html) => {
             if (err) {
-                console.log(err);
+                //console.log(err);
                 ctx.response.status = 500;
                 ctx.response.body = 'Internal Server Error';
                 return;
             }
             ctx.response.body = html;
-            console.log('courseDetail html');
+            //console.log('courseDetail html');
         })
 
     };
@@ -74,11 +74,11 @@ export function sendPage(ctx, status = 200, data, str) {
         ctx.response.status = status;
         ctx.response.body = fs.createReadStream('./views/html/teacher/changePasswordPage.html');
         ctx.response.type = 'html';
-        console.log('你在修改密码界面');
+        //console.log('你在修改密码界面');
     };
     //教师界面：学生名单界面
     if(str ==='studentNameListPage'){
-        console.log('你在studentNameListPage界面');
+        //console.log('你在studentNameListPage界面');
         const studentNameListPage_renderer = render.createRenderer({
             template: fs.readFileSync('./views/html/teacher/studentNameListPage_template.html', 'utf-8')
         });
@@ -89,13 +89,13 @@ export function sendPage(ctx, status = 200, data, str) {
 
         studentNameListPage_renderer.renderToString(tem, (err, html) => {
             if (err) {
-                console.log(err);
+                //console.log(err);
                 ctx.response.status = 500;
                 ctx.response.body = 'Internal Server Error';
                 return;
             }
             ctx.response.body = html;
-            console.log('studentNameListPage html');
+            //console.log('studentNameListPage html');
         })
     }
 
@@ -103,16 +103,16 @@ export function sendPage(ctx, status = 200, data, str) {
 
     //教师界面：历史签到界面
     if(str ==='checkAttendancePage'){
-        console.log('你在checkAttendancePage界面');
+        //console.log('你在checkAttendancePage界面');
         var dt = JSON.parse(data);
-        console.log(dt.checkin_history);
+        //console.log(dt.checkin_history);
         dt.checkin_history.forEach(function(val, index) {
-            console.log(val.date_time);
-            console.log(val.date_time.replace("T"," ").replace("Z",""));
+            //console.log(val.date_time);
+            //console.log(val.date_time.replace("T"," ").replace("Z",""));
             val.date_time = val.date_time.replace("T"," ");
             val.date_time = val.date_time.substring(0,val.date_time.indexOf('.'));
         });
-        console.log(dt);
+        //console.log(dt);
         dt = JSON.stringify(dt);
         const checkAttendancePage_renderer = render.createRenderer({
             template: fs.readFileSync('./views/html/teacher/checkAttendancePage_template.html', 'utf-8')
@@ -124,20 +124,20 @@ export function sendPage(ctx, status = 200, data, str) {
 
         checkAttendancePage_renderer.renderToString(tem, (err, html) => {
             if (err) {
-                console.log(err);
+                //console.log(err);
                 ctx.response.status = 500;
                 ctx.response.body = 'Internal Server Error';
                 return;
             }
             ctx.response.body = html;
-            console.log('checkAttendancePage html');
+            //console.log('checkAttendancePage html');
         })
     }
 
 
     //教师界面：点进某一个签到记录查看详情
     if(str ==='singleAttendancePage'){
-        console.log('你在singleAttendancePage界面');
+        //console.log('你在singleAttendancePage界面');
         const singleAttendancePage_renderer = render.createRenderer({
             template: fs.readFileSync('./views/html/teacher/singleAttendancePage_template.html', 'utf-8')
         });
@@ -148,13 +148,13 @@ export function sendPage(ctx, status = 200, data, str) {
 
         singleAttendancePage_renderer.renderToString(tem, (err, html) => {
             if (err) {
-                console.log(err);
+                //console.log(err);
                 ctx.response.status = 500;
                 ctx.response.body = 'Internal Server Error';
                 return;
             }
             ctx.response.body = html;
-            console.log('singleAttendancePage html');
+            //console.log('singleAttendancePage html');
         })
     }
 
@@ -162,8 +162,8 @@ export function sendPage(ctx, status = 200, data, str) {
     //教师界面：获取二维码签到界面
     if(str ==='attendancePage'){
         var dt = JSON.parse(data);
-        console.log(dt);
-        console.log('你在发起签到界面');
+        //console.log(dt);
+        //console.log('你在发起签到界面');
         const attendance_renderer = render.createRenderer({
             template: require('fs').readFileSync('./views/html/teacher/attendancePage_template.html', 'utf-8')
         })
@@ -177,13 +177,13 @@ export function sendPage(ctx, status = 200, data, str) {
 
         attendance_renderer.renderToString(tem, (err, html) => {
             if (err) {
-                console.log(err);
+                //console.log(err);
                 ctx.response.status = 500;
                 ctx.response.body = 'Internal Server Error';
                 return;
             }
             ctx.response.body = html;
-            console.log('attendance html');
+            //console.log('attendance html');
         })
         //ctx.response.status = status;
         //ctx.response.type = 'html';
@@ -193,7 +193,7 @@ export function sendPage(ctx, status = 200, data, str) {
     
     //管理员主页：管理教师界面
     if(str === 'teacherManage'){
-        console.log('你在教师列表界面');
+        //console.log('你在教师列表界面');
         const teacherManage_renderer = render.createRenderer({
             template: require('fs').readFileSync('./views/html/manager/teacherManage_template.html', 'utf-8')
         })
@@ -204,13 +204,13 @@ export function sendPage(ctx, status = 200, data, str) {
 
         teacherManage_renderer.renderToString(tem, (err, html) => {
             if (err) {
-                console.log(err);
+                //console.log(err);
                 ctx.response.status = 500;
                 ctx.response.body = 'Internal Server Error';
                 return;
             }
             ctx.response.body = html;
-            console.log('teacher manage html');
+            //console.log('teacher manage html');
 
         })
 
@@ -219,7 +219,7 @@ export function sendPage(ctx, status = 200, data, str) {
 
     //管理员界面：课程管理界面
     if(str === 'courseManage'){
-        console.log('你在课程管理界面');
+        //console.log('你在课程管理界面');
         const courseManage_renderer = render.createRenderer({
             template: require('fs').readFileSync('./views/html/manager/courseManage_template.html', 'utf-8')
         })
@@ -230,13 +230,13 @@ export function sendPage(ctx, status = 200, data, str) {
 
         courseManage_renderer.renderToString(tem, (err, html) => {
             if (err) {
-                console.log(err);
+                //console.log(err);
                 ctx.response.status = 500;
                 ctx.response.body = 'Internal Server Error';
                 return;
             }
             ctx.response.body = html;
-            console.log('courseManage html');
+            //console.log('courseManage html');
 
         })
 
@@ -244,7 +244,7 @@ export function sendPage(ctx, status = 200, data, str) {
 
     //管理员界面：某门课的学生管理界面
     if(str === 'studentManage'){
-        console.log('你在学生管理界面');
+        //console.log('你在学生管理界面');
         const studentManage_renderer = render.createRenderer({
             template: require('fs').readFileSync('./views/html/manager/studentManage_template.html', 'utf-8')
         })
@@ -255,13 +255,13 @@ export function sendPage(ctx, status = 200, data, str) {
 
         studentManage_renderer.renderToString(tem, (err, html) => {
             if (err) {
-                console.log(err);
+                //console.log(err);
                 ctx.response.status = 500;
                 ctx.response.body = 'Internal Server Error';
                 return;
             }
             ctx.response.body = html;
-            console.log('studentManage html');
+            //console.log('studentManage html');
 
         })
 
@@ -275,7 +275,7 @@ export function sendPage(ctx, status = 200, data, str) {
         ctx.response.status = status;
         ctx.response.body = fs.createReadStream('./views/html/manager/addTeacherPage.html');
         ctx.response.type = 'html';
-        console.log('你在添加教师界面');
+        //console.log('你在添加教师界面');
     };
 
 
@@ -284,7 +284,7 @@ export function sendPage(ctx, status = 200, data, str) {
         ctx.response.status = status;
         ctx.response.body = fs.createReadStream('./views/html/manager/addAllStudentPage.html');
         ctx.response.type = 'html';
-        console.log('你在添加全级学生界面');
+        //console.log('你在添加全级学生界面');
     };
 
     //管理员界面：添加课程页面
@@ -292,7 +292,7 @@ export function sendPage(ctx, status = 200, data, str) {
         ctx.response.status = status;
         ctx.response.body = fs.createReadStream('./views/html/manager/addCoursePage.html');
         ctx.response.type = 'html';
-        console.log('你在添加课程界面');
+        //console.log('你在添加课程界面');
     };
 
     //管理员界面：添加学生页面
@@ -300,7 +300,7 @@ export function sendPage(ctx, status = 200, data, str) {
         ctx.response.status = status;
         ctx.response.body = fs.createReadStream('./views/html/manager/addStudentPage.html');
         ctx.response.type = 'html';
-        console.log('你在添加学生界面');
+        //console.log('你在添加学生界面');
     };
 
     //学生扫码签到界面
@@ -308,7 +308,7 @@ export function sendPage(ctx, status = 200, data, str) {
         ctx.response.status = status;
         ctx.response.body = fs.createReadStream('./views/html/student/student_checkin.html');
         ctx.response.type = 'html';
-        console.log('你在学生扫码签到界面');
+        //console.log('你在学生扫码签到界面');
     }
     
 
@@ -318,9 +318,9 @@ export function sendPage(ctx, status = 200, data, str) {
 
 // TODO 仅发送数据
 export function sendData(ctx, status = 200, data, type = 'application/json') {
-    console.log('什么情况啊');
+  //console.log('什么情况啊');
   ctx.response.status = status;
   ctx.response.body = data;
   ctx.response.type = type;
-  // console.log(ctx.response.status);
+  //console.log(ctx.response.status);
 }
