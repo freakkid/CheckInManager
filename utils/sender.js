@@ -4,7 +4,6 @@ const render = require('vue-server-renderer');
 // TODO 发送网页
 export function sendPage(ctx, status = 200, data, str) {
     //sendData(ctx, status, data);
-    console.log('login');
     console.log(status);
     console.log(ctx.request.path);
     console.log(ctx.request.url);
@@ -12,7 +11,7 @@ export function sendPage(ctx, status = 200, data, str) {
     console.log(str);
     
     //教师/管理员登录界面
-    if(ctx.request.path ==='/user/login'){
+    if(str === 'login'){
         ctx.response.status = status;
         ctx.response.body = fs.createReadStream('./views/html/login.html');
         ctx.response.type = 'html';
@@ -22,7 +21,7 @@ export function sendPage(ctx, status = 200, data, str) {
     
 
     //教师主页：教师的课程列表界面
-    if(ctx.request.path ==='/course'){
+    if(str ==='courseList'){
         console.log('你在课程列表');
         const courseList_renderer = render.createRenderer({
             template: fs.readFileSync('./views/html/teacher/courseList_template.html', 'utf-8')
@@ -142,6 +141,7 @@ export function sendPage(ctx, status = 200, data, str) {
         })
     }
 
+
     //教师界面：获取二维码签到界面
     if(str ==='attendancePage'){
         console.log('你在发起签到界面');
@@ -150,13 +150,9 @@ export function sendPage(ctx, status = 200, data, str) {
         ctx.response.body = fs.createReadStream('./views/html/teacher/attendancePage.html');
     }
 
-
-
-
-
     
     //管理员主页：管理教师界面
-    if(ctx.request.path =='/user'){
+    if(str === 'teacherManage'){
         console.log('你在教师列表界面');
         const teacherManage_renderer = render.createRenderer({
             template: require('fs').readFileSync('./views/html/manager/teacherManage_template.html', 'utf-8')
@@ -175,9 +171,60 @@ export function sendPage(ctx, status = 200, data, str) {
             }
             ctx.response.body = html;
             console.log('teacher manage html');
-            //console.log(html);
 
         })
+
+    }
+
+
+    //管理员界面：课程管理界面
+    if(str === 'courseManage'){
+        console.log('你在课程管理界面');
+        const courseManage_renderer = render.createRenderer({
+            template: require('fs').readFileSync('./views/html/manager/courseManage_template.html', 'utf-8')
+        })
+        const tem = new Vue({
+            data: JSON.parse(data),
+            template: fs.readFileSync('./views/html/manager/courseManage_markup.html', 'utf-8')
+        })
+
+        courseManage_renderer.renderToString(tem, (err, html) => {
+            if (err) {
+                console.log(err);
+                ctx.response.status = 500;
+                ctx.response.body = 'Internal Server Error';
+                return;
+            }
+            ctx.response.body = html;
+            console.log('courseManage html');
+
+        })
+
+    }
+
+    //管理员界面：某门课的学生管理界面
+    if(str === 'studentManage'){
+        console.log('你在学生管理界面');
+        const studentManage_renderer = render.createRenderer({
+            template: require('fs').readFileSync('./views/html/manager/studentManage_template.html', 'utf-8')
+        })
+        const tem = new Vue({
+            data: JSON.parse(data),
+            template: fs.readFileSync('./views/html/manager/studentManage_markup.html', 'utf-8')
+        })
+
+        studentManage_renderer.renderToString(tem, (err, html) => {
+            if (err) {
+                console.log(err);
+                ctx.response.status = 500;
+                ctx.response.body = 'Internal Server Error';
+                return;
+            }
+            ctx.response.body = html;
+            console.log('studentManage html');
+
+        })
+
 
     };
 
