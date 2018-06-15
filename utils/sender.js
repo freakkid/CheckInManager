@@ -2,13 +2,14 @@ const fs = require('fs');
 const Vue = require('vue');
 const render = require('vue-server-renderer');
 // TODO 发送网页
-export function sendPage(ctx, status = 200, data,str) {
+export function sendPage(ctx, status = 200, data, str) {
     //sendData(ctx, status, data);
     console.log('login');
     console.log(status);
     console.log(ctx.request.path);
     console.log(ctx.request.url);
     console.log(data);
+    console.log(str);
     
     //教师/管理员登录界面
     if(ctx.request.path ==='/user/login'){
@@ -18,9 +19,6 @@ export function sendPage(ctx, status = 200, data,str) {
         console.log('你在登陆界面');
     };
 
-    
-
-    
     
 
     //教师主页：教师的课程列表界面
@@ -156,12 +154,6 @@ export function sendPage(ctx, status = 200, data,str) {
 
 
 
-
-
-
-
-
-
     
     //管理员主页：管理教师界面
     if(ctx.request.path =='/user'){
@@ -204,7 +196,6 @@ export function sendPage(ctx, status = 200, data,str) {
     };
 
 
-
     //这个暂时有问题
     if( str==='addAllStudentPage' ){
         ctx.response.status = status;
@@ -212,12 +203,6 @@ export function sendPage(ctx, status = 200, data,str) {
         ctx.response.type = 'html';
         console.log('你在添加全级学生界面');
     };
-
-    
-
-
-
-
 }
 
 // TODO 仅发送数据
