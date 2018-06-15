@@ -3,8 +3,10 @@ import { userModel } from '../../models';
 import { sendData, sendPage, logger } from '../../utils';
 
 export async function is_login(ctx, next) {
-  // console.log('你在login这里')
-  const session_id = ctx.request.header.key;
+   console.log('你在login这里')
+  //const session_id = ctx.request.header.key;
+  const session_id = ctx.cookies.get('key');
+  console.log(session_id);
   let user_id, users;
   if (session_id) {
     user_id = await sessionService.getUserID(session_id);
