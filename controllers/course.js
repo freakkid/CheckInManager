@@ -72,6 +72,7 @@ export async function courseMemberPage(ctx) {
  */
 export async function checkinHistoryPage(ctx) {
   const course_id = ctx.params.course_id;
+  console.log(course_id);
 
   if (!validator.isCourseID(course_id)) {
     sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));

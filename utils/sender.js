@@ -97,11 +97,21 @@ export function sendPage(ctx, status = 200, data, str) {
     //教师界面：历史签到界面
     if(str ==='checkAttendancePage'){
         console.log('你在checkAttendancePage界面');
+        var dt = JSON.parse(data);
+        console.log(dt.checkin_history);
+        dt.checkin_history.forEach(function(val, index) {
+            console.log(val.date_time);
+            console.log(val.date_time.replace("T"," ").replace("Z",""));
+            val.date_time = val.date_time.replace("T"," ");
+            val.date_time = val.date_time.substring(0,val.date_time.indexOf('.'));
+        });
+        console.log(dt);
+        dt = JSON.stringify(dt);
         const checkAttendancePage_renderer = render.createRenderer({
             template: fs.readFileSync('./views/html/teacher/checkAttendancePage_template.html', 'utf-8')
         });
         const tem = new Vue({
-            data:JSON.parse(data),
+            data:JSON.parse(dt),
             template: fs.readFileSync('./views/html/teacher/checkAttendancePage_markup.html', 'utf-8')
         });
 
@@ -144,10 +154,33 @@ export function sendPage(ctx, status = 200, data, str) {
 
     //教师界面：获取二维码签到界面
     if(str ==='attendancePage'){
+        var dt = JSON.parse(data);
+        console.log(dt);
         console.log('你在发起签到界面');
-        ctx.response.status = status;
-        ctx.response.type = 'html';
-        ctx.response.body = fs.createReadStream('./views/html/teacher/attendancePage.html');
+        const attendance_renderer = render.createRenderer({
+            template: require('fs').readFileSync('./views/html/teacher/attendancePage_template.html', 'utf-8')
+        })
+        const tem = new Vue({
+            data: {
+                qrcode_src: dt.checkinURL,
+                checkedin: 0
+            },
+            template: fs.readFileSync('./views/html/teacher/attendancePage_markup.html', 'utf-8')
+        })
+
+        attendance_renderer.renderToString(tem, (err, html) => {
+            if (err) {
+                console.log(err);
+                ctx.response.status = 500;
+                ctx.response.body = 'Internal Server Error';
+                return;
+            }
+            ctx.response.body = html;
+            console.log('attendance html');
+        })
+        //ctx.response.status = status;
+        //ctx.response.type = 'html';
+        //ctx.response.body = fs.createReadStream('./views/html/teacher/attendancePage.html');
     }
 
     

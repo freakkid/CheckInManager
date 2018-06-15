@@ -143,11 +143,13 @@ $(document).ready(function() {
     $("#welcomeInfo").text(localStorage.getItem("username") + '，欢迎您！');
 
     $("#QRCodePic").attr("src",
-    'http://qr.liantu.com/api.php?text=' + 'http://172.18.139.33:8000/checkinByQRCode/123');
-    localStorage.setItem("checkin_id",123);
-
-
-
-
+    'http://qr.liantu.com/api.php?text=' + $("#QRCodePic").attr("src"));
+    
+    var qr_src = $("#QRCodePic").attr("src");
+    var pos = qr_src.indexOf("checkinByQRCode")
+    
+    //alert($("#QRCodePic").attr("src"));
+    //alert(qr_src.substring(pos + 16, qr_src.length));
+    
+    localStorage.setItem("checkin_id",qr_src.substring(pos + 16, qr_src.length));
 });
-
