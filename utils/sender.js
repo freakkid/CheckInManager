@@ -18,7 +18,6 @@ export function sendPage(ctx, status = 200, data, str) {
         console.log('你在登陆界面');
     };
 
-    
 
     //教师主页：教师的课程列表界面
     if(str ==='courseList'){
