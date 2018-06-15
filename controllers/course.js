@@ -14,7 +14,7 @@ import { generateCheckinURL } from '../services/checkin/checkin';
 export async function courseListPage(ctx) {
   // TODO
   console.log('course list page');
-  sendPage(ctx, 200, JSON.stringify({ courses: await courseModel.getAllCoursesList(ctx.user_id) }));
+  sendPage(ctx, 200, JSON.stringify({ courses: await courseModel.getAllCoursesList(ctx.user_id) }),'courseList');
 }
 
 /**
