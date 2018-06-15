@@ -125,8 +125,6 @@ export function sendPage(ctx, status = 200, data, str) {
         })
     }
 
-<<<<<<< HEAD
-=======
 
     //教师界面：点进某一个签到记录查看详情
     if(str ==='singleAttendancePage'){
@@ -161,7 +159,6 @@ export function sendPage(ctx, status = 200, data, str) {
     }
 
     
->>>>>>> 8e99049af902742c980af45afa3382fc8893d844
     //管理员主页：管理教师界面
     if(str === 'teacherManage'){
         console.log('你在教师列表界面');
@@ -241,7 +238,7 @@ export function sendPage(ctx, status = 200, data, str) {
 
 
 
-    //管理员主页：添加教师界面
+    //管理员界面：添加教师页面
     if(str==='addTeacherPage'){
         ctx.response.status = status;
         ctx.response.body = fs.createReadStream('./views/html/manager/addTeacherPage.html');
@@ -250,13 +247,33 @@ export function sendPage(ctx, status = 200, data, str) {
     };
 
 
-    //这个暂时有问题
+    //管理员界面：添加全级学生页面
     if( str==='addAllStudentPage' ){
         ctx.response.status = status;
         ctx.response.body = fs.createReadStream('./views/html/manager/addAllStudentPage.html');
         ctx.response.type = 'html';
         console.log('你在添加全级学生界面');
     };
+
+    //管理员界面：添加课程页面
+    if( str==='addCoursePage' ){
+        ctx.response.status = status;
+        ctx.response.body = fs.createReadStream('./views/html/manager/addCoursePage.html');
+        ctx.response.type = 'html';
+        console.log('你在添加课程界面');
+    };
+
+    //管理员界面：添加学生页面
+    if( str==='addStudentPage' ){
+        ctx.response.status = status;
+        ctx.response.body = fs.createReadStream('./views/html/manager/addStudentPage.html');
+        ctx.response.type = 'html';
+        console.log('你在添加学生界面');
+    };
+    
+
+
+
 }
 
 // TODO 仅发送数据

@@ -95,7 +95,7 @@ export async function getAllCoursesByTeacherIDPage(ctx) {
 export async function addCoursePage(ctx) {
   // TODO
   if (ctx.is_manager === 1) {
-    sendPage(ctx, 200, JSON.stringify({ message: '管理员添加课程的页面' }));
+    sendPage(ctx, 200, JSON.stringify({ message: '管理员添加课程的页面' }),'addCoursePage');
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
@@ -143,7 +143,7 @@ export async function addCourseMemberPage(ctx) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
-    sendPage(ctx, 200, JSON.stringify({ message: '管理员手动添加课程学生的页面' }));
+    sendPage(ctx, 200, JSON.stringify({ message: '管理员手动添加课程学生的页面' }),'addStudentPage');
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
