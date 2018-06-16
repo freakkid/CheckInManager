@@ -96,7 +96,7 @@ var addcourseform = new Vue({
             axios.delete('/api/users/session')
             .then(function (response) {
                 //console.log(response.status);
-                window.location="/";
+                window.location="/user/login";
             })
             .catch(function (error) {
                 alert(error.response.data.message);
