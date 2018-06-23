@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Vue = require('vue');
 const render = require('vue-server-renderer');
-// TODO 发送网页
+// 发送网页（完成了sengpage)
 export function sendPage(ctx, status = 200, data, str) {
     //sendData(ctx, status, data);
     //console.log(status);
