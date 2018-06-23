@@ -1,0 +1,40 @@
+<div id="studentManage">
+  <div id="topBar">
+    <img id="bookIMG" src="/pic/book.png">
+    <p id="heading">管理员系统</p>
+    <ul >
+      <li id="addAllStudents"><a href="javascript:void(0)" id="addAllStudentButton">添加全级学生</a></li>
+      <li id="teacherHeadList">
+        <img src="/pic/manager/defaultHead.png" id="teacherHead" />
+        <ul id="teacherHeadUL">
+          <li><a href="javascript:void(0)" id="logout">退出登录</a></li>
+        </ul>
+      </li>
+      <p id="welcomeInfo">登录获得管理员名字，欢迎您！</p>
+    </ul>
+  </div>
+  <div id="bodyBlock">
+      <img id="backButton" style="cursor:pointer" src="/pic/manager/back_before.png">
+      <p id="title">学生设置</p>
+         <!-- <p id="deleteAll">删除所有学生</p>
+         <img id="deleteAllPic" src="/pic/manager/delete.png"> -->
+         <img id="addCourseStudent" style="cursor:pointer" src="/pic/manager/add.png">
+      <hr id="upperHr" />
+      <table>  
+        <thead>
+          <tr>
+            <td><b>学号</b></td>
+            <td><b>姓名</b></td>
+            <td></td>
+          </tr>   
+        </thead>
+        <tbody>
+          <tr v-for = "student in course_member">
+            <td class="">{{student.student_id}}</td>
+            <td class="">{{student.student_name}}</td>
+            <td><img class="delete_course_student" style="cursor:pointer" src="/pic/manager/delete.png"></td>
+          </tr>
+        </tbody> 
+      </table>
+  </div>
+</div>

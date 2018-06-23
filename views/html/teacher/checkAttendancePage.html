@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>历史签到</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/css/teacher/checkAttendancePageStyle.css">
+</head>
+
+<body>
+<div id="checkinHistory">
+   <div id="topBar">
+    <img id="bookIMG" src="/pic/book.png">
+    <p id="heading">教师系统</p>
+    <ul>
+      <li><a href="javascript:void(0)" v-on:click="to_mainPage">主页</a></li>
+      <li><a href="javascript:void(0)" >查看信息</a>
+        <ul>
+          <li><a href="javascript:void(0)" v-on:click="to_studentList"  >学生名单</a></li>
+          <li><a href="javascript:void(0)" v-on:click="to_attendencePage"  >历史签到</a></li>
+        </ul>
+      </li>
+      <li><a href="javascript:void(0)" v-on:click="to_checkAttendencn"  >发起签到</a></li>
+      <li><a href="javascript:void(0)" v-on:click="to_courselist"  >课程列表</a></li>
+      <li id="teacherHeadList">
+      <img src="/pic/defaultHead.png" id="teacherHead" />
+        <ul id="teacherHeadUL">
+          <li><a href="javascript:void(0)" v-on:click="setting"  >修改密码</a></li>
+          <li><a href="javascript:void(0)" v-on:click="logout"  >退出登录</a></li>
+        </ul>
+      </li>
+      <p id="welcomeInfo">此名字应从登录返回数据得到，欢迎您！</p>
+    </ul>
+  </div>
+  
+  <div id="bodyBlock">
+    <table>
+      <thead>
+        <tr>
+          <td>时间</td>
+          <td>签到人数</td>
+          <td>未签到人数</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="check in checkin_history">
+          <!-- 这一部分可点击 -->
+          <td><a href="javascript:void(0)" v-on:click="to_singleAttendancePage(check.checkin_id)"> {{check.datetime}} </a></td>
+          <td>{{check.checkedin_num}}</td>
+          <td>{{check.uncheckedin_num}}</td>
+        </tr>
+      </tbody>
+      
+    </table>
+    
+   </div>
+</div>
+
+
+
+      <script src="/scripts/vue.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="/scripts/teacher/checkAttendance.js"></script>
+
+    
+</body>
+</html>

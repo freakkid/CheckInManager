@@ -1,0 +1,43 @@
+<div id="courseManage">
+  <div id="topBar">
+    <img id="bookIMG" src="/pic/manager/book.png">
+    <p id="heading">管理员系统</p>
+    <ul >
+      <li id="addAllStudents"><a href="javascript:void(0)" id="addAllStudentButton">添加全级学生</a></li>
+
+      <li id="teacherHeadList">
+        <img src="/pic/manager/defaultHead.png" id="teacherHead" />
+        <ul id="teacherHeadUL">
+          <li><a href="javascript:void(0)" id="logout">退出登录</a></li>
+        </ul>
+
+      </li>
+      <p id="welcomeInfo"> ，欢迎您！</p>
+    </ul>
+    
+  </div>
+
+  <div id="bodyBlock">
+      <img id="backButton" style="cursor:pointer" src="/pic/manager/back_before.png">
+      <p id="title">课程设置</p>
+      <img id="addCourse" style="cursor:pointer" src="/pic/manager/add.png">
+      <hr id="upperHr" />
+      <table>  
+        <thead>
+          <tr>
+            <td><b>课程ID</b></td>
+            <td><b>课程名</b></td>
+            <td></td>      
+          </tr>   
+        </thead>
+        <tbody>
+          <tr v-for = "course in courses">
+            <td class="courseID"><a href="javascript:void(0)">{{course.course_id}}</a></td>
+            <td class="">{{course.course_name}}</td>
+            <td><img class="delete_course" style="cursor:pointer" src="/pic/manager/delete.png"></td>
+          </tr>
+        </tbody>
+        
+      </table>
+  </div>
+</div>

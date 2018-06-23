@@ -1,0 +1,66 @@
+<div id="singleAttendance">
+  <div id="topBar">
+    <img id="bookIMG" src="/pic/book.png">
+    <p id="heading">教师系统</p>
+    <ul>
+      <li><a href="javascript:void(0)"  id="mainPage" >课程主页</a></li>
+      <li><a href="javascript:void(0)" >查看信息</a>
+        <ul>
+          <li><a href="javascript:void(0)"  id="studentName">学生名单</a></li>
+          <li><a href="javascript:void(0)"  id="signHistory"  >历史签到</a></li>
+        </ul>
+      </li>
+      <li><a href="javascript:void(0)"  id="Sign" >发起签到</a></li>
+      <li><a href="javascript:void(0)"  id="courseList" >课程列表</a></li>
+      <li id="teacherHeadList">
+      <img src="/pic/defaultHead.png" id="teacherHead" />
+        <ul id="teacherHeadUL">
+          <li><a href="javascript:void(0)"  id="changePass" >修改密码</a></li>
+          <li><a href="javascript:void(0)"  id="logout" >退出登录</a></li>
+        </ul>
+      </li>
+      <p id="welcomeInfo">这个名字登录返回，欢迎您！</p>
+    </ul>
+  </div>
+
+  <div id="bodyBlock">
+    <div id="bodyLeft">
+      <p>已签到名单</p>
+      <table>
+        <thead>
+          <tr >
+            <td>姓名</td>
+            <td>学号</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for = "checkin_student in checkedin">
+            <td>{{checkin_student.student_id}}</td>
+            <td>{{checkin_student.student_name}}</td>
+          </tr>
+        </tbody>      
+      </table>
+    </div>
+
+    <div id="bodyRight">
+      <p>未签到名单</p>
+      <table>
+        <thead>
+          <tr>
+            <td>姓名</td>
+            <td>学号</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for = "uncheckin_student in uncheckedin">
+            <td>{{uncheckin_student.student_id}}</td>
+            <td>{{uncheckin_student.student_name}}</td>
+          </tr>
+          
+        </tbody>      
+      </table>
+
+    </div>
+  </div>
+</div>
+

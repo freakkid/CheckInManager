@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>学生签到</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/css/student/studentCheckIn.css">
+</head>
+
+<body>
+  <div id="SignResult" hidden="">
+
+      <img id="image" src="/pic/student/succeed.png">
+      <p id="message">签到成功！</p>
+
+
+  </div>
+  <div id="bodyBlock" >
+
+    <div id="bodyTop">
+      <p>学生签到</p>
+    </div>
+
+    <div id="bodyBottom">
+        <div id="usernameInput">
+          <div>学号</div>
+          <input v-model="student_id" type="text" name="username">
+        </div>
+        <p id="errorMessage1">{{ em1 }}</p>
+
+        <div id="passwordInput">
+          <div>姓名</div>
+          <input v-model="name" type="text" name="password">
+        </div>
+        <p id="errorMessage2">{{ em2 }}</p>
+        <button v-on:click="checkInput" id="submitBT">确认提交</button>
+    </div>
+
+  </div>
+
+  <script src="/scripts/jquery-3.3.1.js"></script>
+  <script src="/scripts/vue.js"></script>
+  <script src="/scripts/axios.min.js"></script>  
+  <script src="/scripts/student/student_checkin.js"></script>
+</body>
+
+</html>

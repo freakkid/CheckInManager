@@ -11,6 +11,7 @@ import { userCtrl, courseCtrl } from '.';
  */
 export async function getLoginPage(ctx) {
   // 若是已经登陆，则重定向到登陆首页
+  //console.log('getLoginPage');
   if (ctx.user_id) {
     ctx.status = 302;
     if (ctx.is_manager) {
@@ -20,7 +21,7 @@ export async function getLoginPage(ctx) {
     }
   } else {
     // TODO 若是未登陆，则发送对应的网页
-    sendPage(ctx, 200, JSON.stringify({ msg: '未登陆，发送登陆页面' }));
+    sendPage(ctx, 200, JSON.stringify({ msg: '未登陆，发送登陆页面' }),'login');
   }
 }
 
@@ -32,7 +33,7 @@ export async function getLoginPage(ctx) {
  */
 export async function changePasswordPage(ctx) {
   // TODO
-  sendPage(ctx, 200, JSON.stringify({ message: '发送一个修改密码的页面' }));
+  sendPage(ctx, 200, JSON.stringify({ message: '发送一个修改密码的页面' }),'changePasswordPage');
 }
 
 /**
@@ -43,8 +44,8 @@ export async function changePasswordPage(ctx) {
  */
 export async function getAllTeachersListPage(ctx) {
   // TODO
-  if (ctx.is_manager === 0) {
-    sendPage(ctx, 200, JSON.stringify({ teachers: await userModel.getAllUsersList() }));
+  if (ctx.is_manager === 1) {
+    sendPage(ctx, 200, JSON.stringify({ teachers: await userModel.getAllUsersList() }),'teacherManage');
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
@@ -59,7 +60,7 @@ export async function getAllTeachersListPage(ctx) {
 export async function addTeacherPage(ctx) {
   // TODO
   if (ctx.is_manager === 1) {
-    sendPage(ctx, 200, JSON.stringify({ message: '管理员手动添加教师的页面' }));
+    sendPage(ctx, 200, JSON.stringify({ message: '管理员手动添加教师的页面' }),'addTeacherPage');
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
@@ -79,7 +80,7 @@ export async function getAllCoursesByTeacherIDPage(ctx) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
-    sendPage(ctx, 200, JSON.stringify({ courses: await userModel.getAllCoursesByUserID(user_id) }));
+    sendPage(ctx, 200, JSON.stringify({ courses: await userModel.getAllCoursesByUserID(user_id) }),'courseManage');
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
@@ -94,7 +95,7 @@ export async function getAllCoursesByTeacherIDPage(ctx) {
 export async function addCoursePage(ctx) {
   // TODO
   if (ctx.is_manager === 1) {
-    sendPage(ctx, 200, JSON.stringify({ message: '管理员添加课程的页面' }));
+    sendPage(ctx, 200, JSON.stringify({ message: '管理员添加课程的页面' }),'addCoursePage');
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
@@ -118,7 +119,7 @@ export async function courseMemberPage(ctx) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
-    sendPage(ctx, 200, JSON.stringify({ course_member: await courseMemberModel.getCourseMember(course_id) }));
+    sendPage(ctx, 200, JSON.stringify({ course_member: await courseMemberModel.getCourseMember(course_id) }),'studentManage');
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }
@@ -142,7 +143,7 @@ export async function addCourseMemberPage(ctx) {
       sendData(ctx, 400, JSON.stringify({ message: '请求错误' }));
       return;
     }
-    sendPage(ctx, 200, JSON.stringify({ message: '管理员手动添加课程学生的页面' }));
+    sendPage(ctx, 200, JSON.stringify({ message: '管理员手动添加课程学生的页面' }),'addStudentPage');
   } else {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
   }

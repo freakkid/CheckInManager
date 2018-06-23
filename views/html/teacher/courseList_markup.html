@@ -1,0 +1,37 @@
+
+<div id="Courses">
+  <div id="topBar" >
+    <img id="bookIMG" src="/pic/teacher/book.png">
+    <p id="heading">教师系统</p>
+    <ul>
+      <li id="teacherHeadList">
+      <img src="/pic/teacher/defaultHead.png" id="teacherHead" />
+        <ul id="teacherHeadUL">
+          <li class="topbar-item" style="cursor:pointer" v-on:click="changPassword" id="changePass">修改密码</li>
+          <li class="topbar-item" style="cursor:pointer" v-on:click="quitLogin" id="logout">退出登录</li>
+        </ul>
+      </li>
+      <div>
+          <p id="welcomeInfo" > ，欢迎您！</p>
+      </div>
+      
+    </ul>
+  </div>
+
+
+  <div id="bodyBlock">
+      <p id="title">已开设的课程</p>
+      
+      <table>  
+        <tr>
+          <td v-for = "course in courses">
+            <p class="name"  v-on:click="jump(course.course_id)" >
+              {{  course.course_name  }}
+              <span class="courseID" hidden="hidden">{{ course.course_id}}</span>
+            </p>
+            <p class="time">{{  course.semester }}</p>
+          </td>
+        </tr> 
+      </table>
+  </div>
+</div>  

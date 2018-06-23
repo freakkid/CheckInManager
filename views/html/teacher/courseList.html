@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>课程列表</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/css/teacher/courseListPageStyle.css">
+</head>
+   
+<body>
+<div id="Courses">
+  <div id="topBar" >
+    <img id="bookIMG" src="/pic/teacher/book.png">
+    <p id="heading">教师系统</p>
+    <ul>
+      <li id="teacherHeadList">
+      <img src="/pic/teacher/defaultHead.png" id="teacherHead" />
+        <ul id="teacherHeadUL">
+          <li class="topbar-item" v-on:click="changPassword">修改密码</li>
+          <li class="topbar-item" v-on:click="quitLogin">退出登录</li>
+        </ul>
+      </li>
+      <div>
+          <p id="welcomeInfo" > 这个名字由登录返回，，欢迎您！</p>
+      </div>
+      
+    </ul>
+  </div>
+
+
+  <div id="bodyBlock">
+      <p id="title">已开设的课程</p>
+      
+      <table>  
+        <tr>
+          <td v-for = "course in courses">
+            <p class="name"  v-on:click="jump(course.course_id)" >
+                {{  course.course_name  }}
+                <span class="courseID" hidden="hidden">{{ course.course_id}}</span>
+            </p>
+            <p class="time">{{  course.semester }}</p>
+          </td>
+        </tr> 
+      </table>
+  </div>
+</div>  
+      <script src="/scripts/vue.js"></script>
+      <script src="/scripts/axios.min.js"></script>
+      <script src="/scripts/jquery-3.3.1.js"></script>
+      <script src="/scripts/teacher/courseList.js"></script>
+ 
+</body>
+</html>
