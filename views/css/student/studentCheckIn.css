@@ -1,0 +1,119 @@
+@font-face{
+}
+
+
+html, body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  min-width:1200px; 
+
+  font-family: "Microsoft YaHei", "Century Gothic", cursive;
+  color: grey;
+  background-color: #EFEBE8;
+}
+
+html, body{
+  font-family: "Microsoft YaHei", "Century Gothic", cursive;
+  color: grey;
+  background-color: #EFEBE8;
+}
+#image{
+  width: 60px;
+  height: 60px;
+    margin:auto;
+    display:block;
+    margin-top: 100px;
+}
+#message{
+  text-align: center;
+    display:block;
+    margin-top: 30px;
+}
+#bodyBlock{
+  width: 50%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#bodyTop{
+  width: 100%;
+  height: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#bodyTop p{
+  display: inline-block;
+  width: 70%;
+  float: right;
+  margin-top: 16%;
+  margin-right: 13%;
+
+  font-size: 30px;
+  letter-spacing: 15px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+#bodyBottom{
+  width: 50%;
+  height: 40%;
+  margin-top: -10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5%;
+
+  background-color: white;
+  border: 1px solid white;
+  box-shadow: 2px 2px 2px grey;
+  border-radius: 10px;
+}
+
+
+#bodyBottom input:not(#submitBT){
+  display: inline-block;
+  width: 80%;
+  height: 23px;
+  vertical-align: top;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#submitBT{
+  width: 40%;
+  height: 35px;
+  margin-top: 30%;
+  margin-left: 35%;
+
+  background-color: #439940;
+  color: white;
+  cursor: pointer;
+  border-color: #059900;
+  text-align: center;
+  letter-spacing: 5px;
+  padding-left: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+#usernameInput{
+  margin-top: 5px;
+  height: 40px;
+  margin-left: 20%
+}
+
+#passwordInput{
+  margin-top: 30px;
+  height: 40px;
+  margin-left: 20%
+}
+
+
+#form1{
+  margin-top: -10px;
+}

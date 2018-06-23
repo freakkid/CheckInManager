@@ -1,0 +1,38 @@
+<div id="checkin">
+  <div id="topBar">
+    <img id="bookIMG" src="/pic/book.png">
+    <p id="heading">教师系统</p>
+    <ul>
+      <li><a href="javascript:void(0)" v-on:click="to_mainPage"  id="mainPage" >课程主页</a></li>
+      <li><a href="javascript:void(0)" >查看信息</a>
+        <ul>
+          <li><a href="javascript:void(0)" v-on:click="to_studentList" id="studentName">学生名单</a></li>
+          <li><a href="javascript:void(0)" v-on:click="to_attendencePage" id="signHistory"  >历史签到</a></li>
+        </ul>
+      </li>
+      <li><a href="javascript:void(0)" v-on:click="to_checkAttendencn" id="Sign" >发起签到</a></li>
+      <li><a href="javascript:void(0)" v-on:click="to_courselist" id="courseList" >课程列表</a></li>
+      <li id="teacherHeadList">
+      <img src="/pic/defaultHead.png" id="teacherHead" />
+        <ul id="teacherHeadUL">
+          <li><a href="javascript:void(0)" v-on:click="setting" id="changePass" >修改密码</a></li>
+          <li><a href="javascript:void(0)" v-on:click="logout" id="logout" >退出登录</a></li>
+        </ul>
+      </li>
+      <p id="welcomeInfo">，欢迎您！</p>
+    </ul>
+
+  </div>
+
+  <div id="bodyBlock">
+    <p id="QRText">扫描二维码签到</p>
+    <!-- <img id="QRCodePic" src="/pic/teacher/attendance.png"> -->
+    <!-- <img id="QRCodePic" src="http://qr.liantu.com/api.php?text="> -->
+    <img id="QRCodePic" v-bind:src="qrcode_src">
+  </div>
+
+  <div id="bodyRight">
+    <p>当前已签到:  <span id="attendanceNumber">{{checkedin}}</span></p>
+    <input type="button" name="stopBT" id="stopBT" value="停止签到" v-on:click="stopSign">
+  </div>
+</div>

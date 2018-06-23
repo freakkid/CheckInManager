@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>添加课程</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/css/manager/addCoursePageStyle.css">
+</head>
+
+<body>
+<div id="addCourse">
+  <div id="topBar">
+    <img id="bookIMG" src="/pic/teacher/book.png">
+    <p id="heading">管理员系统</p>
+    <ul>
+      <li><a href="javascript:void(0)" v-on:click="to_addStudentPage"  >添加全级学生</a></li>
+      <li id="teacherHeadList"><img src="/pic/teacher/defaultHead.png" id="teacherHead" />
+        <ul id="teacherHeadUL">
+          <li class="topbar-item" v-on:click="quitLogin">退出登录</li>
+        </ul>
+      </li>
+      <p id="welcomeInfo">衣扬，欢迎您！</p>
+    </ul>
+  </div>
+
+
+
+  <div id="bodyBlock">
+      <p id="title">添加课程</p>
+      <hr id="upperHr" />
+      <div id="modifyDiv">
+        
+         <!-- <div id="CourseNameInput">-->
+            <div>课程名称：</div>
+            <input id="a" v-model="course_name" type="text" name="course_name">
+         <!--  </div>-->
+          <p id="course_name">{{ em1 }}</p> 
+          <!--<div id="CourseCreditInput">-->
+            <div>总学分：</div>
+            <input v-model="course_credit" type="text" name="course_credit">
+         <!-- </div>-->
+          <p id="course_credit">{{ em2 }}</p>
+          <!--<div id="CourseSemesterInput">-->
+            <div>学期：</div>
+            <input v-model="course_semester" type="text" name="course_semester">
+          <!--</div>-->
+          <p id="course_semester">{{ em3 }}</p>
+          <!--<div id="CourseTimeInput">-->
+            <div>上课时间：</div>
+            <input v-model="course_time" type="text" name="course_time">
+         <!-- </div> -->
+          <p id="course_time">{{ em4 }}</p>
+          <!--<div id="CourseLocationInput">-->
+            <div>上课地点：</div>
+            <input v-model="course_location" type="text" name="course_location">
+         <!-- </div> -->
+          <p id="course_location">{{ em5 }}</p>
+          <div>
+              <input type="submit" name="ensurePost" id="ensurePost" value="确认提交" v-on:click="checkInput">
+              <input type="button" name="back" id="back" value="返回" v-on:click="back">
+          </div>
+      
+      </div>
+
+    
+  </div>
+</div>
+      <script src="/scripts/jquery-3.3.1.js"></script>
+      <script src="/scripts/vue.js"></script>
+      <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+      <script src="/scripts/axios.min.js"></script>
+      <script src="/scripts/manager/addCourse.js"></script>
+    
+</body>
+</html>
