@@ -48,9 +48,8 @@ function addEvents() {
         window.location =  '/course/'+course_id+'/checkin_student'; //也要course_id
     });
     $("#Sign").click(function() {
-        //签到界面
-        //todo
-        indow.location = '/course/'+course_id+'/checkin_course';
+ 
+        window.location = '/course/'+course_id+'/checkin_course';
     });
     $("#courseList").click(function() {
         window.location = "/course";

@@ -22,21 +22,22 @@ if(navigator.geolocation){
           // getCurrentPosition执行成功后，会把getSuccess传一个position对象  
           // position有两个属性，coords和timeStamp  
           // coords是一个对象，包含了地理位置数据  
-          //console.log(position.timeStamp);    // timeStamp表示地理数据创建的时间？？？？？？  
-          //console.log(position.coords.latitude);  // 估算的纬度       
-          //console.log(position.coords.longitude);   // 估算的经度           
-          //console.log(position.coords.altitude);   // 估算的高度 (以米为单位的海拔值)           
-          //console.log(position.coords.accuracy);   // 所得经度和纬度的估算精度，以米为单位    
-          //console.log(position.coords.altitudeAccuracy);   // 所得高度的估算精度，以米为单位    
-          //console.log(position.coords.heading);  // 宿主设备的当前移动方向，以度为单位，相对于正北方向顺时针方向计算       
-          //console.log(position.coords.speed); // 设备的当前对地速度，以米/秒为单位      
+          console.log("时间："+ position.timeStamp);    // timeStamp表示地理数据创建的时间？？？？？？  
+          console.log("纬度："+position.coords.latitude);  // 估算的纬度       
+          console.log("经度："+position.coords.longitude);   // 估算的经度           
+          console.log("海拔："+position.coords.altitude);   // 估算的高度 (以米为单位的海拔值)           
+          console.log("经纬度估算精度："+position.coords.accuracy);   // 所得经度和纬度的估算精度，以米为单位    
+          console.log("高度估算精度："+position.coords.altitudeAccuracy);   // 所得高度的估算精度，以米为单位    
+          console.log("设备移动方向："+position.coords.heading);  // 宿主设备的当前移动方向，以度为单位，相对于正北方向顺时针方向计算       
+          console.log("设备移动速度："+position.coords.speed); // 设备的当前对地速度，以米/秒为单位
+          console.log("纬度的数据类型是："+typeof(position.coords.latitude)) ;     
           
           
-          if(position.address){  // Firefox还提供了另外一个属性address  
+          if(position.address){  // Firefox 还提供了另外一个属性address  
                //通过address，可以获得国家、省份、城市  
-               //console.log(position.address.country);  
-               //console.log(position.address.province);  
-               //console.log(position.address.city);  
+               console.log("国家："+position.address.country);  
+               console.log("省份："+position.address.province);  
+               console.log("城市："+position.address.city);  
           }  
      }  
      //失败回调  
@@ -67,6 +68,10 @@ if(navigator.geolocation){
      //clearwatch用于终止watchPosition方法  
      navigator.geolocation.clearWatch(watcher_id);           
 }  
+
+   //用sohu的API获取本机网络ip地址
+   console.log("用sohu的api获取到的Ip地址："+returnCitySN.cip);  
+   console.log("IP地址的数据类型为："+typeof(returnCitySN.cip));
 
 
 function get_checkin_num() {
