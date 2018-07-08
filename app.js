@@ -28,9 +28,7 @@ const handler = async (ctx, next) => {
     await next();
   } catch (err) {
     ctx.response.status = 500;
-    // console.log(err);
-    // TODO 更改500提示
-    ctx.response.body = err;
+    ctx.response.body = '服务器出错了qaq';
   }
 };
 

@@ -3,7 +3,6 @@ import { sendPage, sendData } from '../utils';
 import { userModel, courseModel, courseMemberModel, checkinStudentModel, checkinCourseModel } from '../models';
 import { generateCheckinURL } from '../services/checkin/checkin';
 
-// TODO 所有的函数都需要修改sendPage()
 
 /**
  * 老师主页面获取所教课程列表
@@ -12,8 +11,6 @@ import { generateCheckinURL } from '../services/checkin/checkin';
  * @param {any} ctx 
  */
 export async function courseListPage(ctx) {
-  // TODO
-  //console.log('course list page');
   sendPage(ctx, 200, JSON.stringify({ courses: await courseModel.getAllCoursesList(ctx.user_id) }),'courseList');
 }
 
@@ -35,7 +32,6 @@ export async function coursePage(ctx) {
     sendData(ctx, 401, JSON.stringify({ message: '您没有权限' }));
     return;
   }
-  // TODO
   sendPage(ctx, 200, JSON.stringify((await courseModel.getCourseByCourseID(course_id))[0]),'courseDetail');
 }
 
@@ -60,7 +56,6 @@ export async function courseMemberPage(ctx) {
   }
 
   const course_member = await courseMemberModel.getCourseMember(course_id);
-  // TODO
   sendPage(ctx, 200, JSON.stringify({ course_member: course_member, course_member_num: course_member.length }),'studentNameListPage');
 }
 
@@ -85,7 +80,6 @@ export async function checkinHistoryPage(ctx) {
     return;
   }
 
-  // TODO
   sendPage(ctx, 200, JSON.stringify({ checkin_history: await checkinStudentModel.getAllCourseCheckin(course_id) }) , 'checkAttendancePage');
 }
 
@@ -123,7 +117,7 @@ export async function checkinInfoPage(ctx) {
     uncheckedin = await checkinStudentModel.getAllCourseUncheckinStudent(checkin_id),
     uncheckedin_num = uncheckedin.length;
 
-  // TODO
+  
   sendPage(ctx, 200, JSON.stringify({
     checkedin: checkedin, checkedin_num: checkedin_num,
     uncheckedin: uncheckedin, uncheckedin_num: uncheckedin_num
@@ -156,9 +150,9 @@ export async function launchCheckinPage(ctx) {
   var checkin_id = await checkinServ.getCheckinID(course_id);
   if (!checkin_id) {
     checkin_id = await checkinServ.set(course_id);
-    // TODO
+    
     if ((await checkinCourseModel.createCheckinCourse(checkin_id, course_id, gps)).affectedRows === 0) {
-      // TODO  不知道是用sendData好还是用sendPage好
+      
       sendData(ctx, 400, JSON.stringify({ message: '发起签到失败qaq' }));
     }
   }

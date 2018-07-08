@@ -14,8 +14,6 @@ export async function QRCodeUrlPage(ctx) {
     //console.log('学生扫码后，您请求的页面已失效');
     sendData(ctx, 400, JSON.stringify({ message: '您请求的页面已失效' }));
   } else {
-    // TODO
-    //console.log('学生扫码后，成功返回界面');
     sendPage(ctx, 200, JSON.stringify({ message: '发送填写签到信息的页面' }), 'student_checkin');
   }
 }

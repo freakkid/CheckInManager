@@ -1,7 +1,6 @@
 import { execAsync } from './util';
 
-// 学生签到信息（待定：ip,mac）
-// TODO: ip/mac信息
+// 学生签到信息
 export async function createCheckinStudentTable() {
   return await execAsync(
     `CREATE TABLE IF NOT EXISTS CHECKIN_STUDENT(
@@ -20,7 +19,6 @@ export async function dropCheckinStudentTable() {
 }
 
 // 学生进行签到 插入签到数据：学号 签到id
-// TODO: 记录ip/mac信息
 export async function createCheckinStudent(student_id, checkin_id) {
   return await execAsync(
     `INSERT INTO CHECKIN_STUDENT (student_id, checkin_id) VALUES (?, ?)`,

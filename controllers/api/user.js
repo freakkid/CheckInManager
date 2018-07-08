@@ -7,7 +7,6 @@ export async function changePassword(ctx) {
     let old_password = ctx.request.body.old_password,
       password = ctx.request.body.password;
     if (!old_password || old_password === '' || !validator.isPassword(password)) {
-      // console.log(password + '---------' + old_password)
       sendData(ctx, 400, JSON.stringify({ message: '请检查输入格式' }));
       return;
     }
@@ -38,7 +37,6 @@ export async function createUser(ctx) {
       return;
     }
     if ((await userModel.getUsernameByUserID(user_id)).length > 0) {
-      // console.log(await userModel.getUsernameByUserID(user_id))
       sendData(ctx, 400, JSON.stringify({ message: '存在相同id的用户' }));
       return;
     }

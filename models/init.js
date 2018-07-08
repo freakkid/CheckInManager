@@ -15,26 +15,16 @@ export async function initDatabase() {
     await createCourseMemberTable();
     await createCheckinStudentTable();
     await createCheckinCourseTable();
-  // } catch (err) {
-  //   process.exit(1);
-  // }
 }
 
 export async function initDatabaseForTest() {
-  // try {
-    //? just for test
     await dropUserTable();
     await dropStudentTable();
     await dropCourseTable();
     await dropCourseMemberTable();
     await dropCheckinStudentTable();
     await dropCheckinCourseTable();
-    //?-------------------
     await initDatabase();
-  // } catch (err) {
-  //   console.log(err);
-  //   process.exit(1);
-  // }
 }
 
 

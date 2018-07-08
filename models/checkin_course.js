@@ -1,6 +1,5 @@
 import { execAsync } from './util';
 
-// TODO 课程签到信息（待定：gps）
 export async function createCheckinCourseTable() {
   return await execAsync(
     `CREATE TABLE IF NOT EXISTS CHECKIN_COURSE(

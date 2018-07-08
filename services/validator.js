@@ -1,4 +1,3 @@
-// TODO 正则表达式匹配用户id 和密码 返回bool值
 // 传进的参数值是否是字符串
 
 // 不为空
@@ -30,9 +29,7 @@ export function isStudentID(student_id) {
   return !!student_id && /^[\d]{8}$/.test(student_id);
 }
 
-// TODO
 export function isGps(gps) {
   return !!gps;
 }
 
-// TODO mac/ip export function 
